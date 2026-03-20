@@ -4,16 +4,16 @@
   <meta charset="utf-8">
 
   <meta name="google-site-verification" content="prclA4N27h8s6VUSzswRzH_4-r1LEjxS3aX7ELLZJmQ">
-  <meta name="description" content="TGVTS official website providing education, technology services, and school information.">
+  <meta name="description" content="TGVTS Secondary School official website. Education, results, and school information.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>TGVTS - Technology & General Ventures Tanzania</title>
+  <title>TGVTS Secondary School - Temboni</title>
 
   <style>
     body {
-      background-color: #f5f5f5;
       margin: 0;
       font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
     }
 
     header {
@@ -23,36 +23,118 @@
       text-align: center;
     }
 
-    .center {
+    nav {
+      background-color: #0055aa;
+      padding: 10px;
       text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 20px;
+      background-color: white;
+    }
+
+    .hero img {
+      width: 200px;
+      height: 200px;
+    }
+
+    .section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: #003366;
+    }
+
+    .footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 15px;
       margin-top: 20px;
     }
 
-    a {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      font-size: 18px;
+    iframe {
+      width: 90%;
+      height: 300px;
+      border: 0;
     }
   </style>
-
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 
+  <!-- HEADER -->
   <header>
-    <h1>TGVTS</h1>
-    <p>Technology & General Ventures Tanzania</p>
+    <h1>TGVTS Secondary School</h1>
+    <p>Temboni - Tanzania</p>
   </header>
 
-  <div class="center">
-    <img src="photos/nemb8.jpeg" height="200" width="200">
+  <!-- NAVIGATION -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="results.html">Results</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <div class="hero">
+    <img src="photos/nemb8.jpeg" alt="School Logo">
+    <h2>Welcome to TGVTS</h2>
+    <p>Providing quality education and technology skills for a better future.</p>
   </div>
 
-  <a href="results.html">Go to results</a>
+  <!-- ABOUT -->
+  <div class="section">
+    <h2>About Us</h2>
+    <p>
+      TGVTS Secondary School is located in Temboni.  
+      We focus on academic excellence, discipline, and technology education.
+    </p>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- RESULTS -->
+  <div class="section">
+    <h2>Student Results</h2>
+    <p>Click below to view student results:</p>
+    <a href="results.html">View Results</a>
+  </div>
+
+  <!-- MAP -->
+  <div class="section">
+    <h2>Our Location</h2>
+
+    <iframe 
+      src="https://www.google.com/maps?q=Temboni%20GVTS%20Secondary%20School&output=embed">
+    </iframe>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="section">
+    <h2>Contact Us</h2>
+    <p>Phone: +255 XXX XXX XXX</p>
+    <p>Email: info@tgvts.com</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>© 2026 TGVTS Secondary School - All Rights Reserved</p>
+  </div>
 
 </body>
 </html>
