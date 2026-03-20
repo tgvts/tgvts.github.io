@@ -13,7 +13,7 @@
 <body>
 
 <div class="container my-4">
-  <h1 class="text-center mb-4">TGVTS FORM ONE STUDENTS RESULTS</h1>
+  <h1 class="text-center mb-4">TGVTS Student Results</h1>
 
   <!-- Download PDF Button -->
   <div class="text-center mb-3">
@@ -67,7 +67,7 @@
           <td>2</td><td>Faith</td><td>Form One</td>
           <td>88</td><td>90</td><td>85</td><td>82</td><td>80</td><td>86</td><td>84</td><td>87</td><td>91</td><td>853</td>
         </tr>
-        <!-- Add all 500 students here -->
+        <!-- Paste your remaining 500 students here -->
       </tbody>
     </table>
   </div>
@@ -108,11 +108,17 @@
     }
   }
 
-  // Download table as PDF
+  // Download table as PDF with title
   function downloadPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('l', 'pt', 'a4'); // landscape
 
+    // PDF title
+    const title = "TGVTS STUDENT RESULTS";
+    doc.setFontSize(18);
+    doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, { align: "center" });
+
+    // Collect table data
     const table = document.getElementById("resultsTable");
     const headers = [];
     table.querySelectorAll("thead th").forEach(th => headers.push(th.innerText));
@@ -123,12 +129,13 @@
       data.push(row);
     });
 
+    // Generate table below the title
     doc.autoTable({
       head: [headers],
       body: data,
-      startY: 20,
+      startY: 50, // space after title
       styles: { fontSize: 8 },
-      headStyles: { fillColor: [0, 102, 204] },
+      headStyles: { fillColor: [0, 102, 204] }, // Bootstrap blue header
     });
 
     doc.save("TGVTS_Results.pdf");
