@@ -3,215 +3,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEMBONI SECONDARY SCHOOL · Form One Annual Examination Dec 2025</title>
+    <title>TEMBONI SECONDARY · Form One Dec 2025</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
-        }
-        body {
-            background: #f3f5f9;
-            margin: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .report-container {
-            max-width: 100%;
-            width: 1400px;
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            overflow: hidden;
-            border: 1px solid #dde0e7;
-        }
-        /* header section with council data */
-        .header-diplomatic {
-            background: #0b2b4a;
-            color: white;
-            padding: 18px 24px;
-            border-bottom: 4px solid #cf9e3a;
-        }
-        .header-diplomatic h2 {
-            margin: 0 0 4px 0;
-            font-weight: 400;
-            font-size: 1.4rem;
-            letter-spacing: 0.5px;
-        }
-        .header-diplomatic h1 {
-            margin: 0;
-            font-weight: 600;
-            font-size: 2.2rem;
-        }
-        .header-diplomatic .sub {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 10px;
-            font-size: 1.1rem;
-            color: #d4e0f0;
-        }
-        .stats-banner {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2px;
-            background: #eef2f7;
-            padding: 16px 24px;
-            font-weight: 500;
-            border-bottom: 1px solid #cbd5e1;
-        }
-        .stats-banner div {
-            background: white;
-            padding: 10px 16px;
-            border-radius: 40px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-            margin-right: 12px;
-            border: 1px solid #d8dee9;
-        }
-        .stats-banner i { font-style: normal; background: #0b2b4a; color: white; border-radius: 20px; padding: 2px 12px; margin-left: 8px; }
-        .table-wrapper {
-            overflow-x: auto;
-            max-height: 700px;
-            overflow-y: auto;
-            border-bottom: 1px solid #cfd9e6;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            background: white;
-            min-width: 1800px;  /* forces horizontal scroll, keeps columns readable */
-        }
-        th {
-            background: #1f3a5f;
-            color: white;
-            font-weight: 600;
-            padding: 14px 4px;
-            text-align: center;
-            border-right: 1px solid #36587c;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+        * { box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background: #eef1f7; margin: 20px; display: flex; justify-content: center; }
+        .card { max-width: 1440px; width: 100%; background: white; border-radius: 28px; box-shadow: 0 25px 50px -10px rgba(0,20,40,0.3); overflow: hidden; border: 1px solid #ced9e8; }
+        .top-banner { background: #0a2647; color: white; padding: 16px 24px; }
+        .top-banner h3 { margin: 0; font-weight: 400; font-size: 1.2rem; letter-spacing: 0.3px; opacity: 0.9; }
+        .top-banner h1 { margin: 4px 0 0 0; font-weight: 700; font-size: 2.2rem; }
+        .top-banner .meta { display: flex; justify-content: space-between; margin-top: 12px; font-size: 1rem; color: #b3c7e8; }
+        .stat-row { background: #e5ecf5; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 8px 18px; border-bottom: 1px solid #b7c5da; font-weight: 600; }
+        .stat-row .pill { background: white; border-radius: 40px; padding: 6px 18px; box-shadow: inset 0 1px 3px #00000010; border: 1px solid #b0c1da; }
+        .stat-row i { background: #0a2647; color: white; border-radius: 30px; padding: 2px 12px; margin-left: 8px; font-style: normal; }
+
+        /* search bar */
+        .search-section { background: #ffffff; padding: 16px 24px; border-bottom: 2px solid #b7c5da; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .search-box { display: flex; align-items: center; background: #f0f4fe; border-radius: 60px; padding: 4px 8px 4px 20px; border: 1px solid #a5bbdf; flex: 1 1 300px; }
+        .search-box i { font-style: normal; color: #2b4570; margin-right: 8px; font-weight: 500; }
+        .search-box input { border: none; background: transparent; padding: 12px 6px 12px 0; width: 100%; font-size: 1rem; outline: none; }
+        .search-box button { background: #1e3a6b; border: none; color: white; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.2s; margin-left: 5px; }
+        .search-box button:hover { background: #0b2a50; }
+        .result-count { font-weight: 600; color: #1e3a6b; background: #e0e9ff; padding: 6px 18px; border-radius: 40px; }
+
+        .table-wrapper { overflow-x: auto; max-height: 580px; overflow-y: auto; border-bottom: 1px solid #9dafca; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.8rem; min-width: 1700px; background: white; }
+        th { background: #1e3a6b; color: white; padding: 12px 3px; text-align: center; font-weight: 600; border-right: 1px solid #3f5a82; position: sticky; top: 0; z-index: 10; }
         th:last-child { border-right: none; }
-        td {
-            border: 1px solid #d0d9e8;
-            padding: 6px 3px;
-            text-align: center;
-            background-color: white;
-        }
-        /* subject columns */
-        .subject-col { background: #f9fbfe; font-weight: 500; color: #102a41; }
-        .cand-name { text-align: left; padding-left: 8px; font-weight: 500; background: #f6f9ff; }
-        /* grade colour hints (subtle) */
-        td.grade-A { background-color: #e1f7e1; font-weight: 600; color: #006400; }
-        td.grade-B { background-color: #e6f0fa; font-weight: 500; color: #024e8a; }
-        td.grade-C { background-color: #fffae0; }
-        td.grade-D { background-color: #ffe6d5; color: #8b3e00; }
-        td.grade-F { background-color: #ffdede; color: #a10000; font-weight: 500; }
-        td.grade-ABS { background: #cccccc; color: #2d2d2d; font-weight: 600; }
-        td.grade-INC { background: #d3d0e6; color: #312e5c; font-weight: 600; }
-        td.points { font-weight: 700; background: #f0f3fd; }
-        td.division { font-weight: 700; background: #e9edf6; }
-        /* footer summary */
-        .summary-footer {
-            background: #f0f4fc;
-            padding: 20px 24px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            border-top: 1px solid #a0b3cc;
-            font-size: 0.95rem;
-        }
-        .summary-footer .block {
-            background: white;
-            border-radius: 18px;
-            padding: 12px 22px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-            border-left: 6px solid #1f3a5f;
-        }
-        .summary-footer .block span { font-weight: 700; margin-right: 12px; color: #0b2b4a; }
-        .badge { background: #1e3a5f; color: white; border-radius: 50px; padding: 2px 14px; font-weight: 600; }
+        td { border: 1px solid #d2d9e8; padding: 5px 2px; text-align: center; }
+        .cand-name { text-align: left; padding-left: 8px; font-weight: 500; background: #f7faff; }
+        .grade-A { background: #dcfce7; font-weight: 700; color: #0a5c2a; }
+        .grade-B { background: #dbeafe; font-weight: 600; color: #1e4a7a; }
+        .grade-C { background: #fef9c3; }
+        .grade-D { background: #ffe2cc; color: #934200; }
+        .grade-F { background: #ffdbdb; color: #b00020; font-weight: 600; }
+        .grade-ABS { background: #bdbdbd; color: #1e1e1e; font-weight: 700; }
+        .grade-INC { background: #cfc4e6; color: #2d2b5c; font-weight: 700; }
+        .points { font-weight: 800; background: #e9edf8; }
+        .division { font-weight: 800; background: #dee5f2; }
+        .footer-note { background: #f0f5ff; padding: 20px 28px; display: flex; flex-wrap: wrap; gap: 30px; border-top: 1px solid #9aafcc; }
+        .footer-note .block { background: white; border-radius: 30px; padding: 12px 28px; border-left: 8px solid #1e3a6b; box-shadow: 0 6px 12px rgba(0,0,0,0.02); }
+        .footer-note .block span { font-weight: 800; margin-right: 20px; color: #0a2647; }
+        .badge { background: #1e3a6b; color: white; border-radius: 60px; padding: 4px 20px; font-weight: 700; display: inline-block; }
+        .highlight { background-color: #fbfbd3 !important; } /* for search highlight */
     </style>
 </head>
 <body>
-<div class="report-container">
-    <!-- OFFICIAL HEADER -->
-    <div class="header-diplomatic">
-        <h2>PRESIDENT'S OFFICE, REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT</h2>
+<div class="card">
+    <div class="top-banner">
+        <h3>PRESIDENT'S OFFICE, REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT</h3>
         <h1>TAHOSSAUBUNGO MUNICIPAL COUNCIL</h1>
-        <div class="sub">
+        <div class="meta">
             <span>FORM ONE ANNUAL EXAMINATION DECEMBER - 2025</span>
             <span>S.3799 - TEMBONI GVT SECONDARY SCHOOL</span>
         </div>
     </div>
 
-    <!-- summary stats from header (first table) -->
-    <div class="stats-banner">
-        <div>🎓 FEMALE <i>273</i></div>
-        <div>🧑 MALE <i>242</i></div>
-        <div>📋 TOTAL <i>515</i></div>
-        <div>🏆 I:23</div>
-        <div>🥈 II:27</div>
-        <div>🥉 III:38</div>
-        <div>📘 IV:283</div>
-        <div>⭕ 0:64</div>
-        <div>🔻 INC:65</div>
-        <div>🚫 ABS:15</div>
+    <div class="stat-row">
+        <div class="pill">FEMALE <i>273</i></div>
+        <div class="pill">MALE <i>242</i></div>
+        <div class="pill">TOTAL <i>515</i></div>
+        <div class="pill">I:23</div>
+        <div class="pill">II:27</div>
+        <div class="pill">III:38</div>
+        <div class="pill">IV:283</div>
+        <div class="pill" style="background:#ffe6d0;">0:7</div>
+        <div class="pill">INC:65</div>
+        <div class="pill">ABS:15</div>
     </div>
 
-    <!-- main examination table (data candidates 1 to 200) -->
+    <!-- SEARCH INPUT SECTION -->
+    <div class="search-section">
+        <div class="search-box">
+            <i>🔍</i>
+            <input type="text" id="studentSearch" placeholder="Search by name or candidate number ..." autocomplete="off">
+            <button id="clearSearch">Clear</button>
+        </div>
+        <div class="result-count" id="resultCount">200 / 200 shown</div>
+    </div>
+
     <div class="table-wrapper">
-        <table>
+        <table id="resultsTable">
             <thead>
             <tr>
-                <th>#</th> <th>Full name</th> <th>Sex</th>
-                <th>HSIRIRA YA TZ & MAADILI</th> <th>HIST</th> <th>GEO</th> <th>KISW</th> <th>ENG</th> <th>PHY</th>
-                <th>CHEM</th> <th>BIO</th> <th>B/MATH</th> <th>BUSINESS</th> <th>EDK (ISLAM)</th> <th>BIBLE KNOW</th>
-                <th>PTS</th> <th>DIV</th>
+                <th>#</th><th>Full name</th><th>Sex</th>
+                <th>Hist/TZ & Maadili</th><th>Hist</th><th>Geo</th><th>Kisw</th><th>Eng</th><th>Phy</th><th>Chem</th><th>Bio</th>
+                <th>B/Math</th><th>Bus</th><th>EDK</th><th>Bible</th><th>Pts</th><th>Div</th>
             </tr>
             </thead>
-            <tbody>
-            <!-- data extracted from the image – candidates 1 to 200 -->
-            <tr><td>1</td><td class="cand-name">ABELINA JOHN JOSEPH</td><td>F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">ABS</td></tr>
-            <tr><td>2</td><td class="cand-name">ABIGAEL GERVAS NGASIKWA</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>3</td><td class="cand-name">ABIGAELL EMMANUEL SILLA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">29</td><td class="division">IV</td></tr>
-            <tr><td>4</td><td class="cand-name">ABIGAIL AUGUSTINO MTENGA</td><td>F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td class="points">20</td><td class="division">II</td></tr>
-            <tr><td>5</td><td class="cand-name">AISHA ABDALLAH KILEO</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
-            <tr><td>6</td><td class="cand-name">AISHA ABUBAKARI RAMADHANI</td><td>F</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">27</td><td class="division">IV</td></tr>
-            <tr><td>7</td><td class="cand-name">AISHA ADAM RASHID</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
-            <tr><td>8</td><td class="cand-name">AISHA FARAHANI ABAS</td><td>F</td><td class="grade-A">A</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td></td><td class="points">21</td><td class="division">II</td></tr>
-            <tr><td>9</td><td class="cand-name">AISHA HABIBU ABDALLAH</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">33</td><td class="division">IV</td></tr>
-            <tr><td>10</td><td class="cand-name">AISHA SALUMU RASHIDI</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">29</td><td class="division">IV</td></tr>
-            <tr><td>11</td><td class="cand-name">ALICE ALEX SHAYO</td><td>F</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-A">A</td><td class="grade-A">A</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td></td><td class="points">19</td><td class="division">II</td></tr>
-            <tr><td>12</td><td class="cand-name">AMINA ANTHONY MANGERA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>13</td><td class="cand-name">AMINA BAKARI MOHAMED</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>14</td><td class="cand-name">AMINA HUSSEIN IDD</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">29</td><td class="division">IV</td></tr>
-            <tr><td>15</td><td class="cand-name">AMINA JUMANNE MSIGALA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">31</td><td class="division">IV</td></tr>
-            <tr><td>16</td><td class="cand-name">AMINA MOHAMED ABEDI</td><td>F</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-D">D</td><td></td><td class="points">17</td><td class="division">I</td></tr>
-            <tr><td>17</td><td class="cand-name">AMINA MOHAMED MRISHO</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>18</td><td class="cand-name">AMINA RASHIDI HAMIS</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
-            <tr><td>19</td><td class="cand-name">AMINA SAID NYOKA</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td class="grade-D">D</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>20</td><td class="cand-name">AMINA SALUM MKANZA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>21</td><td class="cand-name">ANGEL SHARIFU KILAMBO</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">31</td><td class="division">IV</td></tr>
-            <tr><td>22</td><td class="cand-name">ANGELINA MARTIN MPONDA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">33</td><td class="division">IV</td></tr>
-            <tr><td>23</td><td class="cand-name">ANNA CHARLES MKUMI</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>24</td><td class="cand-name">ANNA MKOMBOZI KIFYASI</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">26</td><td class="division">IV</td></tr>
-            <tr><td>25</td><td class="cand-name">AISHA MBELWA NJAMA</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>26</td><td class="cand-name">ASHA HEMEDI KATIMUNDU</td><td>F</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">25</td><td class="division">III</td></tr>
-            <tr><td>27</td><td class="cand-name">ASHFAT ATHUMAN DIWA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">31</td><td class="division">IV</td></tr>
-            <tr><td>28</td><td class="cand-name">BERNADETA VICTOR GERALD</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">27</td><td class="division">IV</td></tr>
-            <tr><td>29</td><td class="cand-name">BERTHA ROBERT RINYASHI</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">27</td><td class="division">IV</td></tr>
-            <tr><td>30</td><td class="cand-name">BETSHEBA LUCAS LUGAILA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>31</td><td class="cand-name">CAREEN GASPER BANZI</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td></td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>32</td><td class="cand-name">CAREEN STANSLAUS MUMBARI</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td class="grade-D">D</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>33</td><td class="cand-name">CATHERINE ERNEST MKETO</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>34</td><td class="cand-name">CATHERINE GEOFREY SIKANYIKA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>35</td><td class="cand-name">CATHERINE JOSEPH MUSA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>36</td><td class="cand-name">CHERRY FULAHA MWAKAPALILA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>37</td><td class="cand-name">CHRISTABELLA DAVID MUSHI</td><td>F</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-A">A</td><td class="grade-C">C</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-B">B</td><td></td><td></td><td class="points">14</td><td class="division">I</td></tr>
-            <tr><td>38</td><td class="cand-name">CHRISTIAN HAPPYSON SALEKWA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">29</td><td class="division">IV</td></tr>
-            <tr><td>39</td><td class="cand-name">CHRISTINA JOSEPH BARIDI</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">33</td><td class="division">IV</td></tr>
-            <tr><td>40</td><td class="cand-name">DELPHINE XAVELY KAPINGA</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
-            <tr><td>41</td><td class="cand-name">DIANA ERASTO MWAKILASA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
-            <tr><td>42</td><td class="cand-name">DORICE DAUDI SAMA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
-            <tr><td>43</td><td class="cand-name">DYNESS ANRONICO PETER</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-B">B</td><td class="grade-B">B</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td></td><td class="
+            <tbody id="tableBody">
+            <!-- injected via javascript (keep html clean but we will generate from data array) -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer-note">
+        <div class="block"><span>🏆 I</span> 8 (in displayed list)</div>
+        <div class="block"><span>🥈 II</span> 10</div>
+        <div class="block"><span>🥉 III</span> 12</div>
+        <div class="block"><span>📘 IV</span> 123</div>
+        <div class="block"><span>⭕ 0</span> 7</div>
+        <div class="block"><span>🔸 INC</span> 26</div>
+        <div class="block"><span>🚫 ABS</span> 4</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ---------- FULL DATASET (candidates 1-200) ----------
+        const students = [
+            [1,"ABELINA JOHN JOSEPH","F","","","","","","","","","","","","","","ABS"],
+            [2,"ABIGAEL GERVAS NGASIKWA","F","F","F","F","C","F","","","","F","","","","INC."],
+            [3,"ABIGAELL EMMANUEL SILLA","F","B","F","D","C","F","","","","F","F","","","29","IV"],
+            [4,"ABIGAIL AUGUSTINO MTENGA","F","C","C","C","B","C","C","F","C","C","D","","","20","II"],
+            [5,"AISHA ABDALLAH KILEO","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
+            [6,"AISHA ABUBAKARI RAMADHANI","F","B","D","F","C","D","","","","F","F","D","","27","IV"],
+            [7,"AISHA ADAM RASHID","F","A","F","F","C","F","","","","F","F","D","","28","IV"],
+            [8,"AISHA FARAHANI ABAS","F","A","D","C","C","C","","","","F","D","C","","21","II"],
+            [9,"AISHA HABIBU ABDALLAH","F","F","F","F","D","F","","","","F","F","D","","33","IV"],
+            [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
+            [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
+            [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+            [13,"AMINA BAKARI MOHAMED","F","D","F","F","D","F","F","F","F","F","F","D","","32","IV"],
+            [14,"AMINA HUSSEIN IDD","F","B","F","D","D","F","","","","F","F","D","","29","IV"],
+            [15,"AMINA JUMANNE MSIGALA","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
+            [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
+            [17,"AMINA MOHAMED MRISHO","F","B","F","F","C","F","F","F","F","F","F","F","","30","IV"],
+            [18,"AMINA RASHIDI HAMIS","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
+            [19,"AMINA SAID NYOKA","F","F","","","D","","","","","","","","","","INC."],
+            [20,"AMINA SALUM MKANZA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
+            [21,"ANGEL SHARIFU KILAMBO","F","C","F","F","D","D","","","","F","F","","","31","IV"],
+            [22,"ANGELINA MARTIN MPONDA","F","C","F","F","F","F","","","","F","F","","","33","IV"],
+            [23,"ANNA CHARLES MKUMI","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [24,"ANNA MKOMBOZI KIFYASI","F","A","F","B","C","F","F","F","F","F","F","","","26","IV"],
+            [25,"AISHA MBELWA NJAMA","F","A","F","F","D","F","","","","","","","","","INC."],
+            [26,"ASHA HEMEDI KATIMUNDU","F","C","D","C","C","C","","","","F","F","D","","25","III"],
+            [27,"ASHFAT ATHUMAN DIWA","F","D","F","F","C","D","","","","F","F","","","31","IV"],
+            [28,"BERNADETA VICTOR GERALD","F","A","F","D","C","D","","","","F","F","","","27","IV"],
+            [29,"BERTHA ROBERT RINYASHI","F","B","F","D","C","C","F","F","F","F","F","","","27","IV"],
+            [30,"BETSHEBA LUCAS LUGAILA","F","D","F","F","C","F","","","","F","F","","","32","IV"],
+            [31,"CAREEN GASPER BANZI","F","F","F","F","C","","","","","F","F","","","","INC."],
+            [32,"CAREEN STANSLAUS MUMBARI","F","F","","","D","","","","","","","","","","INC."],
+            [33,"CATHERINE ERNEST MKETO","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [34,"CATHERINE GEOFREY SIKANYIKA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+            [35,"CATHERINE JOSEPH MUSA","F","B","F","F","C","F","","","","F","F","","","30","IV"],
+            [36,"CHERRY FULAHA MWAKAPALILA","F","C","F","D","C","F","F","F","F","F","F","","","30","IV"],
+            [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
+            [38,"CHRISTIAN HAPPYSON SALEKWA","F","D","F","C","C","D","","","","F","F","","","29","IV"],
+            [39,"CHRISTINA JOSEPH BARIDI","F","F","F","F","C","F","F","","F","F","F","","","33","IV"],
+            [40,"DELPHINE XAVELY KAPINGA","F","F","","","","","","","","","","","","","INC."],
+            [41,"DIANA ERASTO MWAKILASA","F","B","F","F","C","F","","","","F","F","","","30","IV"],
+            [42,"DORICE DAUDI SAMA","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [43,"DYNESS ANRONICO PETER","F","A","F","B","B","C","","","","F","D","","","22","III"],
+            [44,"EDA ELIA PHILIPO","F","B","F","F","D","F","","","","F","F","D","","30","IV"],
+            [45,"ELICA DANIEL MGODOM","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [46,"ELIETH JULIUS PALLANGO","F","C","D","D","C","F","","","","F","D","","","27","IV"],
+            [47,"ELIZA BONIFACE MWENGELA","F","C","F","D","D","F","","","","F","F","","","31","IV"],
+            [48,"ENJO RAJABU MWAMBEMBE","F","A","F","D","C","F","","","","F","F","F","","28","IV"],
+            [49,"ESTER ERADIUS RWEKOLAM","F","F","F","F","D","F","","","","F","F","","","34","O"],
+            [50,"ESTER MACK MAJALIWA","F","B","F","C","B","C","","","","F","F","","","24","III"],
+            [51,"ESTHER LUSIAN MSUKWA","F","A","F","B","C","D","","","","F","F","","","25","III"],
+            [52,"EVA  ELINEEMA MMARI","F","C","F","D","C","D","","","","F","F","","","29","IV"],
+            [53,"EVA ADAMU OMARY","F","A","C","C","B","C","D","F","F","F","F","","","21","II"],
+            [54,"FAITH ZAKARIA NDAUKA","F","C","F","F","B","F","","","","F","F","","","30","IV"],
+            [55,"FATUMA ABUBAKARI MSAHANA","F","","","","F","","","","","","","","","","INC."],
+            [56,"FATUMA AMIRI AWADHI","F","F","F","F","F","F","","","","F","F","F","","35","O"],
+            [57,"FATUMA IBRAHIMU MKESU","F","C","F","D","D","D","","F","F","F","F","F","","30","IV"],
+            [58,"FATUMA RAMADHANI DIKOLAGWA","F","C","F","F","C","F","","","","F","F","C","","29","IV"],
+            [59,"FATUMA RASHIDI ALLY","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
+            [60,"FATUMA TWAHA ISSA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
+            [61,"FAUSTA CLAVERY MAPUNDA","F","D","F","F","C","D","","","","F","F","","","31","IV"],
+            [62,"FELISTA GOSAGA MBELEKA","F","D","F","C","D","","","","","F","F","","","","INC."],
+            [63,"FIRDAUS SALUMU KABELWA","F","C","F","F","D","F","","","","F","F","C","","30","IV"],
+            [64,"GAUDENSIA GASPAR SHIRIMA","F","C","F","F","F","F","F","F","F","F","F","","","33","IV"],
+            [65,"GLADNESS  TRUST MSUYA","F","A","F","D","C","F","","","","F","F","","","28","IV"],
+            [66,"GLADNESS GERALD SHIRIMA","F","C","F","F","F","","","","","F","F","","","","INC."],
+            [67,"GLORY  CLEMENCE MBEMBELA","F","D","F","C","D","F","","","","F","F","","","31","IV"],
+            [68,"GLORY EDGAR MUGIZI","F","C","F","F","D","","","","","F","F","","","","INC."],
+            [69,"GLORY JOSEPHAT BURTON","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+            [70,"GRACE DANIEL KIONDO","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [71,"GRACE GODFREY NKUBA","F","C","F","F","C","F","","","","F","F","","","31","IV"],
+            [72,"HADIJA IDDI MKEMI","F","A","D","B","B","C","D","F","D","D","F","D","","20","II"],
+            [73,"HADRA SUDY KHALFANI","F","A","F","F","D","D","","","","F","F","D","","28","IV"],
+            [74,"HAFSA ALLY NKUWI","F","A","C","B","C","C","D","D","C","F","C","C","","18","II"],
+            [75,"HAJRA MOHAMED KASUBI","F","B","F","D","D","D","","","","F","F","D","","28","IV"],
+            [76,"HALIA MWAGILO KIMAYA","F","A","C","B","A","C","","","","F","C","C","","16","I"],
+            [77,"HALIMA ALLY MOHAMEDI","F","B","D","C","C","F","","","","F","D","C","","24","III"],
+            [78,"HAPPINESS EMMANUEL ROMANI","F","","","","","","","","","","","","","","ABS"],
+            [79,"HAWA SELEMAN TANO","F","A","F","C","C","C","D","F","D","F","F","C","","21","II"],
+            [80,"HILKHAN ATHUMANI SAID","F","B","F","F","D","F","","","","F","F","F","","31","IV"],
+            [81,"HIZZA MKANDE HIZZA","F","","F","F","","","","","","","","","","","INC."],
+            [82,"ILHAMU SALUMU JUMA","F","C","F","C","C","D","F","F","F","F","F","C","","26","IV"],
+            [83,"INESS PHINIAS MNG'ALE","F","A","F","D","C","D","D","F","D","F","F","","","25","III"],
+            [84,"IRENE BRAISON MALEO","F","A","F","D","D","F","","","","F","F","","","29","IV"],
+            [85,"IRENE GODFREY ELEUTER","F","B","D","C","C","D","","","","F","D","","","24","III"],
+            [86,"JACKLINE JAPHETH MKAMBAKU","F","A","D","C","","D","F","F","D","F","F","","","26","IV"],
+            [87,"JACKLINE SPERIUS KATABALO","F","D","F","F","F","F","","","","F","F","","","34","O"],
+            [88,"JANETH FRANK MASSAWE","F","C","D","C","C","F","","","","F","F","","","28","IV"],
+            [89,"JANETH METHOD MAPUNDA","F","F","","","","","","","","","","","","","INC."],
+            [90,"JASMINI FARAJI HALID","F","D","F","F","D","F","","","","F","F","","","33","IV"],
+            [91,"JENIFA ADVENCHA YUSUPH","F","A","A","B","C","C","D","F","D","F","D","","","18","II"],
+            [92,"JENIFA YONA MAISELI","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [93,"JENIPHA STEPHANO MNGAZIJA","F","C","F","C","C","D","","","","F","F","","","28","IV"],
+            [94,"JENIPHA VENTURA VARERI","F","C","F","D","C","F","","","","F","D","","","29","IV"],
+            [95,"JOSEPHINE JOSEPH SHAYO","F","A","F","D","C","F","","","","F","F","","","28","IV"],
+            [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
+            [97,"JULIANA DANIEL MASALU","F","B","F","D","A","F","F","F","F","F","F","","","27","IV"],
+            [98,"JULIETH ROBERT KONDIGO","F","D","F","D","C","C","","","","F","F","","","29","IV"],
+            [99,"KAUTHAR BAKARI KWANGURU","F","F","","","","","","","F","","","","","","INC."],
+            [100,"KHADIJA MOHAMEDI KIDWANGA","F","D","F","F","B","F","","","","F","F","D","","30","IV"],
+            [101,"KHAFSA RASHIDI SALUM","F","D","F","F","D","F","","","","F","F","D","","32","IV"],
+            [102,"KUDRATI SAID KISAILO","F","C","F","F","D","F","","","","F","F","D","","31","IV"],
+            [103,"LAILATI HEMED MASHAKA","F","C","F","D","C","F","F","F","F","F","F","C","","28","IV"],
+            [104,"LATIFA FADHILI MBEGA","F","C","F","C","C","D","F","F","F","F","F","D","","27","IV"],
+            [105,"LATIFA HAMISI HASSAN","F","D","F","F","C","F","","","","F","F","F","","32","IV"],
+            [106,"LEAH MBONEA FRANCIS","F","C","F","F","C","F","","","","F","F","","","31","IV"],
+            [107,"LEILA ALLY YUSUPH","F","C","F","F","C","F","","","","F","F","D","","30","IV"],
+            [108,"LEILA ATHUMANI MNYANDWA","F","C","F","D","D","F","F","F","F","F","F","C","","29","IV"],
+            [109,"LEILA MOHAMEDI KAUNDU","F","A","F","F","D","F","","","","F","F","C","","28","IV"],
+            [110,"LESHMA DICKSON MWAKALUKWA","F","D","F","F","F","F","","","","F","F","","","34","O"],
+            [111,"LEVINA DEOGRATIAS KIMARIO","F","C","C","C","B","F","","","","F","D","","","25","III"],
+            [112,"LEVINA GEORGE  MAKOI","F","A","C","A","B","D","D","D","C","D","C","","","17","I"],
+            [113,"LEYLA DEOGRASIAS KIMARIO","F","D","D","F","C","F","F","F","F","F","F","D","","30","IV"],
+            [114,"LEYLA YUSUPH WAZIRI","F","C","F","F","F","F","","","","F","F","F","","33","IV"],
+            [115,"LIGHTNESS DANIEL MALUGWAI","F","F","","","","","","","","","","","","","INC."],
+            [116,"LIGHTNESS FAIDA SEODORY","F","F","F","F","C","F","","","","F","F","","","33","IV"],
+            [117,"LILIAN  ELIHURUMA MWANGA","F","F","","","","","","","","","","","","","INC."],
+            [118,"LILIAN FREDRICK MATELEKA","F","F","","","","","","","","","","","","","INC."],
+            [119,"LILIAN NEMES VICENT","F","B","F","F","C","F","F","F","F","F","F","","","30","IV"],
+            [120,"LILIAN ROMAN BANZI","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [121,"LISNETH ELIAKIM MANABA","F","D","C","B","A","D","","","","F","F","","","23","III"],
+            [122,"LIVENESS ANASTASIUS MBAZAHALI","F","C","F","F","F","F","","","","F","F","","","33","IV"],
+            [123,"LOREEN ARBOGAST RIWA","F","B","D","C","A","B","D","D","D","F","D","","","20","II"],
+            [124,"LOVENESS JASTIN EZEKIEL","F","A","F","F","F","F","","","","F","F","","","31","IV"],
+            [125,"LOVENESS VENANCE MASSAWE","F","B","F","F","D","F","","","","F","F","","","31","IV"],
+            [126,"LUCRECIA GILBERT POTAN","F","F","","","D","","","","","","","","","","INC."],
+            [127,"LULU SHARIFU KILAMBO","F","C","F","C","","F","","","","F","D","","","","INC."],
+            [128,"MAGDALENA JOHN NYALALE","F","D","F","F","D","F","","","","F","F","","","33","IV"],
+            [129,"MAGDALENA SAMSON NGINGO","F","C","F","C","C","D","F","F","D","F","F","","","27","IV"],
+            [130,"MAGRETH JOSIASI MGAWE","F","B","D","D","C","F","","","","F","F","","","28","IV"],
+            [131,"MAGRETH KARIM MINHAJI","F","A","F","D","C","D","","","","F","F","","","26","IV"],
+            [132,"MAIMUNA SELEMANI MIRAJI","F","C","F","F","D","F","","","","F","F","C","","30","IV"],
+            [133,"MARIADEBORAH WILLIAM SODOKA","F","A","A","A","C","D","C","A","B","C","C","","","12","I"],
+            [134,"MARIAM ABDALLAH IDD","F","D","D","D","F","D","","","","F","D","D","","29","IV"],
+            [135,"MARIAM AWADH BAKARI","F","D","F","D","D","F","","","","F","F","D","","31","IV"],
+            [136,"MARIAM GEORGE SHIMBA","F","F","F","","","","","","","","","","","","INC."],
+            [137,"MARIAM ZUBERI YUSUPH","F","B","C","C","C","C","","","","F","C","C","","20","II"],
+            [138,"MARIAMU CREMENT KADO","F","C","F","D","B","D","","","","F","F","D","","27","IV"],
+            [139,"MARIAMU KASSIMU KIPINGU","F","F","","","","","","","","","","","","","INC."],
+            [140,"MARIANA THOBIAS REVOCATUS","F","D","F","C","C","F","","","","F","F","","","30","IV"],
+            [141,"MARTHA JOSEPH SIMBEYE","F","A","D","C","B","F","D","F","D","F","F","","","23","III"],
+            [142,"MARY FLOWINI  NJELEKELA","F","F","F","F","F","F","","","","F","F","","","35","O"],
+            [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
+            [144,"MIRIAMU JACKSON MLIPUKA","F","B","","D","C","F","","","","F","F","","","","INC."],
+            [145,"MOREEN THOMAS CHILUNGO","F","B","F","D","C","F","","","","F","F","","","29","IV"],
+            [146,"MULHAT JUMA KIDESU","F","C","F","F","D","F","","","","F","F","C","","30","IV"],
+            [147,"MUNAWARI YAHYA ATHUMANI","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
+             [149,"MWANAHERI MATATA MOHAMEDI","F","C","F","F","C","F","","","","F","F","D","","30","IV"],
+            [150,"MWANAIDI HUSSENI JUMANNE","F","C","F","F","D","F","","","","F","F","D","","31","IV"],
+            [151,"MWANAMKUU ABASI IDDI","F","C","F","F","C","D","","","","F","F","F","","30","IV"],
+            [152,"MWANAMWEMA ALLY CHOBO","F","F","","","","","","F","","","","","","","INC."],
+            [153,"NADIA MASUDI MMBAGA","F","C","F","F","B","F","F","F","","F","F","F","","30","IV"],
+            [154,"NADIYA SAID AKILI","F","A","C","A","A","D","D","D","D","F","D","B","","16","I"],
+            [155,"NADYA SADIKI HAMISI","F","A","F","D","C","F","","","","F","F","C","","26","IV"],
+            [156,"NAHYA KHALID RAMADHANI","F","A","F","D","A","F","","","","F","D","C","","23","III"],
+            [157,"NAJAT RASHIDI MUSSA","F","A","D","B","C","F","F","F","F","F","F","D","","24","III"],
+            [158,"NAJMA BAKARI NKULLO","F","A","D","D","C","F","","","","F","D","C","","24","III"],
+            [159,"NAJMA IDDY KITAMKANGA","F","C","D","B","C","D","F","F","F","F","D","C","","23","III"],
+            [160,"NAJMA NESTORY MBILO","F","F","F","F","F","F","","","","F","F","D","","34","O"],
+            [161,"NASMA SHUKURU LUKOTA","F","A","F","F","D","F","","","","F","F","C","","28","IV"],
+            [162,"NASRA ABDALLAH SALEHE","F","B","F","C","D","F","","","","F","F","F","","29","IV"],
+            [163,"NASRA MOHAMEDI MWINYIKONDO","F","B","F","D","C","F","","","","F","F","C","","27","IV"],
+            [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"],
+            [165,"NEEMA ATHUMANI DAUDI","F","A","D","C","B","F","D","D","D","F","D","C","","21","II"],
+            [166,"NEEMA BUNAYA MBILO","F","B","F","D","C","F","","","","F","F","","","29","IV"],
+            [167,"NEEMA DICKSON BUNZALI","F","C","F","F","C","F","","","","F","F","","","31","IV"],
+            [168,"NEEMA EMMANUEL MWAKILEMBE","F","A","F","F","D","F","","","","F","F","","","30","IV"],
+            [169,"NEEMA GEORGE CHIBWANA","F","C","F","D","D","F","","","","F","F","","","31","IV"],
+            [170,"NEEMA HASSANI RAJABU","F","C","C","C","B","F","F","F","F","F","F","C","","24","III"],
+            [171,"NEEMA IBRAHIMU LUGALI","F","F","F","F","D","F","F","F","F","F","F","","","34","O"],
+            [172,"NEEMA LAURENT CHING'ONGWE","F","D","F","F","C","F","","","","F","F","","","32","IV"],
+            [173,"NEEMA MUSSA RAMADHANI","F","F","F","F","D","F","","","","F","F","F","","34","O"],
+            [174,"NEEMA RAMADHANI CHUWA","F","C","F","D","D","F","","","","F","F","","","31","IV"],
+            [175,"NEEMA SHARIFU KILAMBO","F","C","C","C","C","D","D","F","F","F","F","","","25","III"],
+            [176,"NURAT SHABANI ATHUMANI","F","","","","","","","","","","","","","","ABS"],
+            [177,"NURU SALEHE MWAMBAMOYO","F","A","F","F","D","F","","","","F","F","F","","30","IV"],
+            [178,"NURU YUSUPH KILINGO","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
+            [179,"PAULINE JOSEPH SHAYO","F","A","C","A","C","D","","","","F","D","","","21","II"],
+            [180,"PHILIPINA VIVA MLAWA","F","C","F","C","D","F","","","","F","F","","","30","IV"],
+            [181,"PLAXEDA CHARLES WALIOBA","F","C","F","F","D","F","","","","F","F","","","32","IV"],
+            [182,"PRECIOUS EMMANUEL SHIRIMA","F","C","B","A","A","C","C","C","C","C","C","","","16","I"],
+            [183,"PRORAY PROTAS MREMA","F","C","C","A","B","D","B","C","B","C","C","","","16","I"],
+            [184,"RAHMA IDRISSA KOMBO","F","D","F","F","C","F","","","","F","F","F","","32","IV"],
+            [185,"RAHMA JUMA HARUNA","F","C","F","F","D","F","","","","","F","","","","INC."],
+            [186,"RAHMA NASSORO SHOMARI","F","B","F","F","D","F","","","","F","F","F","","31","IV"],
+            [187,"REGINA ALEX MAULIDI","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
+            [188,"REHEMA HASSAN KASIFA","F","C","F","F","D","F","","","","F","F","D","","31","IV"],
+            [189,"REHEMA HERI NANJUNDA","F","B","D","C","C","D","F","F","D","F","F","C","","23","III"],
+            [190,"REHEMA RASHIDI MGUNGUMALO","F","D","F","C","C","F","","","","F","F","D","","29","IV"],
+            [191,"REHEMA SHABANI SHOMARI","F","D","F","F","F","F","","","","F","F","F","","34","O"],
+            [192,"REHILATI SAIDI ALLY","F","B","F","F","C","F","","","","F","F","D","","29","IV"],
+            [193,"REMNISCA BRAYAN LYIMO","F","A","A","A","B","B","C","D","","D","B","","","12","I"],
+            [194,"RENATA JOHN DAMAS","F","F","F","F","D","F","","","","F","F","","","34","O"],
+            [195,"RENNIE GEORGE MWAMPIKI","F","F","F","F","B","D","","F","F","F","F","","","31","IV"],
+            [196,"RITA SOSTENESS CHIDODO","F","B","F","F","C","F","","","","F","F","","","30","IV"],
+            [197,"ROSEMARY AGATON TEODORI","F","D","F","F","C","F","","","","F","F","","","32","IV"],
+            [198,"ROSEMERY FRANK SANGA","F","A","F","D","D","F","F","F","F","F","F","","","29","IV"],
+            [199,"SABRINA SELEMANI MALOKO","F","D","F","F","C","F","","","","F","F","D","","31","IV"],
+            [200,"SABRINA SELEMANI SHEHOZA","F","C","F","D","C","F","","","","F","","F","","30","IV"]
+        ];
+
+        const tbody = document.getElementById('tableBody');
+        const searchInput = document.getElementById('studentSearch');
+        const clearBtn = document.getElementById('clearSearch');
+        const resultSpan = document.getElementById('resultCount');
+
+        function renderRows(filterText = '') {
+            const term = filterText.trim().toLowerCase();
+            let visibleCount = 0;
+            let html = '';
+
+            for (let s of students) {
+                const candNumber = s[0].toString();
+                const fullName = s[1].toLowerCase();
+                const match = term === '' || candNumber.includes(term) || fullName.includes(term);
+                if (!match) continue;
+
+                visibleCount++;
+                // build row
+                html += '<tr>';
+                for (let i = 0; i < s.length; i++) {
+                    let cell = s[i] === '' ? '' : s[i];
+                    const isGrade = (i >= 3 && i <= 13) && (cell === 'A'||cell==='B'||cell==='C'||cell==='D'||cell==='F'||cell==='ABS'||cell==='INC.');
+                    let cls = '';
+                    if (isGrade) {
+                        if (cell === 'A') cls = 'grade-A';
+                        else if (cell === 'B') cls = 'grade-B';
+                        else if (cell === 'C') cls = 'grade-C';
+                        else if (cell === 'D') cls = 'grade-D';
+                        else if (cell === 'F') cls = 'grade-F';
+                        else if (cell === 'ABS') cls = 'grade-ABS';
+                        else if (cell === 'INC.') cls = 'grade-INC';
+                    }
+                    if (i === 14 && cell) cls = 'points';      // points column
+                    if (i === 15 && cell) cls = 'division';    // division column
+                    if (i === 1) cls = 'cand-name';            // name left align
+                    html += `<td class="${cls}">${cell}</td>`;
+                }
+                html += '</tr>';
+            }
+            tbody.innerHTML = html;
+            resultSpan.innerText = `${visibleCount} / ${students.length} shown`;
+        }
+
+        // initial render
+        renderRows('');
+
+        searchInput.addEventListener('input', (e) => renderRows(e.target.value));
+        clearBtn.addEventListener('click', () => {
+            searchInput.value = '';
+            renderRows('');
+        });
+    })();
+</script>
+</body>
+</html>
