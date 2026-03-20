@@ -102,7 +102,7 @@
     const doc = new jsPDF('l', 'pt', 'a4'); // landscape
 
     // PDF title
-    const title = "TGVTS STUDENT RESULTS";
+    const title = "TGVTS FORM ONE STUDENT RESULTS";
     doc.setFontSize(18);
     doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, { align: "center" });
 
@@ -126,7 +126,7 @@
       headStyles: { fillColor: [0, 102, 204] }, // Bootstrap blue header
     });
 
-    doc.save("TGVTS_Results.pdf");
+    doc.save("TGVTS_form 0oe 2026 Results.pdf");
   }
 </script>
 
