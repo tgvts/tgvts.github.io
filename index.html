@@ -97,10 +97,9 @@
   </style>
 </head>
 <script>
-function searchResults() {
+function searchResultsButton() {
   var input = document.getElementById("searchInput").value.trim();
   if(input) {
-    // Redirect to results.html with search query
     window.location.href = "results.html?search=" + encodeURIComponent(input);
   }
 }
@@ -131,7 +130,8 @@ function searchResults() {
     <p>Providing quality education and technology skills.</p>
 
     <!-- SEARCH BAR -->
-<input type="text" id="searchInput" placeholder="Search student names..." onkeyup="searchResults()">
+<input type="text" id="searchInput" placeholder="Search student names...">
+<button onclick="searchResultsButton()">Search</button>
   </div>
 
   <!-- ABOUT -->
