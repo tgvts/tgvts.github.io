@@ -37,18 +37,18 @@
     }
 
     nav a:hover {
-      text-decoration: underline;
+      color: yellow;
     }
 
     .hero {
-      text-align: center;
-      padding: 20px;
       background-color: white;
+      text-align: center;
+      padding: 30px;
     }
 
     .hero img {
-      width: 200px;
-      height: 200px;
+      width: 150px;
+      height: 150px;
     }
 
     .section {
@@ -60,6 +60,27 @@
       color: #003366;
     }
 
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .card {
+      background: white;
+      padding: 15px;
+      width: 250px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    iframe {
+      width: 90%;
+      height: 300px;
+      border: 0;
+    }
+
     .footer {
       background-color: #003366;
       color: white;
@@ -68,10 +89,10 @@
       margin-top: 20px;
     }
 
-    iframe {
-      width: 90%;
-      height: 300px;
-      border: 0;
+    input {
+      padding: 10px;
+      width: 60%;
+      margin-top: 10px;
     }
   </style>
 </head>
@@ -87,16 +108,22 @@
   <!-- NAVIGATION -->
   <nav>
     <a href="#">Home</a>
-    <a href="results.html">Results</a>
     <a href="#">About</a>
+    <a href="#">Admissions</a>
+    <a href="results.html">Results</a>
+    <a href="#">Academics</a>
+    <a href="#">Gallery</a>
     <a href="#">Contact</a>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <div class="hero">
     <img src="photos/nemb8.jpeg" alt="School Logo">
     <h2>Welcome to TGVTS</h2>
-    <p>Providing quality education and technology skills for a better future.</p>
+    <p>Providing quality education and technology skills.</p>
+
+    <!-- SEARCH BAR -->
+    <input type="text" placeholder="Search student results...">
   </div>
 
   <!-- ABOUT -->
@@ -104,15 +131,42 @@
     <h2>About Us</h2>
     <p>
       TGVTS Secondary School is located in Temboni.  
-      We focus on academic excellence, discipline, and technology education.
+      We provide quality education, discipline, and technology skills to students.
     </p>
   </div>
 
-  <!-- RESULTS -->
+  <!-- FEATURES -->
   <div class="section">
-    <h2>Student Results</h2>
-    <p>Click below to view student results:</p>
-    <a href="results.html">View Results</a>
+    <h2>Our Services</h2>
+
+    <div class="cards">
+      <div class="card">
+        <h3>📘 Academics</h3>
+        <p>Strong academic programs and qualified teachers.</p>
+      </div>
+
+      <div class="card">
+        <h3>📊 Results</h3>
+        <p>Check student results online بسهولة.</p>
+      </div>
+
+      <div class="card">
+        <h3>📝 Admissions</h3>
+        <p>Join our school and build your future.</p>
+      </div>
+
+      <div class="card">
+        <h3>🖼️ Gallery</h3>
+        <p>View school life and activities.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <div class="section">
+    <h2>Latest News</h2>
+    <p>📢 Form Four exams start next week</p>
+    <p>📢 New admissions are open</p>
   </div>
 
   <!-- MAP -->
@@ -127,8 +181,8 @@
   <!-- CONTACT -->
   <div class="section">
     <h2>Contact Us</h2>
-    <p>Phone: +255 XXX XXX XXX</p>
-    <p>Email: info@tgvts.com</p>
+    <p>📞 Phone: +255 XXX XXX XXX</p>
+    <p>📧 Email: info@tgvts.com</p>
   </div>
 
   <!-- FOOTER -->
