@@ -25,8 +25,7 @@
 
     body {
       font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-      /* ========== BACKGROUND IMAGE ========== */
-      background-image: url('photos/school-background.jpg'); /* REPLACE WITH YOUR IMAGE PATH */
+      background-image: url('photos/school-background.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -36,7 +35,6 @@
       position: relative;
     }
     
-    /* Dark overlay for better text readability */
     body::before {
       content: '';
       position: fixed;
@@ -49,13 +47,11 @@
       pointer-events: none;
     }
     
-    /* All main content sits above overlay */
     .custom-header, .main-nav, .results-nav, .hero-section, .info-cards, .map-section, .contact-section, .footer {
       position: relative;
       z-index: 2;
     }
 
-    /* Custom Header with enhanced gradient and shadow */
     .custom-header {
       background: linear-gradient(135deg, rgba(10, 47, 42, 0.95) 0%, rgba(7, 81, 71, 0.95) 70%, rgba(10, 95, 83, 0.95) 100%);
       color: white;
@@ -78,18 +74,6 @@
       pointer-events: none;
     }
     
-    .custom-header::after {
-      content: '';
-      position: absolute;
-      bottom: -30%;
-      left: -10%;
-      width: 300px;
-      height: 300px;
-      background: radial-gradient(circle, rgba(255,215,0,0.08) 0%, rgba(255,215,0,0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-    
     .custom-header h1 {
       font-size: 2.5rem;
       font-weight: 800;
@@ -104,7 +88,7 @@
       font-weight: 400;
     }
     
-    /* ========== MAIN NAVIGATION MENU ========== */
+    /* Main Navigation */
     .main-nav {
       background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(12px);
@@ -160,16 +144,7 @@
       width: 70%;
     }
     
-    .navbar-toggler {
-      border: none;
-      background: rgba(7,81,71,0.1);
-    }
-    
-    .navbar-toggler:focus {
-      box-shadow: none;
-    }
-    
-    /* Results Navigation Buttons */
+    /* Results Navigation */
     .results-nav {
       background: rgba(255, 255, 255, 0.96);
       padding: 0.8rem 0;
@@ -186,14 +161,13 @@
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.85rem;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.3s ease;
       box-shadow: 0 4px 12px rgba(7,81,71,0.3);
     }
     
     .results-nav .btn-result:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(7,81,71,0.4);
-      background: linear-gradient(135deg, #0a5f53 0%, #075147 100%);
     }
     
     /* Hero Section */
@@ -236,11 +210,6 @@
       text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
     }
     
-    .hero-section .text-secondary {
-      color: rgba(255,255,255,0.9) !important;
-      font-weight: 500;
-    }
-    
     /* Info Cards */
     .info-cards {
       padding: 3rem 1rem;
@@ -261,7 +230,6 @@
     
     .info-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
       background: rgba(255, 255, 255, 0.98);
     }
     
@@ -286,12 +254,6 @@
       color: #0f2c28;
       margin-bottom: 0.8rem;
       font-size: 1.3rem;
-    }
-    
-    .info-card p {
-      color: #2c3e50;
-      font-size: 0.9rem;
-      line-height: 1.5;
     }
     
     /* Map Section */
@@ -382,10 +344,9 @@
       margin: 0;
       color: #075147;
       font-weight: 500;
-      font-size: 0.9rem;
     }
     
-    /* Contact Section */
+    /* Contact Section with Hyperlinks */
     .contact-section {
       background: linear-gradient(135deg, rgba(10, 47, 42, 0.94) 0%, rgba(7, 81, 71, 0.94) 100%);
       backdrop-filter: blur(4px);
@@ -460,12 +421,27 @@
       margin-bottom: 0.3rem;
     }
     
+    /* Hyperlink Styles */
+    .contact-link {
+      color: #ffd966;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: inline-block;
+    }
+    
+    .contact-link:hover {
+      color: white;
+      text-decoration: underline;
+      transform: translateX(2px);
+    }
+    
     .contact-card a {
       color: #ffd966;
       text-decoration: none;
     }
     
     .contact-card a:hover {
+      color: white;
       text-decoration: underline;
     }
     
@@ -506,7 +482,6 @@
       font-size: 0.85rem;
     }
     
-    /* Responsive */
     @media (max-width: 768px) {
       .custom-header h1 { font-size: 1.6rem; }
       .hero-section { margin: 0.8rem; padding: 1.5rem; }
@@ -514,9 +489,8 @@
       .map-section { margin: 1rem; padding: 1.2rem; }
       .map-container { height: 280px; }
       .contact-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .results-nav .btn-result { padding: 0.4rem 1rem; font-size: 0.75rem; margin: 0.2rem; }
+      .results-nav .btn-result { padding: 0.4rem 1rem; font-size: 0.75rem; }
       .navbar-brand { font-size: 1rem; }
-      .nav-link { padding: 0.6rem 0.8rem !important; font-size: 0.85rem; }
     }
     
     @keyframes fadeInUp {
@@ -539,7 +513,7 @@
     </div>
   </header>
 
-  <!-- ========== MAIN NAVIGATION MENU ========== -->
+  <!-- MAIN NAVIGATION -->
   <nav class="main-nav">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-custom p-0">
@@ -551,27 +525,13 @@
         </button>
         <div class="collapse navbar-collapse" id="mainNavbar">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i>Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i>About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#academics"><i class="fas fa-book-open me-1"></i>Academics</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#admissions"><i class="fas fa-user-plus me-1"></i>Admissions</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#results"><i class="fas fa-chart-line me-1"></i>Results</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#gallery"><i class="fas fa-images me-1"></i>Gallery</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a>
-            </li>
+            <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-home me-1"></i>Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i>About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#academics"><i class="fas fa-book-open me-1"></i>Academics</a></li>
+            <li class="nav-item"><a class="nav-link" href="#admissions"><i class="fas fa-user-plus me-1"></i>Admissions</a></li>
+            <li class="nav-item"><a class="nav-link" href="#results"><i class="fas fa-chart-line me-1"></i>Results</a></li>
+            <li class="nav-item"><a class="nav-link" href="#gallery"><i class="fas fa-images me-1"></i>Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-envelope me-1"></i>Contact</a></li>
           </ul>
         </div>
       </nav>
@@ -601,33 +561,27 @@
     </div>
   </div>
 
-  <!-- INFO CARDS SECTION -->
+  <!-- INFO CARDS -->
   <div class="info-cards" id="about">
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-graduation-cap"></i>
-            </div>
+            <div class="info-icon"><i class="fas fa-graduation-cap"></i></div>
             <h4>Quality Education</h4>
             <p>Competent teachers, modern curriculum, and holistic development approach for every student.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-chalkboard-user"></i>
-            </div>
+            <div class="info-icon"><i class="fas fa-chalkboard-user"></i></div>
             <h4>Experienced Staff</h4>
             <p>Dedicated educators committed to academic excellence and character formation.</p>
           </div>
         </div>
         <div class="col-md-4">
           <div class="info-card">
-            <div class="info-icon">
-              <i class="fas fa-trophy"></i>
-            </div>
+            <div class="info-icon"><i class="fas fa-trophy"></i></div>
             <h4>Exam Success</h4>
             <p>Consistently outstanding results in National Examinations across all levels.</p>
           </div>
@@ -645,16 +599,8 @@
       </div>
       <div class="map-card">
         <div class="map-container">
-          <iframe 
-            src="https://www.google.com/maps?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal&output=embed"
-            title="Temboni GVTS Secondary School Location"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
-          <div class="map-overlay">
-            <i class="fas fa-map-pin"></i> Temboni GVTS
-          </div>
+          <iframe src="https://www.google.com/maps?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal&output=embed" title="Temboni GVTS Secondary School Location" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <div class="map-overlay"><i class="fas fa-map-pin"></i> Temboni GVTS</div>
         </div>
       </div>
       <div class="address-info">
@@ -664,7 +610,7 @@
     </div>
   </div>
 
-  <!-- CONTACT SECTION -->
+  <!-- CONTACT SECTION WITH HYPERLINKS -->
   <div class="contact-section" id="contact">
     <div class="contact-container">
       <div class="contact-header">
@@ -673,54 +619,87 @@
       </div>
       
       <div class="contact-grid">
+        <!-- Address Card -->
         <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
           <h4>School Address</h4>
           <p>Temboni Government Secondary School</p>
           <p>P.O. Box 12345, Temboni</p>
           <p>Ubungo Municipal, Dar es Salaam</p>
           <p>Tanzania</p>
+          <p class="mt-2">
+            <a href="https://maps.google.com/?q=Temboni+Ubungo+Dar+es+Salaam+Tanzania" target="_blank" class="contact-link">
+              <i class="fas fa-external-link-alt"></i> View on Map
+            </a>
+          </p>
         </div>
         
+        <!-- Phone Card with Clickable Links -->
         <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-phone-alt"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
           <h4>Call Us</h4>
-          <p><strong>Headmaster:</strong> +255 22 123 4567</p>
-          <p><strong>Academic:</strong> +255 22 123 4568</p>
-          <p><strong>Mobile:</strong> +255 789 123 456</p>
+          <p><strong>Headmaster's Office:</strong><br>
+            <a href="tel:+255221234567" class="contact-link">+255 22 123 4567</a>
+          </p>
+          <p><strong>Academic Office:</strong><br>
+            <a href="tel:+255221234568" class="contact-link">+255 22 123 4568</a>
+          </p>
+          <p><strong>Mobile / WhatsApp:</strong><br>
+            <a href="https://wa.me/255789123456" target="_blank" class="contact-link">+255 789 123 456</a>
+          </p>
         </div>
         
+        <!-- Email Card with Mailto Links -->
         <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
           <h4>Email Us</h4>
-          <p><a href="mailto:info@tgvtsschool.ac.tz">info@tgvtsschool.ac.tz</a></p>
-          <p><a href="mailto:admissions@tgvtsschool.ac.tz">admissions@tgvtsschool.ac.tz</a></p>
-          <p><strong>Hours:</strong> Mon-Fri: 7:30AM - 3:30PM</p>
+          <p>
+            <a href="mailto:info@tgvtsschool.ac.tz" class="contact-link">info@tgvtsschool.ac.tz</a>
+          </p>
+          <p>
+            <a href="mailto:admissions@tgvtsschool.ac.tz" class="contact-link">admissions@tgvtsschool.ac.tz</a>
+          </p>
+          <p>
+            <a href="mailto:headmaster@tgvtsschool.ac.tz" class="contact-link">headmaster@tgvtsschool.ac.tz</a>
+          </p>
+          <p><strong>Working Hours:</strong><br>Mon-Fri: 7:30 AM - 3:30 PM</p>
         </div>
         
+        <!-- Office Hours Card with Directions -->
         <div class="contact-card">
-          <div class="contact-icon">
-            <i class="fas fa-clock"></i>
-          </div>
-          <h4>Office Hours</h4>
-          <p>Monday - Friday: 8:00AM - 4:00PM</p>
-          <p>Saturday: 9:00AM - 12:00PM</p>
-          <p>Sunday & Holidays: Closed</p>
+          <div class="contact-icon"><i class="fas fa-clock"></i></div>
+          <h4>Visit Us</h4>
+          <p><strong>Office Hours:</strong><br>Monday - Friday: 8:00 AM - 4:00 PM</p>
+          <p><strong>Saturday:</strong> 9:00 AM - 12:00 PM</p>
+          <p><strong>Sunday & Holidays:</strong> Closed</p>
+          <p class="mt-2">
+            <a href="https://maps.google.com/?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal" target="_blank" class="contact-link">
+              <i class="fas fa-directions"></i> Get Directions
+            </a>
+          </p>
         </div>
       </div>
       
+      <!-- Social Media Links with Working Hyperlinks -->
       <div class="social-links">
-        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://facebook.com/tgvtsschool" target="_blank" class="social-link" aria-label="Facebook">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com/tgvtsschool" target="_blank" class="social-link" aria-label="Twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="https://instagram.com/tgvtsschool" target="_blank" class="social-link" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/255789123456" target="_blank" class="social-link" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+        <a href="https://youtube.com/@tgvtsschool" target="_blank" class="social-link" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
+        <a href="mailto:info@tgvtsschool.ac.tz" class="social-link" aria-label="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
       </div>
     </div>
   </div>
@@ -734,12 +713,11 @@
   </div>
 
   <!-- Bootstrap JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-z9ZzN8pMx5KsWXfO4lGpC6P7E1f3LMP0y+UQqxKMFuLh5nP9U6l4JZ5q8Kq5P5g" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   
-  <!-- Active link highlighting on scroll -->
   <script>
-    // Simple active link highlight based on scroll position
-    const sections = document.querySelectorAll('section, div[id]');
+    // Active link highlighting on scroll
+    const sections = document.querySelectorAll('div[id]');
     const navLinks = document.querySelectorAll('.nav-link');
     
     window.addEventListener('scroll', () => {
