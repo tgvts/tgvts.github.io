@@ -96,14 +96,6 @@
     }
   </style>
 </head>
-<script>
-function searchResultsButton() {
-  var input = document.getElementById("searchInput").value.trim();
-  if(input) {
-    window.location.href = "results.html?search=" + encodeURIComponent(input);
-  }
-}
-</script>
 <body>
 
   <!-- HEADER -->
@@ -129,11 +121,7 @@ function searchResultsButton() {
     <h2>Welcome to TGVTS</h2>
     <p>Providing quality education and technology skills.</p>
 
-    <!-- SEARCH BAR -->
-<input type="text" id="searchInput" placeholder="Search student names...">
-<button onclick="searchResultsButton()">Search</button>
-  </div>
-
+    
   <!-- ABOUT -->
   <div class="section">
     <h2>About Us</h2>
