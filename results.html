@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TGVTS Form One Results</title>
+  <title>TGVTS Student Results</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     mark { background-color: yellow; color: black; }
@@ -12,57 +12,114 @@
 <body class="bg-light">
 
 <div class="container my-4">
-  <h1 class="text-center mb-4">TGVTS Form One Results</h1>
+  <h1 class="text-center mb-4">TGVTS Student Results</h1>
+
+  <!-- Download PDF Button -->
+  <div class="text-center mb-3">
+    <button class="btn btn-success" onclick="downloadPDF()">Download PDF</button>
+  </div>
+
+  <!-- Form Dropdown -->
+  <div class="text-center mb-3">
+    <strong>Select Form:</strong>
+    <select id="formSelect" class="form-select d-inline-block w-auto" onchange="filterTable()">
+      <option value="all">All Forms</option>
+      <option value="Form One">Form One</option>
+      <option value="Form Two">Form Two</option>
+      <option value="Form Three">Form Three</option>
+      <option value="Form Four">Form Four</option>
+    </select>
+  </div>
 
   <!-- Search Box -->
   <div class="mb-3">
     <input type="text" id="searchInput" class="form-control" placeholder="Search student name..." onkeyup="filterTable()">
   </div>
 
-  <!-- Form One Results Table -->
+  <!-- Results Table -->
   <div class="table-responsive">
     <table id="resultsTable" class="table table-striped table-bordered table-hover">
       <thead class="table-primary">
         <tr>
           <th>#</th>
           <th>Name</th>
+          <th>Form</th>
           <th>Math</th>
           <th>English</th>
           <th>Science</th>
+          <th>History</th>
+          <th>Geography</th>
+          <th>Biology</th>
+          <th>Chemistry</th>
+          <th>Physics</th>
+          <th>Computer</th>
           <th>Total</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>Mary</td><td>85</td><td>90</td><td>88</td><td>263</td></tr>
-        <tr><td>2</td><td>Faith</td><td>88</td><td>90</td><td>85</td><td>263</td></tr>
-        <tr><td>3</td><td>Peter</td><td>78</td><td>82</td><td>80</td><td>240</td></tr>
-        <tr><td>4</td><td>Grace</td><td>92</td><td>88</td><td>95</td><td>275</td></tr>
-        <!-- Add more Form One students here -->
+        <tr>
+          <td>1</td><td>Mary</td><td>Form One</td>
+          <td>85</td><td>90</td><td>88</td><td>80</td><td>75</td><td>82</td><td>78</td><td>89</td><td>92</td><td>839</td>
+        </tr>
+        <tr>
+          <td>2</td><td>Faith</td><td>Form One</td>
+          <td>88</td><td>90</td><td>85</td><td>82</td><td>80</td><td>86</td><td>84</td><td>87</td><td>91</td><td>853</td>
+        </tr>
+        <!-- Add all 500 students here -->
       </tbody>
     </table>
   </div>
 </div>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-function filterTable() {
-  const input = document.getElementById("searchInput").value.toLowerCase();
-  const rows = document.getElementById("resultsTable").getElementsByTagName("tr");
+  // Filter Table by Name and Form
+  function filterTable() {
+    const searchValue = document.getElementById("searchInput").value.toLowerCase();
+    const selectedForm = document.getElementById("formSelect").value.toLowerCase();
+    const table = document.getElementById("resultsTable");
+    const rows = table.getElementsByTagName("tr");
 
-  for (let i = 1; i < rows.length; i++) { // skip header
-    const nameCell = rows[i].getElementsByTagName("td")[1];
-    const nameText = nameCell.textContent;
+    for (let i = 1; i < rows.length; i++) {
+      const nameCell = rows[i].getElementsByTagName("td")[1];
+      const formCell = rows[i].getElementsByTagName("td")[2];
+      const nameText = nameCell.textContent;
 
-    if(nameText.toLowerCase().includes(input)){
-      rows[i].style.display = "";
-      const regex = new RegExp(`(${input})`, "gi");
-      nameCell.innerHTML = nameText.replace(regex, "<mark>$1</mark>");
-    } else {
-      rows[i].style.display = "none";
+      const matchesForm = selectedForm === "all" || formCell.textContent.toLowerCase() === selectedForm;
+      const matchesSearch = nameText.toLowerCase().includes(searchValue);
+
+      if (matchesForm && matchesSearch) {
+        rows[i].style.display = "";
+        if(searchValue){
+          const regex = new RegExp(`(${searchValue})`, "gi");
+          nameCell.innerHTML = nameText.replace(regex, "<mark>$1</mark>");
+        } else {
+          nameCell.innerHTML = nameText;
+        }
+      } else {
+        rows[i].style.display = "none";
+      }
     }
   }
-}
+
+  // Download Table as PDF using jsPDF
+  function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF('l', 'pt', 'a4'); // landscape, points, A4
+    doc.html(document.querySelector('#resultsTable'), {
+      callback: function (doc) {
+        doc.save('TGVTS_Results.pdf');
+      },
+      margin: [20, 20, 20, 20],
+      autoPaging: 'text',
+      x: 10,
+      y: 10,
+      width: 780 // fit table
+    });
+  }
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
