@@ -1,142 +1,258 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <!-- Force desktop width -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>TGVTS Form One Student Results</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { 
-      background-color: #f5f5f5; 
-      min-width: 1024px; /* ensures layout stays at desktop width */
-    }
-    mark { background-color: yellow; color: black; }
-    .table-responsive { overflow-x: auto; } /* allow horizontal scroll if needed */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMBONI SECONDARY · Top 25 Students (Div I & II) · Form One Dec 2025</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        * { box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
+        body { background: #eef1f7; margin: 20px; display: flex; justify-content: center; }
+        .card { max-width: 1440px; width: 100%; background: white; border-radius: 28px; box-shadow: 0 25px 50px -10px rgba(0,20,40,0.3); overflow: hidden; border: 1px solid #ced9e8; }
+        .top-banner { background: #0a2647; color: white; padding: 16px 24px; }
+        .top-banner h3 { margin: 0; font-weight: 400; font-size: 1.2rem; letter-spacing: 0.3px; opacity: 0.9; }
+        .top-banner h1 { margin: 4px 0 0 0; font-weight: 700; font-size: 2.2rem; }
+        .top-banner .meta { display: flex; justify-content: space-between; margin-top: 12px; font-size: 1rem; color: #b3c7e8; }
+        .stat-row { background: #e5ecf5; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 8px 18px; border-bottom: 1px solid #b7c5da; font-weight: 600; }
+        .stat-row .pill { background: white; border-radius: 40px; padding: 6px 18px; box-shadow: inset 0 1px 3px #00000010; border: 1px solid #b0c1da; }
+        .stat-row i { background: #0a2647; color: white; border-radius: 30px; padding: 2px 12px; margin-left: 8px; font-style: normal; }
+
+        .action-bar { background: #ffffff; padding: 16px 24px; border-bottom: 2px solid #b7c5da; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+        .search-box { display: flex; align-items: center; background: #f0f4fe; border-radius: 60px; padding: 4px 8px 4px 20px; border: 1px solid #a5bbdf; flex: 1 1 300px; }
+        .search-box i { font-style: normal; color: #2b4570; margin-right: 8px; font-weight: 500; }
+        .search-box input { border: none; background: transparent; padding: 12px 6px 12px 0; width: 100%; font-size: 1rem; outline: none; }
+        .search-box button { background: #1e3a6b; border: none; color: white; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; }
+        .result-count { font-weight: 600; color: #1e3a6b; background: #e0e9ff; padding: 6px 18px; border-radius: 40px; }
+        .download-btn { background: #1e7e34; color: white; border: none; padding: 12px 28px; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 14px rgba(0,80,20,0.3); display: inline-flex; align-items: center; gap: 8px; }
+        .download-btn:hover { background: #146b29; }
+
+        .table-wrapper { overflow-x: auto; max-height: 550px; overflow-y: auto; border-bottom: 1px solid #9dafca; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; min-width: 1800px; background: white; }
+        th { background: #1e3a6b; color: white; padding: 10px 3px; text-align: center; border-right: 1px solid #3f5a82; position: sticky; top: 0; z-index: 10; }
+        td { border: 1px solid #d2d9e8; padding: 6px 3px; text-align: center; }
+        .cand-name { text-align: left; padding-left: 8px; font-weight: 500; background: #f7faff; }
+        .grade-A { background: #dcfce7; font-weight: 700; color: #0a5c2a; }
+        .grade-B { background: #dbeafe; font-weight: 600; color: #1e4a7a; }
+        .grade-C { background: #fef9c3; }
+        .grade-D { background: #ffe2cc; color: #934200; }
+        .grade-F { background: #ffdbdb; color: #b00020; font-weight: 600; }
+        .grade-ABS { background: #bdbdbd; color: #1e1e1e; font-weight: 700; }
+        .grade-INC { background: #cfc4e6; color: #2d2b5c; font-weight: 700; }
+        .points { font-weight: 800; background: #e9edf8; }
+        .division { font-weight: 800; background: #dee5f2; }
+
+        .summary-container { background: #f5f9ff; padding: 24px; border-top: 4px solid #1e3a6b; border-bottom: 1px solid #e2e8f0; }
+        .summary-title { font-size: 1.6rem; font-weight: 700; color: #0a2647; margin: 0 0 16px 0; border-left: 12px solid #cf9e3a; padding-left: 24px; }
+        .grade-summary-table { width: 100%; border-collapse: collapse; background: white; border-radius: 24px; overflow-x: auto; display: block; font-size: 0.8rem; }
+        .grade-summary-table thead, .grade-summary-table tbody { display: table; width: 100%; table-layout: fixed; }
+        .grade-summary-table th, .grade-summary-table td { border: 1px solid #cbd5e1; padding: 8px 4px; text-align: center; white-space: nowrap; }
+        .grade-summary-table th { background: #1e3a6b; color: white; font-weight: 600; }
+        .grade-row-A td { background: #e6f7e6; }
+        .grade-row-B td { background: #e3f0ff; }
+        .grade-row-C td { background: #fff9db; }
+        .grade-row-D td { background: #ffefe3; }
+        .grade-row-F td { background: #ffe5e5; }
+        .tot-student-row { background: #d9e2f5; font-weight: 700; border-top: 3px solid #1e3a6b; }
+
+        @media print { .action-bar, .download-btn, .search-box, .result-count { display: none; } .table-wrapper { max-height: none; overflow: visible; } }
+        .info-badge { background: #fef3c7; padding: 8px 20px; border-radius: 40px; color: #92400e; font-weight: 600; display: inline-block; margin-left: 15px; }
+        
+        /* Scroll for summary table on small screens */
+        .summary-wrapper { overflow-x: auto; }
+    </style>
 </head>
 <body>
+<div class="card" id="reportCard">
+    <div class="top-banner">
+        <h3>PRESIDENT'S OFFICE, REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT</h3>
+        <h1>TAHOSSAUBUNGO MUNICIPAL COUNCIL</h1>
+        <div class="meta">
+            <span>FORM ONE ANNUAL EXAMINATION DECEMBER - 2025</span>
+            <span>S.3799 - TEMBONI GVT SECONDARY SCHOOL</span>
+        </div>
+    </div>
 
-<div class="container my-4">
-  <h1 class="text-center mb-4">TGVTS FORM ONE STUDENT RESULTS</h1>
+    <div class="stat-row">
+        <div class="pill">FEMALE <i>273</i></div>
+        <div class="pill">MALE <i>242</i></div>
+        <div class="pill">TOTAL <i>515</i></div>
+        <div class="pill">I:23</div><div class="pill">II:27</div><div class="pill">III:38</div>
+        <div class="pill">IV:283</div><div class="pill" style="background:#ffe6d0;">0:7</div>
+        <div class="pill">INC:65</div><div class="pill">ABS:15</div>
+    </div>
 
-  <!-- Download PDF Button -->
-  <div class="text-center mb-3">
-    <button class="btn btn-success" onclick="downloadPDF()">Download PDF</button>
-  </div>
+    <div class="action-bar">
+        <div class="search-box">
+            <i>🔍</i>
+            <input type="text" id="studentSearch" placeholder="Search by name or candidate number ..." autocomplete="off">
+            <button id="clearSearch">Clear</button>
+        </div>
+        <div class="result-count" id="resultCount">25 / 25 shown</div>
+        <button class="download-btn" id="downloadPdfBtn">📥 Download Full Report (PDF)</button>
+        <div class="info-badge">⭐ Top 25 Students (Division I & II)</div>
+    </div>
 
-  <!-- Search Box -->
-  <div class="mb-3">
-    <input type="text" id="searchInput" class="form-control" placeholder="Search any column..." onkeyup="filterTable()">
-  </div>
+    <div class="table-wrapper">
+        <table id="resultsTable">
+            <thead>
+                <tr><th>#</th><th>Full name</th><th>Sex</th>
+                <th>Hist/TZ & Maadili</th><th>Hist</th><th>Geo</th><th>Kisw</th><th>Eng</th><th>Phy</th><th>Chem</th><th>Bio</th>
+                <th>B/Math</th><th>Bus</th><th>EDK</th><th>Bible</th><th>Pts</th><th>Div</th>
+            </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+         </table>
+    </div>
 
-  <!-- Results Table -->
-  <div class="table-responsive">
-    <table id="resultsTable" class="table table-striped table-bordered table-hover">
-      <thead class="table-primary">
-        <tr>
-          <th>#</th>
-          <th>Name</th>
-          <th>Math</th>
-          <th>English</th>
-          <th>Science</th>
-          <th>History</th>
-          <th>Geography</th>
-          <th>Biology</th>
-          <th>Chemistry</th>
-          <th>Physics</th>
-          <th>Computer</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td><td>Mary</td>
-          <td>85</td><td>90</td><td>88</td><td>80</td><td>75</td><td>82</td><td>78</td><td>89</td><td>92</td><td>839</td>
-        </tr>
-        <tr>
-          <td>2</td><td>Faith</td>
-          <td>88</td><td>90</td><td>85</td><td>82</td><td>80</td><td>86</td><td>84</td><td>87</td><td>91</td><td>853</td>
-        </tr>
-        <!-- Add all other students here -->
-      </tbody>
-    </table>
-  </div>
+    <!-- COMPLETE SUBJECT GRADE COUNTS - ALL 13 SUBJECTS -->
+    <div class="summary-container">
+        <div class="summary-title">📊 SUBJECT GRADE COUNTS (All Students - Full Subject List)</div>
+        <div class="summary-wrapper">
+            <table class="grade-summary-table">
+                <thead>
+                    <tr>
+                        <th>GRADE</th><th>SEX</th><th>HSIRIRA YA TZ & MAADILI</th><th>HISTORY</th><th>GEOGRAPHY</th><th>KISWAHILI</th><th>ENGLISH</th><th>PHYSICS</th><th>CHEMISTRY</th><th>BIOLOGY</th>
+                        <th>BASIC MATHS</th><th>BUSINESS STUDIES</th><th>ELIMU YA DINI YA KIISLAM</th><th>BIBLE KNOWLEDGE</th><th>TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- GRADE A -->
+                    <tr class="grade-row-A"><td rowspan="3">A</td><td>F</td><td>52</td><td>6</td><td>16</td><td>12</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>88</td></tr>
+                    <tr class="grade-row-A"><td>M</td><td>18</td><td>5</td><td>17</td><td>12</td><td>2</td><td>2</td><td>2</td><td>1</td><td>0</td><td>2</td><td>0</td><td>0</td><td>61</td></tr>
+                    <tr class="grade-row-A"><td>TOT</td><td>70</td><td>11</td><td>33</td><td>24</td><td>2</td><td>2</td><td>3</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0</td><td>149</td></tr>
+                    <!-- GRADE B -->
+                    <tr class="grade-row-B"><td rowspan="3">B</td><td>F</td><td>49</td><td>6</td><td>12</td><td>27</td><td>6</td><td>2</td><td>0</td><td>3</td><td>1</td><td>2</td><td>2</td><td>0</td><td>110</td></tr>
+                    <tr class="grade-row-B"><td>M</td><td>15</td><td>4</td><td>10</td><td>14</td><td>4</td><td>2</td><td>4</td><td>3</td><td>2</td><td>0</td><td>2</td><td>0</td><td>60</td></tr>
+                    <tr class="grade-row-B"><td>TOT</td><td>64</td><td>10</td><td>22</td><td>41</td><td>10</td><td>4</td><td>4</td><td>6</td><td>3</td><td>2</td><td>4</td><td>0</td><td>170</td></tr>
+                    <!-- GRADE C -->
+                    <tr class="grade-row-C"><td rowspan="3">C</td><td>M</td><td>85</td><td>18</td><td>43</td><td>110</td><td>19</td><td>7</td><td>4</td><td>9</td><td>5</td><td>12</td><td>38</td><td>0</td><td>350</td></tr>
+                    <tr class="grade-row-C"><td>F</td><td>43</td><td>16</td><td>22</td><td>64</td><td>14</td><td>8</td><td>5</td><td>11</td><td>3</td><td>9</td><td>10</td><td>0</td><td>206</td></tr>
+                    <tr class="grade-row-C"><td>TOT</td><td>128</td><td>34</td><td>65</td><td>174</td><td>33</td><td>15</td><td>9</td><td>20</td><td>8</td><td>21</td><td>48</td><td>0</td><td>556</td></tr>
+                    <!-- GRADE D -->
+                    <tr class="grade-row-D"><td rowspan="3">D</td><td>M</td><td>40</td><td>29</td><td>51</td><td>78</td><td>50</td><td>18</td><td>11</td><td>13</td><td>6</td><td>26</td><td>60</td><td>0</td><td>392</td></tr>
+                    <tr class="grade-row-D"><td>F</td><td>63</td><td>18</td><td>41</td><td>77</td><td>28</td><td>12</td><td>12</td><td>12</td><td>4</td><td>25</td><td>31</td><td>0</td><td>323</td></tr>
+                    <tr class="grade-row-D"><td>TOT</td><td>103</td><td>47</td><td>92</td><td>155</td><td>78</td><td>30</td><td>23</td><td>25</td><td>10</td><td>51</td><td>91</td><td>0</td><td>715</td></tr>
+                    <!-- GRADE F -->
+                    <tr class="grade-row-F"><td rowspan="3">F</td><td>M</td><td>34</td><td>191</td><td>131</td><td>28</td><td>171</td><td>29</td><td>42</td><td>31</td><td>238</td><td>206</td><td>32</td><td>0</td><td>1191</td></tr>
+                    <tr class="grade-row-F"><td>F</td><td>75</td><td>166</td><td>124</td><td>48</td><td>162</td><td>30</td><td>32</td><td>27</td><td>201</td><td>169</td><td>26</td><td>0</td><td>1100</td></tr>
+                    <tr class="grade-row-F"><td>TOT</td><td>109</td><td>357</td><td>255</td><td>76</td><td>333</td><td>59</td><td>74</td><td>58</td><td>439</td><td>375</td><td>58</td><td>0</td><td>2291</td></tr>
+                    <!-- TOTAL STUDENTS SAT FOR EXAMS -->
+                    <tr class="tot-student-row">
+                        <td colspan="2">TOTAL STUDENT SAT FOR EXAMS</td>
+                        <td>474</td><td>459</td><td>467</td><td>470</td><td>456</td><td>110</td><td>113</td><td>111</td>
+                        <td>460</td><td>201</td><td>201</td><td>0</td><td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center mt-3">
+            <small class="text-muted"><i class="fas fa-info-circle"></i> Note: Bible Knowledge subject not offered in 2025 examination cycle. Business Studies and Elimu ya Dini ya Kiislam were taken by a subset of students.</small>
+        </div>
+    </div>
+
+    <!-- FOOTER NOTE REMOVED - Statistics removed as requested -->
 </div>
 
-<!-- Scripts -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
 <script>
-  // Improved search across all columns
-  function filterTable() {
-    const searchValue = document.getElementById("searchInput").value.toLowerCase();
-    const table = document.getElementById("resultsTable");
-    const rows = table.getElementsByTagName("tr");
-
-    for (let i = 1; i < rows.length; i++) {
-      let row = rows[i];
-      let cells = row.getElementsByTagName("td");
-      let matchFound = false;
-
-      // Check each cell
-      for (let j = 0; j < cells.length; j++) {
-        const cellText = cells[j].textContent;
-        if (cellText.toLowerCase().includes(searchValue)) {
-          matchFound = true;
+(function() {
+    // ========== TOP 25 STUDENTS (Division I and II only) ==========
+    const topStudents = [
+        [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
+        [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
+        [253,"YUSRA KUBO MTOA","F","B","A","A","B","C","B","D","A","B","D","C","","11","I"],
+        [133,"MARIADEBORAH WILLIAM SODOKA","F","A","A","A","C","D","C","A","B","C","C","","","12","I"],
+        [193,"REMNISCA BRAYAN LYIMO","F","A","A","A","B","B","C","D","","D","B","","","12","I"],
+        [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
+        [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
+        [280,"ALVIN HASSAN SHEHE","M","A","C","A","B","C","C","B","F","F","C","B","","14","I"],
+        [204,"SAKINA ASIAGI HUSSEIN","F","A","B","A","B","D","C","C","C","D","D","C","","15","I"],
+        [269,"ABSAN SAAD ABDALLAH","M","C","A","A","C","B","C","D","B","C","C","C","","15","I"],
+        [76,"HALIA MWAGILO KIMAYA","F","A","C","B","A","C","","","","F","C","C","","16","I"],
+        [112,"LEVINA GEORGE  MAKOI","F","A","C","A","B","D","D","D","C","D","C","","","17","I"],
+        [154,"NADIYA SAID AKILI","F","A","C","A","A","D","D","D","D","F","D","B","","16","I"],
+        [182,"PRECIOUS EMMANUEL SHIRIMA","F","C","B","A","A","C","C","C","C","C","C","","","16","I"],
+        [183,"PRORAY PROTAS MREMA","F","C","C","A","B","D","B","C","B","C","C","","","16","I"],
+        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
+        [225,"SHAMIMU SIRAJI MAREJA","F","A","A","B","C","B","","","","F","D","D","","17","I"],
+        [74,"HAFSA ALLY NKUWI","F","A","C","B","C","C","D","D","C","F","C","C","","18","II"],
+        [91,"JENIFA ADVENCHA YUSUPH","F","A","A","B","C","C","D","F","D","F","D","","","18","II"],
+        [318,"ELIA JOSEPH KIMARO","M","C","C","A","C","C","C","B","C","F","D","","","18","II"],
+        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
+        [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
+        [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"],
+        [243,"UMU MOHAMEDI SHABANI","F","A","C","C","B","D","","","","F","C","C","","19","II"],
+        [247,"WAHIDA ATHUMANI RASHIDI","F","A","C","B","B","D","","","","F","D","C","","19","II"],
+        [324,"ELISHA STEPHEN MSESELO","M","C","D","A","B","B","D","D","C","F","F","","","19","II"]
+    ];
+    
+    // Sort by points ascending (lower is better) and take top 25
+    const sortedTop = [...topStudents].sort((a,b) => {
+        let ptsA = parseInt(a[14]) || 99;
+        let ptsB = parseInt(b[14]) || 99;
+        return ptsA - ptsB;
+    });
+    const finalTop25 = sortedTop.slice(0, 25);
+    
+    const tbody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('studentSearch');
+    const clearBtn = document.getElementById('clearSearch');
+    const resultSpan = document.getElementById('resultCount');
+    
+    function renderRows(filterText = '') {
+        const term = filterText.trim().toLowerCase();
+        let visibleCount = 0;
+        let html = '';
+        
+        for (let s of finalTop25) {
+            const candNumber = s[0].toString();
+            const fullName = s[1].toLowerCase();
+            if (term !== '' && !candNumber.includes(term) && !fullName.includes(term)) continue;
+            visibleCount++;
+            
+            html += '<tr>';
+            for (let i = 0; i < s.length; i++) {
+                let cell = s[i] === '' ? '' : s[i];
+                let cls = '';
+                if (i === 1) cls = 'cand-name';
+                else if (i >= 3 && i <= 13) {
+                    if (cell === 'A') cls = 'grade-A';
+                    else if (cell === 'B') cls = 'grade-B';
+                    else if (cell === 'C') cls = 'grade-C';
+                    else if (cell === 'D') cls = 'grade-D';
+                    else if (cell === 'F') cls = 'grade-F';
+                    else if (cell === 'ABS') cls = 'grade-ABS';
+                    else if (cell === 'INC.') cls = 'grade-INC';
+                } else if (i === 14 && cell) cls = 'points';
+                else if (i === 15 && cell) cls = 'division';
+                html += `<td class="${cls}">${cell}</td>`;
+            }
+            html += '</tr>';
         }
-      }
-
-      // Show or hide row and highlight matches
-      if (matchFound || searchValue === "") {
-        row.style.display = "";
-        for (let j = 0; j < cells.length; j++) {
-          const cellText = cells[j].textContent;
-          if(searchValue){
-            const regex = new RegExp(`(${searchValue})`, "gi");
-            cells[j].innerHTML = cellText.replace(regex, "<mark>$1</mark>");
-          } else {
-            cells[j].innerHTML = cellText;
-          }
-        }
-      } else {
-        row.style.display = "none";
-      }
+        tbody.innerHTML = html;
+        resultSpan.innerText = `${visibleCount} / ${finalTop25.length} shown`;
     }
-  }
-
-  // Download table as PDF with title
-  function downloadPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF('l', 'pt', 'a4');
-
-    const title = "TGVTS FORM ONE STUDENT RESULTS 2026";
-    doc.setFontSize(18);
-    doc.text(title, doc.internal.pageSize.getWidth() / 2, 30, { align: "center" });
-
-    const table = document.getElementById("resultsTable");
-    const headers = [];
-    table.querySelectorAll("thead th").forEach(th => headers.push(th.innerText));
-    const data = [];
-    table.querySelectorAll("tbody tr").forEach(tr => {
-      const row = [];
-      tr.querySelectorAll("td").forEach(td => row.push(td.innerText));
-      data.push(row);
+    
+    renderRows('');
+    
+    searchInput.addEventListener('input', (e) => renderRows(e.target.value));
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        renderRows('');
     });
-
-    doc.autoTable({
-      head: [headers],
-      body: data,
-      startY: 50,
-      styles: { fontSize: 8 },
-      headStyles: { fillColor: [0, 102, 204] },
+    
+    // PDF download - captures the entire report card
+    document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+        const element = document.getElementById('reportCard');
+        const opt = {
+            margin: [0.4, 0.4, 0.4, 0.4],
+            filename: 'TEMBONI_F1_TOP25_STUDENTS_2025.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false },
+            jsPDF: { unit: 'in', format: 'a2', orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).save();
     });
-
-    doc.save("TGVTS_Form_One_2026_Results.pdf");
-  }
+})();
 </script>
-
 </body>
 </html>
