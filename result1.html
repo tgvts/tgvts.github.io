@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1200">
     <title>TEMBONI SECONDARY · Top 25 Students · Form One Dec 2025</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
@@ -397,7 +397,7 @@
 
         <!-- Grade Summary Section -->
         <div class="summary-section">
-            <div class="summary-title">📊 SUBJECT GRADE COUNTS · FULL COHORT ANALYSIS</div>
+            <div class="summary-title">📊 SUBJECT GRADE COUNTS · FULL ANALYSIS</div>
             <div class="summary-table-wrapper">
                 <table class="grade-summary">
                     <thead>
@@ -509,7 +509,6 @@
         const element = document.getElementById('reportCard');
         html2pdf().set({
             margin: [0.4, 0.4, 0.4, 0.4],
-            filename: 'TEMBONI_F1_TOP25_2025.pdf',
             image: { type: 'jpeg', quality: 0.98 },
             html2canvas: { scale: 2, letterRendering: true },
             jsPDF: { unit: 'in', format: 'a2', orientation: 'landscape' }
