@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMBONI SECONDARY SCHOOL · Form One Annual Examination Dec 2025</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+        body {
+            background: #f3f5f9;
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .report-container {
+            max-width: 100%;
+            width: 1400px;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+            border: 1px solid #dde0e7;
+        }
+        /* header section with council data */
+        .header-diplomatic {
+            background: #0b2b4a;
+            color: white;
+            padding: 18px 24px;
+            border-bottom: 4px solid #cf9e3a;
+        }
+        .header-diplomatic h2 {
+            margin: 0 0 4px 0;
+            font-weight: 400;
+            font-size: 1.4rem;
+            letter-spacing: 0.5px;
+        }
+        .header-diplomatic h1 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 2.2rem;
+        }
+        .header-diplomatic .sub {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #d4e0f0;
+        }
+        .stats-banner {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px;
+            background: #eef2f7;
+            padding: 16px 24px;
+            font-weight: 500;
+            border-bottom: 1px solid #cbd5e1;
+        }
+        .stats-banner div {
+            background: white;
+            padding: 10px 16px;
+            border-radius: 40px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            margin-right: 12px;
+            border: 1px solid #d8dee9;
+        }
+        .stats-banner i { font-style: normal; background: #0b2b4a; color: white; border-radius: 20px; padding: 2px 12px; margin-left: 8px; }
+        .table-wrapper {
+            overflow-x: auto;
+            max-height: 700px;
+            overflow-y: auto;
+            border-bottom: 1px solid #cfd9e6;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+            background: white;
+            min-width: 1800px;  /* forces horizontal scroll, keeps columns readable */
+        }
+        th {
+            background: #1f3a5f;
+            color: white;
+            font-weight: 600;
+            padding: 14px 4px;
+            text-align: center;
+            border-right: 1px solid #36587c;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        th:last-child { border-right: none; }
+        td {
+            border: 1px solid #d0d9e8;
+            padding: 6px 3px;
+            text-align: center;
+            background-color: white;
+        }
+        /* subject columns */
+        .subject-col { background: #f9fbfe; font-weight: 500; color: #102a41; }
+        .cand-name { text-align: left; padding-left: 8px; font-weight: 500; background: #f6f9ff; }
+        /* grade colour hints (subtle) */
+        td.grade-A { background-color: #e1f7e1; font-weight: 600; color: #006400; }
+        td.grade-B { background-color: #e6f0fa; font-weight: 500; color: #024e8a; }
+        td.grade-C { background-color: #fffae0; }
+        td.grade-D { background-color: #ffe6d5; color: #8b3e00; }
+        td.grade-F { background-color: #ffdede; color: #a10000; font-weight: 500; }
+        td.grade-ABS { background: #cccccc; color: #2d2d2d; font-weight: 600; }
+        td.grade-INC { background: #d3d0e6; color: #312e5c; font-weight: 600; }
+        td.points { font-weight: 700; background: #f0f3fd; }
+        td.division { font-weight: 700; background: #e9edf6; }
+        /* footer summary */
+        .summary-footer {
+            background: #f0f4fc;
+            padding: 20px 24px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            border-top: 1px solid #a0b3cc;
+            font-size: 0.95rem;
+        }
+        .summary-footer .block {
+            background: white;
+            border-radius: 18px;
+            padding: 12px 22px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 6px solid #1f3a5f;
+        }
+        .summary-footer .block span { font-weight: 700; margin-right: 12px; color: #0b2b4a; }
+        .badge { background: #1e3a5f; color: white; border-radius: 50px; padding: 2px 14px; font-weight: 600; }
+    </style>
+</head>
+<body>
+<div class="report-container">
+    <!-- OFFICIAL HEADER -->
+    <div class="header-diplomatic">
+        <h2>PRESIDENT'S OFFICE, REGIONAL ADMINISTRATION AND LOCAL GOVERNMENT</h2>
+        <h1>TAHOSSAUBUNGO MUNICIPAL COUNCIL</h1>
+        <div class="sub">
+            <span>FORM ONE ANNUAL EXAMINATION DECEMBER - 2025</span>
+            <span>S.3799 - TEMBONI GVT SECONDARY SCHOOL</span>
+        </div>
+    </div>
+
+    <!-- summary stats from header (first table) -->
+    <div class="stats-banner">
+        <div>🎓 FEMALE <i>273</i></div>
+        <div>🧑 MALE <i>242</i></div>
+        <div>📋 TOTAL <i>515</i></div>
+        <div>🏆 I:23</div>
+        <div>🥈 II:27</div>
+        <div>🥉 III:38</div>
+        <div>📘 IV:283</div>
+        <div>⭕ 0:64</div>
+        <div>🔻 INC:65</div>
+        <div>🚫 ABS:15</div>
+    </div>
+
+    <!-- main examination table (data candidates 1 to 200) -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+            <tr>
+                <th>#</th> <th>Full name</th> <th>Sex</th>
+                <th>HSIRIRA YA TZ & MAADILI</th> <th>HIST</th> <th>GEO</th> <th>KISW</th> <th>ENG</th> <th>PHY</th>
+                <th>CHEM</th> <th>BIO</th> <th>B/MATH</th> <th>BUSINESS</th> <th>EDK (ISLAM)</th> <th>BIBLE KNOW</th>
+                <th>PTS</th> <th>DIV</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- data extracted from the image – candidates 1 to 200 -->
+            <tr><td>1</td><td class="cand-name">ABELINA JOHN JOSEPH</td><td>F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">ABS</td></tr>
+            <tr><td>2</td><td class="cand-name">ABIGAEL GERVAS NGASIKWA</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>3</td><td class="cand-name">ABIGAELL EMMANUEL SILLA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">29</td><td class="division">IV</td></tr>
+            <tr><td>4</td><td class="cand-name">ABIGAIL AUGUSTINO MTENGA</td><td>F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td class="points">20</td><td class="division">II</td></tr>
+            <tr><td>5</td><td class="cand-name">AISHA ABDALLAH KILEO</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
+            <tr><td>6</td><td class="cand-name">AISHA ABUBAKARI RAMADHANI</td><td>F</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">27</td><td class="division">IV</td></tr>
+            <tr><td>7</td><td class="cand-name">AISHA ADAM RASHID</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
+            <tr><td>8</td><td class="cand-name">AISHA FARAHANI ABAS</td><td>F</td><td class="grade-A">A</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td></td><td class="points">21</td><td class="division">II</td></tr>
+            <tr><td>9</td><td class="cand-name">AISHA HABIBU ABDALLAH</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">33</td><td class="division">IV</td></tr>
+            <tr><td>10</td><td class="cand-name">AISHA SALUMU RASHIDI</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">29</td><td class="division">IV</td></tr>
+            <tr><td>11</td><td class="cand-name">ALICE ALEX SHAYO</td><td>F</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-A">A</td><td class="grade-A">A</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td></td><td class="points">19</td><td class="division">II</td></tr>
+            <tr><td>12</td><td class="cand-name">AMINA ANTHONY MANGERA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>13</td><td class="cand-name">AMINA BAKARI MOHAMED</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>14</td><td class="cand-name">AMINA HUSSEIN IDD</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">29</td><td class="division">IV</td></tr>
+            <tr><td>15</td><td class="cand-name">AMINA JUMANNE MSIGALA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">31</td><td class="division">IV</td></tr>
+            <tr><td>16</td><td class="cand-name">AMINA MOHAMED ABEDI</td><td>F</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-D">D</td><td class="grade-D">D</td><td></td><td class="points">17</td><td class="division">I</td></tr>
+            <tr><td>17</td><td class="cand-name">AMINA MOHAMED MRISHO</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>18</td><td class="cand-name">AMINA RASHIDI HAMIS</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">28</td><td class="division">IV</td></tr>
+            <tr><td>19</td><td class="cand-name">AMINA SAID NYOKA</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td class="grade-D">D</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>20</td><td class="cand-name">AMINA SALUM MKANZA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>21</td><td class="cand-name">ANGEL SHARIFU KILAMBO</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">31</td><td class="division">IV</td></tr>
+            <tr><td>22</td><td class="cand-name">ANGELINA MARTIN MPONDA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">33</td><td class="division">IV</td></tr>
+            <tr><td>23</td><td class="cand-name">ANNA CHARLES MKUMI</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>24</td><td class="cand-name">ANNA MKOMBOZI KIFYASI</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">26</td><td class="division">IV</td></tr>
+            <tr><td>25</td><td class="cand-name">AISHA MBELWA NJAMA</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>26</td><td class="cand-name">ASHA HEMEDI KATIMUNDU</td><td>F</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td class="points">25</td><td class="division">III</td></tr>
+            <tr><td>27</td><td class="cand-name">ASHFAT ATHUMAN DIWA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">31</td><td class="division">IV</td></tr>
+            <tr><td>28</td><td class="cand-name">BERNADETA VICTOR GERALD</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">27</td><td class="division">IV</td></tr>
+            <tr><td>29</td><td class="cand-name">BERTHA ROBERT RINYASHI</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">27</td><td class="division">IV</td></tr>
+            <tr><td>30</td><td class="cand-name">BETSHEBA LUCAS LUGAILA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>31</td><td class="cand-name">CAREEN GASPER BANZI</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td></td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>32</td><td class="cand-name">CAREEN STANSLAUS MUMBARI</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td class="grade-D">D</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>33</td><td class="cand-name">CATHERINE ERNEST MKETO</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>34</td><td class="cand-name">CATHERINE GEOFREY SIKANYIKA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>35</td><td class="cand-name">CATHERINE JOSEPH MUSA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>36</td><td class="cand-name">CHERRY FULAHA MWAKAPALILA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>37</td><td class="cand-name">CHRISTABELLA DAVID MUSHI</td><td>F</td><td class="grade-A">A</td><td class="grade-B">B</td><td class="grade-A">A</td><td class="grade-C">C</td><td class="grade-B">B</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-C">C</td><td class="grade-D">D</td><td class="grade-B">B</td><td></td><td></td><td class="points">14</td><td class="division">I</td></tr>
+            <tr><td>38</td><td class="cand-name">CHRISTIAN HAPPYSON SALEKWA</td><td>F</td><td class="grade-D">D</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-C">C</td><td class="grade-D">D</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">29</td><td class="division">IV</td></tr>
+            <tr><td>39</td><td class="cand-name">CHRISTINA JOSEPH BARIDI</td><td>F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">33</td><td class="division">IV</td></tr>
+            <tr><td>40</td><td class="cand-name">DELPHINE XAVELY KAPINGA</td><td>F</td><td class="grade-F">F</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="points"></td><td class="division">INC.</td></tr>
+            <tr><td>41</td><td class="cand-name">DIANA ERASTO MWAKILASA</td><td>F</td><td class="grade-B">B</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-C">C</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">30</td><td class="division">IV</td></tr>
+            <tr><td>42</td><td class="cand-name">DORICE DAUDI SAMA</td><td>F</td><td class="grade-C">C</td><td class="grade-F">F</td><td class="grade-F">F</td><td class="grade-D">D</td><td class="grade-F">F</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-F">F</td><td></td><td></td><td class="points">32</td><td class="division">IV</td></tr>
+            <tr><td>43</td><td class="cand-name">DYNESS ANRONICO PETER</td><td>F</td><td class="grade-A">A</td><td class="grade-F">F</td><td class="grade-B">B</td><td class="grade-B">B</td><td class="grade-C">C</td><td></td><td></td><td></td><td class="grade-F">F</td><td class="grade-D">D</td><td></td><td></td><td class="
