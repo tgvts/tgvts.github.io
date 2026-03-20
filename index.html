@@ -96,7 +96,15 @@
     }
   </style>
 </head>
-
+<script>
+function searchResults() {
+  var input = document.getElementById("searchInput").value.trim();
+  if(input) {
+    // Redirect to results.html with search query
+    window.location.href = "results.html?search=" + encodeURIComponent(input);
+  }
+}
+</script>
 <body>
 
   <!-- HEADER -->
@@ -123,7 +131,7 @@
     <p>Providing quality education and technology skills.</p>
 
     <!-- SEARCH BAR -->
-    <input type="text" placeholder="Search student results...">
+<input type="text" id="searchInput" placeholder="Search student names..." onkeyup="searchResults()">
   </div>
 
   <!-- ABOUT -->
