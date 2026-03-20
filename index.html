@@ -154,16 +154,12 @@
       background: linear-gradient(135deg, #0a5f53 0%, #075147 100%);
     }
     
-    /* Hero Section - Premium card style with transparency */
+    /* Hero Section - NO WHITE BACKGROUND, fully transparent to show background image */
     .hero-section {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(8px);
+      background: transparent;
       padding: 3.5rem 1rem;
       text-align: center;
       margin: 1.5rem;
-      border-radius: 40px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
     }
     
     .school-logo {
@@ -172,29 +168,39 @@
       border-radius: 50%;
       object-fit: cover;
       border: 5px solid #cf9e3a;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
     }
     
     .school-logo:hover {
       transform: scale(1.05);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
     }
     
     .hero-section h2 {
-      color: #075147;
+      color: white;
       font-weight: 800;
       font-size: 2.5rem;
       margin-top: 1.8rem;
       letter-spacing: -0.5px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
     }
     
     .hero-tagline {
       font-size: 1.3rem;
-      color: #2c3e50;
+      color: #ffd966;
       font-weight: 500;
       letter-spacing: 1px;
       font-style: italic;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+    }
+    
+    .hero-section .text-secondary {
+      color: rgba(255,255,255,0.9) !important;
+      font-weight: 500;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
     }
     
     /* Info Cards - Premium glassmorphism */
@@ -204,21 +210,21 @@
     }
     
     .info-card {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(10px);
       border-radius: 28px;
       padding: 2rem 1.8rem;
       text-align: center;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-      border: 1px solid rgba(255,255,255,0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
       height: 100%;
     }
     
     .info-card:hover {
       transform: translateY(-12px);
-      box-shadow: 0 25px 45px rgba(0,0,0,0.2);
-      border-color: rgba(7,81,71,0.5);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+      border-color: rgba(207,158,58,0.6);
       background: rgba(255, 255, 255, 0.98);
     }
     
@@ -258,12 +264,12 @@
     
     /* Map Section - Clean with transparency */
     .map-section {
-      background: rgba(255, 255, 255, 0.94);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(8px);
       padding: 3rem 1rem;
       margin: 1.5rem;
       border-radius: 40px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       border: 1px solid rgba(255,255,255,0.4);
     }
     
@@ -291,6 +297,10 @@
       height: 4px;
       background: linear-gradient(90deg, #cf9e3a, #075147);
       border-radius: 2px;
+    }
+    
+    .section-title p {
+      color: #2c3e50;
     }
     
     .map-container {
@@ -486,14 +496,12 @@
       }
     }
     
-    .info-card, .contact-card, .hero-section, .map-section {
+    .info-card, .contact-card, .map-section {
       animation: fadeInUp 0.6s ease-out forwards;
     }
     
-    /* Additional text readability for dark background */
-    .text-secondary {
-      color: #2d3e50 !important;
-      font-weight: 500;
+    .hero-section {
+      animation: fadeInUp 0.4s ease-out forwards;
     }
   </style>
 </head>
@@ -521,7 +529,7 @@
     </div>
   </div>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION - NO WHITE BACKGROUND, FULLY TRANSPARENT -->
   <div class="hero-section">
     <div class="container">
       <img src="photos/nemb8.jpeg" alt="TGVTS Secondary School Logo" class="school-logo" onerror="this.src='https://via.placeholder.com/150?text=TGVTS'">
@@ -571,7 +579,7 @@
     <div class="container">
       <div class="section-title">
         <h2><i class="fas fa-location-dot me-2"></i> Our Location</h2>
-        <p class="text-secondary">Find us in Temboni, Ubungo Municipal - easily accessible from Dar es Salaam city center</p>
+        <p>Find us in Temboni, Ubungo Municipal - easily accessible from Dar es Salaam city center</p>
       </div>
       <div class="map-container">
         <iframe 
