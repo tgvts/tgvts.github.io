@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEMBONI SECONDARY · Form One Dec 2025 (with PDF download)</title>
-    <!-- html2pdf library (Browser-based PDF export) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>TEMBONI SECONDARY · Top 25 Students (Div I & II) · Form One Dec 2025</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
         body { background: #eef1f7; margin: 20px; display: flex; justify-content: center; }
@@ -19,23 +17,19 @@
         .stat-row .pill { background: white; border-radius: 40px; padding: 6px 18px; box-shadow: inset 0 1px 3px #00000010; border: 1px solid #b0c1da; }
         .stat-row i { background: #0a2647; color: white; border-radius: 30px; padding: 2px 12px; margin-left: 8px; font-style: normal; }
 
-        /* search + download area */
         .action-bar { background: #ffffff; padding: 16px 24px; border-bottom: 2px solid #b7c5da; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .search-box { display: flex; align-items: center; background: #f0f4fe; border-radius: 60px; padding: 4px 8px 4px 20px; border: 1px solid #a5bbdf; flex: 1 1 300px; }
         .search-box i { font-style: normal; color: #2b4570; margin-right: 8px; font-weight: 500; }
         .search-box input { border: none; background: transparent; padding: 12px 6px 12px 0; width: 100%; font-size: 1rem; outline: none; }
-        .search-box button { background: #1e3a6b; border: none; color: white; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; transition: 0.2s; margin-left: 5px; }
-        .search-box button:hover { background: #0b2a50; }
+        .search-box button { background: #1e3a6b; border: none; color: white; padding: 10px 24px; border-radius: 40px; font-weight: 600; cursor: pointer; }
         .result-count { font-weight: 600; color: #1e3a6b; background: #e0e9ff; padding: 6px 18px; border-radius: 40px; }
+        .download-btn { background: #1e7e34; color: white; border: none; padding: 12px 28px; border-radius: 40px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 14px rgba(0,80,20,0.3); display: inline-flex; align-items: center; gap: 8px; }
+        .download-btn:hover { background: #146b29; }
 
-        .download-btn { background: #1e7e34; color: white; border: none; padding: 12px 28px; border-radius: 40px; font-weight: 700; font-size: 0.95rem; cursor: pointer; box-shadow: 0 6px 14px rgba(0,80,20,0.3); transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; border: 1px solid #146b29; }
-        .download-btn:hover { background: #146b29; transform: scale(1.02); }
-
-        .table-wrapper { overflow-x: auto; max-height: 480px; overflow-y: auto; border-bottom: 1px solid #9dafca; }
-        table { width: 100%; border-collapse: collapse; font-size: 0.7rem; min-width: 1800px; background: white; }
-        th { background: #1e3a6b; color: white; padding: 8px 2px; text-align: center; font-weight: 600; border-right: 1px solid #3f5a82; position: sticky; top: 0; z-index: 10; }
-        th:last-child { border-right: none; }
-        td { border: 1px solid #d2d9e8; padding: 4px 2px; text-align: center; }
+        .table-wrapper { overflow-x: auto; max-height: 550px; overflow-y: auto; border-bottom: 1px solid #9dafca; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; min-width: 1800px; background: white; }
+        th { background: #1e3a6b; color: white; padding: 10px 3px; text-align: center; border-right: 1px solid #3f5a82; position: sticky; top: 0; z-index: 10; }
+        td { border: 1px solid #d2d9e8; padding: 6px 3px; text-align: center; }
         .cand-name { text-align: left; padding-left: 8px; font-weight: 500; background: #f7faff; }
         .grade-A { background: #dcfce7; font-weight: 700; color: #0a5c2a; }
         .grade-B { background: #dbeafe; font-weight: 600; color: #1e4a7a; }
@@ -47,10 +41,9 @@
         .points { font-weight: 800; background: #e9edf8; }
         .division { font-weight: 800; background: #dee5f2; }
 
-        /* summary table */
         .summary-container { background: #f5f9ff; padding: 24px; border-top: 4px solid #1e3a6b; }
         .summary-title { font-size: 1.6rem; font-weight: 700; color: #0a2647; margin: 0 0 16px 0; border-left: 12px solid #cf9e3a; padding-left: 24px; }
-        .grade-summary-table { width: 100%; border-collapse: collapse; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 10px 20px rgba(0,0,0,0.08); font-size: 0.85rem; }
+        .grade-summary-table { width: 100%; border-collapse: collapse; background: white; border-radius: 24px; overflow: hidden; font-size: 0.85rem; }
         .grade-summary-table th { background: #1e3a6b; color: white; padding: 12px 4px; }
         .grade-summary-table td { border: 1px solid #cbd5e1; padding: 6px 4px; text-align: center; }
         .grade-row-A td:not(.subject-col) { background: #e6f7e6; }
@@ -64,8 +57,8 @@
         .footer-note .block { background: white; border-radius: 30px; padding: 6px 18px; border-left: 8px solid #1e3a6b; }
         .footer-note .block span { font-weight: 800; margin-right: 12px; color: #0a2647; }
 
-        /* print / pdf adjustment */
-        @media print { body { background: white; } .action-bar, .download-btn, .search-box, .result-count { display: none; } .table-wrapper { max-height: none; overflow: visible; } }
+        @media print { .action-bar, .download-btn, .search-box, .result-count { display: none; } .table-wrapper { max-height: none; overflow: visible; } }
+        .info-badge { background: #fef3c7; padding: 8px 20px; border-radius: 40px; color: #92400e; font-weight: 600; display: inline-block; margin-left: 15px; }
     </style>
 </head>
 <body>
@@ -88,22 +81,21 @@
         <div class="pill">INC:65</div><div class="pill">ABS:15</div>
     </div>
 
-    <!-- combined search + download -->
     <div class="action-bar">
         <div class="search-box">
             <i>🔍</i>
             <input type="text" id="studentSearch" placeholder="Search by name or candidate number ..." autocomplete="off">
             <button id="clearSearch">Clear</button>
         </div>
-        <div class="result-count" id="resultCount">410 / 410 shown</div>
+        <div class="result-count" id="resultCount">25 / 25 shown</div>
         <button class="download-btn" id="downloadPdfBtn">📥 Download Full Report (PDF)</button>
+        <div class="info-badge">⭐ Top 25 Students (Division I & II)</div>
     </div>
 
     <div class="table-wrapper">
         <table id="resultsTable">
             <thead>
-            <tr>
-                <th>#</th><th>Full name</th><th>Sex</th>
+                <tr><th>#</th><th>Full name</th><th>Sex</th>
                 <th>Hist/TZ & Maadili</th><th>Hist</th><th>Geo</th><th>Kisw</th><th>Eng</th><th>Phy</th><th>Chem</th><th>Bio</th>
                 <th>B/Math</th><th>Bus</th><th>EDK</th><th>Bible</th><th>Pts</th><th>Div</th>
             </tr>
@@ -112,9 +104,9 @@
         </table>
     </div>
 
-    <!-- grade summary table (static, included in PDF) -->
+    <!-- grade summary table (static) -->
     <div class="summary-container">
-        <div class="summary-title">📊 SUBJECT GRADE COUNTS</div>
+        <div class="summary-title">📊 SUBJECT GRADE COUNTS (All Students)</div>
         <table class="grade-summary-table">
             <thead><tr><th>GRADE</th><th>SEX</th><th>HSIRIRA YA TZ NA MAADILI</th><th>HISTORY</th><th>GEOGRAPHY</th><th>KISWAHILI</th><th>ENGLISH</th><th>PHYSICS</th><th>CHEMISTRY</th><th>BIOLOGY</th><th>B/MATHS</th><th>BUSINESS</th><th>EDK</th><th>BIBLE</th><th>TOTAL</th></tr></thead>
             <tbody>
@@ -139,128 +131,113 @@
     </div>
 
     <div class="footer-note">
-        <div class="block"><span>🏆 I</span> (dynamic)</div><div class="block"><span>🥈 II</span> (dynamic)</div><div class="block"><span>🥉 III</span> (dynamic)</div>
-        <div class="block"><span>📘 IV</span> (dynamic)</div><div class="block"><span>⭕ 0</span> (dynamic)</div><div class="block"><span>🔸 INC</span> (dynamic)</div><div class="block"><span>🚫 ABS</span> (dynamic)</div>
+        <div class="block"><span>🏆 I</span> 23 total</div><div class="block"><span>🥈 II</span> 27 total</div><div class="block"><span>🥉 III</span> 38 total</div>
+        <div class="block"><span>📘 IV</span> 283 total</div><div class="block"><span>⭕ 0</span> 7 total</div><div class="block"><span>🔸 INC</span> 65 total</div><div class="block"><span>🚫 ABS</span> 15 total</div>
     </div>
 </div>
 
 <script>
-    (function() {
-        // ---------- COMPLETE STUDENT DATA (1-410) – sampled but complete in actual version ----------
-        const students = [
-            [1,"ABELINA JOHN JOSEPH","F","","","","","","","","","","","","","ABS"],
-            [2,"ABIGAEL GERVAS NGASIKWA","F","F","F","F","C","F","","","","F","","","","INC."],
-            [3,"ABIGAELL EMMANUEL SILLA","F","B","F","D","C","F","","","","F","F","","","29","IV"],
-            [4,"ABIGAIL AUGUSTINO MTENGA","F","C","C","C","B","C","C","F","C","C","D","","","20","II"],
-            [5,"AISHA ABDALLAH KILEO","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
-            [6,"AISHA ABUBAKARI RAMADHANI","F","B","D","F","C","D","","","","F","F","D","","27","IV"],
-            [7,"AISHA ADAM RASHID","F","A","F","F","C","F","","","","F","F","D","","28","IV"],
-            [8,"AISHA FARAHANI ABAS","F","A","D","C","C","C","","","","F","D","C","","21","II"],
-            [9,"AISHA HABIBU ABDALLAH","F","F","F","F","D","F","","","","F","F","D","","33","IV"],
-            [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
-            [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
-            [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
-            [13,"AMINA BAKARI MOHAMED","F","D","F","F","D","F","F","F","F","F","F","D","","32","IV"],
-            [14,"AMINA HUSSEIN IDD","F","B","F","D","D","F","","","","F","F","D","","29","IV"],
-            [15,"AMINA JUMANNE MSIGALA","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
-            [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
-            [17,"AMINA MOHAMED MRISHO","F","B","F","F","C","F","F","F","F","F","F","F","","30","IV"],
-            [18,"AMINA RASHIDI HAMIS","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
-            [19,"AMINA SAID NYOKA","F","F","","","D","","","","","","","","","","INC."],
-            [20,"AMINA SALUM MKANZA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
-            [21,"ANGEL SHARIFU KILAMBO","F","C","F","F","D","D","","","","F","F","","","31","IV"],
-            [22,"ANGELINA MARTIN MPONDA","F","C","F","F","F","F","","","","F","F","","","33","IV"],
-            [23,"ANNA CHARLES MKUMI","F","C","F","F","D","F","","","","F","F","","","32","IV"],
-            [24,"ANNA MKOMBOZI KIFYASI","F","A","F","B","C","F","F","F","F","F","F","","","26","IV"],
-            [25,"AISHA MBELWA NJAMA","F","A","F","F","D","F","","","","","","","","","INC."],
-            [26,"ASHA HEMEDI KATIMUNDU","F","C","D","C","C","C","","","","F","F","D","","25","III"],
-            [27,"ASHFAT ATHUMAN DIWA","F","D","F","F","C","D","","","","F","F","","","31","IV"],
-            [28,"BERNADETA VICTOR GERALD","F","A","F","D","C","D","","","","F","F","","","27","IV"],
-            [29,"BERTHA ROBERT RINYASHI","F","B","F","D","C","C","F","F","F","F","F","","","27","IV"],
-            [30,"BETSHEBA LUCAS LUGAILA","F","D","F","F","C","F","","","","F","F","","","32","IV"],
-            [31,"CAREEN GASPER BANZI","F","F","F","F","C","","","","","F","F","","","","INC."],
-            [32,"CAREEN STANSLAUS MUMBARI","F","F","","","D","","","","","","","","","","INC."],
-            [33,"CATHERINE ERNEST MKETO","F","C","F","F","D","F","","","","F","F","","","32","IV"],
-            [34,"CATHERINE GEOFREY SIKANYIKA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
-            [35,"CATHERINE JOSEPH MUSA","F","B","F","F","C","F","","","","F","F","","","30","IV"],
-            [36,"CHERRY FULAHA MWAKAPALILA","F","C","F","D","C","F","F","F","F","F","F","","","30","IV"],
-            [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
-            [38,"CHRISTIAN HAPPYSON SALEKWA","F","D","F","C","C","D","","","","F","F","","","29","IV"],
-            [39,"CHRISTINA JOSEPH BARIDI","F","F","F","F","C","F","F","","F","F","F","","","33","IV"],
-            [40,"DELPHINE XAVELY KAPINGA","F","F","","","","","","","","","","","","","INC."],
-            [41,"DIANA ERASTO MWAKILASA","F","B","F","F","C","F","","","","F","F","","","30","IV"],
-            [42,"DORICE DAUDI SAMA","F","C","F","F","D","F","","","","F","F","","","32","IV"],
-            [43,"DYNESS ANRONICO PETER","F","A","F","B","B","C","","","","F","D","","","22","III"],
-            [44,"EDA ELIA PHILIPO","F","B","F","F","D","F","","","","F","F","D","","30","IV"],
-            [45,"ELICA DANIEL MGODOM","F","C","F","F","D","F","","","","F","F","","","32","IV"],
-            [46,"ELIETH JULIUS PALLANGO","F","C","D","D","C","F","","","","F","D","","","27","IV"],
-            [47,"ELIZA BONIFACE MWENGELA","F","C","F","D","D","F","","","","F","F","","","31","IV"],
-            [48,"ENJO RAJABU MWAMBEMBE","F","A","F","D","C","F","","","","F","F","F","","28","IV"],
-            [49,"ESTER ERADIUS RWEKOLAM","F","F","F","F","D","F","","","","F","F","","","34","O"],
-            [50,"ESTER MACK MAJALIWA","F","B","F","C","B","C","","","","F","F","","","24","III"]
-        ];
-        // For demonstration we have 50 rows, but in actual version all up to 410 are present.
-        // The PDF will include whatever rows are in the students array.
-        // Extend to 410 quickly (simulate) – we'll just push placeholders to reach ~410 for realistic count.
-        for (let i=51; i<=410; i++) {
-            students.push([i, `STUDENT ${i} SAMPLE`,`M`,"C","C","C","C","C","","","","C","C","","","30","IV"]);
-        }
-
-        // render table
-        const tbody = document.getElementById('tableBody');
-        const searchInput = document.getElementById('studentSearch');
-        const clearBtn = document.getElementById('clearSearch');
-        const resultSpan = document.getElementById('resultCount');
-
-        function renderRows(filterText) {
-            const term = filterText.trim().toLowerCase();
-            let visible = 0;
-            let html = '';
-            for (let s of students) {
-                const num = s[0].toString();
-                const name = s[1].toLowerCase();
-                if (term && !num.includes(term) && !name.includes(term)) continue;
-                visible++;
-                html += '<tr>';
-                for (let i=0; i<s.length; i++) {
-                    let cell = s[i] === '' ? '' : s[i];
-                    let cls = '';
-                    if (i===1) cls='cand-name';
-                    else if (i>=3 && i<=13) {
-                        if (cell==='A') cls='grade-A'; else if (cell==='B') cls='grade-B'; else if (cell==='C') cls='grade-C';
-                        else if (cell==='D') cls='grade-D'; else if (cell==='F') cls='grade-F'; else if (cell==='ABS') cls='grade-ABS';
-                        else if (cell==='INC.') cls='grade-INC';
-                    } else if (i===14 && cell) cls='points';
-                    else if (i===15 && cell) cls='division';
-                    html += `<td class="${cls}">${cell}</td>`;
-                }
-                html += '</tr>';
+(function() {
+    // ========== TOP 25 STUDENTS (Division I and II only) ==========
+    // Based on the original data - these are the highest performers
+    const topStudents = [
+        [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
+        [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
+        [253,"YUSRA KUBO MTOA","F","B","A","A","B","C","B","D","A","B","D","C","","11","I"],
+        [133,"MARIADEBORAH WILLIAM SODOKA","F","A","A","A","C","D","C","A","B","C","C","","","12","I"],
+        [193,"REMNISCA BRAYAN LYIMO","F","A","A","A","B","B","C","D","","D","B","","","12","I"],
+        [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
+        [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
+        [280,"ALVIN HASSAN SHEHE","M","A","C","A","B","C","C","B","F","F","C","B","","14","I"],
+        [204,"SAKINA ASIAGI HUSSEIN","F","A","B","A","B","D","C","C","C","D","D","C","","15","I"],
+        [269,"ABSAN SAAD ABDALLAH","M","C","A","A","C","B","C","D","B","C","C","C","","15","I"],
+        [76,"HALIA MWAGILO KIMAYA","F","A","C","B","A","C","","","","F","C","C","","16","I"],
+        [112,"LEVINA GEORGE  MAKOI","F","A","C","A","B","D","D","D","C","D","C","","","17","I"],
+        [154,"NADIYA SAID AKILI","F","A","C","A","A","D","D","D","D","F","D","B","","16","I"],
+        [182,"PRECIOUS EMMANUEL SHIRIMA","F","C","B","A","A","C","C","C","C","C","C","","","16","I"],
+        [183,"PRORAY PROTAS MREMA","F","C","C","A","B","D","B","C","B","C","C","","","16","I"],
+        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
+        [225,"SHAMIMU SIRAJI MAREJA","F","A","A","B","C","B","","","","F","D","D","","17","I"],
+        [74,"HAFSA ALLY NKUWI","F","A","C","B","C","C","D","D","C","F","C","C","","18","II"],
+        [91,"JENIFA ADVENCHA YUSUPH","F","A","A","B","C","C","D","F","D","F","D","","","18","II"],
+        [318,"ELIA JOSEPH KIMARO","M","C","C","A","C","C","C","B","C","F","D","","","18","II"],
+        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
+        [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
+        [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"],
+        [243,"UMU MOHAMEDI SHABANI","F","A","C","C","B","D","","","","F","C","C","","19","II"],
+        [247,"WAHIDA ATHUMANI RASHIDI","F","A","C","B","B","D","","","","F","D","C","","19","II"],
+        [324,"ELISHA STEPHEN MSESELO","M","C","D","A","B","B","D","D","C","F","F","","","19","II"]
+    ];
+    
+    // Also include a few more to reach 25 if needed (already 26, but we'll take first 25 sorted by points)
+    // Sort by points ascending (lower is better) then take top 25
+    const sortedTop = [...topStudents].sort((a,b) => {
+        let ptsA = parseInt(a[14]) || 99;
+        let ptsB = parseInt(b[14]) || 99;
+        return ptsA - ptsB;
+    });
+    const finalTop25 = sortedTop.slice(0, 25);
+    
+    const tbody = document.getElementById('tableBody');
+    const searchInput = document.getElementById('studentSearch');
+    const clearBtn = document.getElementById('clearSearch');
+    const resultSpan = document.getElementById('resultCount');
+    
+    function renderRows(filterText = '') {
+        const term = filterText.trim().toLowerCase();
+        let visibleCount = 0;
+        let html = '';
+        
+        for (let s of finalTop25) {
+            const candNumber = s[0].toString();
+            const fullName = s[1].toLowerCase();
+            if (term !== '' && !candNumber.includes(term) && !fullName.includes(term)) continue;
+            visibleCount++;
+            
+            html += '<tr>';
+            for (let i = 0; i < s.length; i++) {
+                let cell = s[i] === '' ? '' : s[i];
+                let cls = '';
+                if (i === 1) cls = 'cand-name';
+                else if (i >= 3 && i <= 13) {
+                    if (cell === 'A') cls = 'grade-A';
+                    else if (cell === 'B') cls = 'grade-B';
+                    else if (cell === 'C') cls = 'grade-C';
+                    else if (cell === 'D') cls = 'grade-D';
+                    else if (cell === 'F') cls = 'grade-F';
+                    else if (cell === 'ABS') cls = 'grade-ABS';
+                    else if (cell === 'INC.') cls = 'grade-INC';
+                } else if (i === 14 && cell) cls = 'points';
+                else if (i === 15 && cell) cls = 'division';
+                html += `<td class="${cls}">${cell}</td>`;
             }
-            tbody.innerHTML = html;
-            resultSpan.innerText = `${visible} / ${students.length} shown`;
+            html += '</tr>';
         }
+        tbody.innerHTML = html;
+        resultSpan.innerText = `${visibleCount} / ${finalTop25.length} shown`;
+    }
+    
+    renderRows('');
+    
+    searchInput.addEventListener('input', (e) => renderRows(e.target.value));
+    clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
         renderRows('');
-
-        searchInput.addEventListener('input', (e) => renderRows(e.target.value));
-        clearBtn.addEventListener('click', () => {
-            searchInput.value = '';
-            renderRows('');
-        });
-
-        // PDF download
-        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
-            const element = document.getElementById('reportCard');
-            const opt = {
-                margin:        [0.5, 0.5, 0.5, 0.5], // top, right, bottom, left (units in inches)
-                filename:     'TEMBONI_F1_ANNUAL_2025_FULL_REPORT.pdf',
-                image:        { type: 'jpeg', quality: 0.98 },
-                html2canvas:  { scale: 2, letterRendering: true, useCORS: true, logging: false },
-                jsPDF:        { unit: 'in', format: 'a2', orientation: 'landscape' }  // large landscape to fit wide table
-            };
-            html2pdf().set(opt).from(element).save();
-        });
-    })();
+    });
+    
+    // PDF download - captures the entire report card (top 25 students + grade summary)
+    document.getElementById('downloadPdfBtn').addEventListener('click', function() {
+        const element = document.getElementById('reportCard');
+        const opt = {
+            margin: [0.4, 0.4, 0.4, 0.4],
+            filename: 'TEMBONI_F1_TOP25_STUDENTS_2025.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2, letterRendering: true, useCORS: true, logging: false },
+            jsPDF: { unit: 'in', format: 'a2', orientation: 'landscape' }
+        };
+        html2pdf().set(opt).from(element).save();
+    });
+})();
 </script>
 </body>
 </html>
-```
