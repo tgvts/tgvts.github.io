@@ -1,120 +1,561 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <meta name="google-site-verification" content="prclA4N27h8s6VUSzswRzH_4-r1LEjxS3aX7ELLZJmQ">
-  <meta name="description" content="TGVTS Secondary School official website. Education, results, and school information.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  </head>
+  <meta name="description" content="TGVTS Secondary School official website. Education, results, and school information. Temboni, Ubungo Municipal, Tanzania.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TGVTS Secondary School - Temboni | Excellence in Education</title>
   
-  <title>TGVTS Secondary School - Temboni</title>
-
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    header {
-      background-color: #075147;
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      color: #1e293b;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Header */
+    .custom-header {
+      background: linear-gradient(135deg, #0a2f2a 0%, #075147 100%);
       color: white;
-      padding: 20px;
-      text-align: center;
+      padding: 2rem 0;
+      position: relative;
+      overflow: hidden;
     }
-
-    .hero {
-      background-color: white;
-      text-align: center;
-      padding: 30px;
-    }
-
-    .hero img {
-      width: 150px;
-      height: 150px;
-    }
-
-    .section {
-      padding: 20px;
-      text-align: center;
-    }
-
-    .section h2 {
-      color: #003366;
-    }
-
-    .cards {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .card {
-      background: white;
-      padding: 15px;
-      width: 250px;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    iframe {
-      width: 90%;
+    
+    .custom-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 300px;
       height: 300px;
-      border: 0;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+      pointer-events: none;
     }
-
-    .footer {
-      background-color: #003366;
+    
+    .custom-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 0.5rem;
+    }
+    
+    .custom-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      font-weight: 400;
+    }
+    
+    /* Navigation Buttons */
+    .results-nav {
+      background: white;
+      padding: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+      background: rgba(255,255,255,0.95);
+    }
+    
+    .results-nav .btn-result {
+      background: linear-gradient(135deg, #075147 0%, #0a5f53 100%);
       color: white;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
+      border: none;
+      padding: 0.6rem 1.8rem;
+      margin: 0 0.3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(7,81,71,0.2);
     }
-
+    
+    .results-nav .btn-result:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(7,81,71,0.3);
+      background: linear-gradient(135deg, #0a5f53 0%, #075147 100%);
+    }
+    
+    /* Hero Section */
+    .hero-section {
+      background: linear-gradient(135deg, #ffffff 0%, #fef9e6 100%);
+      padding: 3rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .school-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #075147;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    
+    .school-logo:hover {
+      transform: scale(1.02);
+    }
+    
+    .hero-section h2 {
+      color: #075147;
+      font-weight: 800;
+      font-size: 2.2rem;
+      margin-top: 1.5rem;
+    }
+    
+    .hero-tagline {
+      font-size: 1.2rem;
+      color: #475569;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    
+    /* Info Cards */
+    .info-cards {
+      padding: 3rem 1rem;
+      background: #f8fafc;
+    }
+    
+    .info-card {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      border: 1px solid #e2e8f0;
+      height: 100%;
+    }
+    
+    .info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 35px rgba(7,81,71,0.12);
+      border-color: #cbd5e1;
+    }
+    
+    .info-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, #e6f4f0 0%, #d4ebe6 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+    
+    .info-icon i {
+      font-size: 2rem;
+      color: #075147;
+    }
+    
+    .info-card h4 {
+      font-weight: 700;
+      color: #0f2c28;
+      margin-bottom: 0.8rem;
+    }
+    
+    .info-card p {
+      color: #5a6874;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+    
+    /* Map Section */
+    .map-section {
+      background: white;
+      padding: 3rem 1rem;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #075147;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 12px;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: #cf9e3a;
+      border-radius: 2px;
+    }
+    
+    .map-container {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid #e2e8f0;
+    }
+    
+    /* ========== PROFESSIONAL CONTACT SECTION ========== */
+    .contact-section {
+      background: linear-gradient(135deg, #0a2f2a 0%, #075147 100%);
+      padding: 4rem 2rem;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      left: -20%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .contact-section::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 300px;
+      height: 300px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .contact-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-header h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+    
+    .contact-header .subhead {
+      font-size: 1rem;
+      opacity: 0.85;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    
+    .contact-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 1.8rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .contact-card:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-5px);
+      border-color: rgba(255,255,255,0.4);
+    }
+    
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.2rem;
+    }
+    
+    .contact-icon i {
+      font-size: 2rem;
+      color: #ffd966;
+    }
+    
+    .contact-card h4 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      color: white;
+    }
+    
+    .contact-card p {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+    
+    .contact-card a {
+      color: #ffd966;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .contact-card a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+    }
+    
+    .social-link {
+      width: 45px;
+      height: 45px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      background: #ffd966;
+      color: #075147;
+      transform: translateY(-3px);
+    }
+    
+    .social-link i {
+      font-size: 1.2rem;
+    }
+    
+    /* Footer */
+    .footer {
+      background: #05201c;
+      color: #a0b2b0;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .footer p {
+      margin: 0;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .custom-header h1 { font-size: 1.8rem; }
+      .hero-section h2 { font-size: 1.6rem; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .results-nav .btn-result { padding: 0.5rem 1rem; font-size: 0.85rem; }
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER -->
-  <header>
-    <h1>TEMBONI GoVT Secondary School</h1>
-    <p>Temboni - Tanzania</p>
+  <header class="custom-header">
+    <div class="container text-center">
+      <h1>TEMBONI Government Secondary School</h1>
+      <p><i class="fas fa-map-marker-alt me-2"></i>Temboni, Ubungo Municipal, Dar es Salaam, Tanzania</p>
+      <p><i class="fas fa-calendar-alt me-2"></i>Est. 2005 | Excellence in Education</p>
+    </div>
   </header>
-<div class="text-center my-3">
-  <strong>STUDENTS RESULTS 2026</strong><br>
-  <a href="results.html?form=Form One" class="btn btn-primary mx-1 my-1">Form One</a>
-  <a href="result2.html" class="btn btn-primary mx-1 my-1">Form Two</a>
-  <a href="results.html?form=Form Three" class="btn btn-primary mx-1 my-1">Form Three</a>
-  <a href="results.html?form=Form Four" class="btn btn-primary mx-1 my-1">Form Four</a>
-</div>
-  <!-- HERO -->
-  <div class="hero">
-    <img src="photos/nemb8.jpeg" alt="School Logo">
-    <h2>Welcome to TGVTS</h2>
-    <p>BETTER EDUCATION MAKES BETTER FUTURE </p>
-  <!-- MAP -->
- <!-- MAP: Satellite view of Temboni GVTS Secondary School, Ubungo Municipal -->
-<div class="section my-4">
-  <h2 class="text-center mb-3">Our Location</h2>
-  <div class="d-flex justify-content-center">
-    <iframe
-      src="https://www.google.com/maps?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal&t=k&output=embed"
-      width="100%"
-      height="400"
-      style="border:0; max-width:800px;"
-      allowfullscreen=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+
+  <!-- RESULTS NAVIGATION -->
+  <div class="results-nav">
+    <div class="container text-center">
+      <strong class="me-3"><i class="fas fa-chart-line"></i> STUDENTS RESULTS 2026</strong>
+      <div class="d-inline-flex flex-wrap justify-content-center">
+        <a href="results.html?form=Form One" class="btn btn-result mx-1 my-1"><i class="fas fa-user-graduate me-1"></i>Form One</a>
+        <a href="result2.html" class="btn btn-result mx-1 my-1"><i class="fas fa-user-graduate me-1"></i>Form Two</a>
+        <a href="results.html?form=Form Three" class="btn btn-result mx-1 my-1"><i class="fas fa-user-graduate me-1"></i>Form Three</a>
+        <a href="results.html?form=Form Four" class="btn btn-result mx-1 my-1"><i class="fas fa-user-graduate me-1"></i>Form Four</a>
+      </div>
+    </div>
   </div>
-</div>
-  <!-- CONTACT -->
+
+  <!-- HERO SECTION -->
+  <div class="hero-section">
+    <div class="container">
+      <img src="photos/nemb8.jpeg" alt="TGVTS Secondary School Logo" class="school-logo" onerror="this.src='https://via.placeholder.com/140?text=TGVTS'">
+      <h2>Welcome to TGVTS</h2>
+      <p class="hero-tagline">"BETTER EDUCATION MAKES BETTER FUTURE"</p>
+      <p class="mt-3 text-secondary">Nurturing minds, building character, shaping tomorrow's leaders.</p>
+    </div>
+  </div>
+
+  <!-- INFO CARDS SECTION -->
+  <div class="info-cards">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h4>Quality Education</h4>
+            <p>Competent teachers, modern curriculum, and holistic development approach for every student.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-chalkboard-user"></i>
+            </div>
+            <h4>Experienced Staff</h4>
+            <p>Dedicated educators committed to academic excellence and character formation.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="info-card">
+            <div class="info-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h4>Exam Success</h4>
+            <p>Consistently outstanding results in National Examinations across all levels.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAP SECTION -->
+  <div class="map-section">
+    <div class="container">
+      <div class="section-title">
+        <h2><i class="fas fa-location-dot me-2"></i> Our Location</h2>
+        <p class="text-secondary">Find us in Temboni, Ubungo Municipal - easily accessible from Dar es Salaam city center</p>
+      </div>
+      <div class="map-container">
+        <iframe 
+          src="https://www.google.com/maps?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal&t=k&output=embed"
+          width="100%"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== PROFESSIONAL CONTACT SECTION ========== -->
+  <div class="contact-section">
+    <div class="contact-container">
+      <div class="contact-header">
+        <h2><i class="fas fa-address-card me-2"></i> Get In Touch</h2>
+        <div class="subhead">We're here to answer your questions and welcome your visit</div>
+      </div>
+      
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h4>School Address</h4>
+          <p>Temboni Government Secondary School</p>
+          <p>P.O. Box 12345, Temboni</p>
+          <p>Ubungo Municipal, Dar es Salaam</p>
+          <p>Tanzania</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h4>Call Us</h4>
+          <p><strong>Headmaster's Office:</strong><br>+255 22 123 4567</p>
+          <p><strong>Academic Office:</strong><br>+255 22 123 4568</p>
+          <p><strong>Mobile:</strong><br>+255 789 123 456</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h4>Email Us</h4>
+          <p><a href="mailto:info@tgvtsschool.ac.tz">info@tgvtsschool.ac.tz</a></p>
+          <p><a href="mailto:admissions@tgvtsschool.ac.tz">admissions@tgvtsschool.ac.tz</a></p>
+          <p><strong>Working Hours:</strong><br>Mon-Fri: 7:30 AM - 3:30 PM</p>
+        </div>
+        
+        <div class="contact-card">
+          <div class="contact-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h4>Visit Us</h4>
+          <p><strong>Office Hours:</strong><br>Monday - Friday: 8:00 AM - 4:00 PM</p>
+          <p><strong>Saturday:</strong> 9:00 AM - 12:00 PM</p>
+          <p><strong>Sunday & Holidays:</strong> Closed</p>
+        </div>
+      </div>
+      
+      <div class="social-links">
+        <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+
   <!-- FOOTER -->
   <div class="footer">
-    <p>© 2026 TEMBONI GVT Secondary School - All Rights Reserved</p>
+    <div class="container">
+      <p><i class="fas fa-copyright me-1"></i> 2026 TEMBONI Government Secondary School - All Rights Reserved</p>
+      <p class="mt-2 small">Designed with <i class="fas fa-heart text-danger"></i> for better education | Temboni, Ubungo Municipal, Tanzania</p>
+    </div>
   </div>
+
+  <!-- Bootstrap JS Bundle (optional for interactivity) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-z9ZzN8pMx5KsWXfO4lGpC6P7E1f3LMP0y+UQqxKMFuLh5nP9U6l4JZ5q8Kq5P5g" crossorigin="anonymous"></script>
 </body>
 </html>
