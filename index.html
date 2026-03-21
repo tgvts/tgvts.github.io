@@ -571,7 +571,27 @@
       background: #ffd966;
       color: #075147;
     }
-    
+    <style>
+.scroll-text {
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+}
+
+.scroll-text::after {
+  content: attr(data-text);
+}
+
+.scroll-text {
+  display: inline-block;
+  padding-left: 100%;
+  animation: scroll 10s linear infinite;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
     .footer {
       background: linear-gradient(135deg, rgba(5, 32, 28, 0.95) 0%, rgba(10, 47, 42, 0.95) 100%);
       backdrop-filter: blur(4px);
@@ -616,15 +636,9 @@
   </header>
 
   <!-- BREADCRUMB - FIXED VISIBILITY -->
-  <div class="breadcrumb-container">
-    <div class="container">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb custom-breadcrumb">
-        <marquee behavior="" direction=""><li class="breadcrumb-item active" aria-current="page">Temboni Government Secondary School (TGVTS) - Official Website</li></marquee>  
-        </ol>
-      </nav>
-    </div>
-  </div>
+  <div class="scroll-text">
+  Temboni Government Secondary School (TGVTS) - Official Website
+</div>
   <!-- RESULTS NAVIGATION -->
   <div class="results-nav" id="results">
     <div class="container text-center">
