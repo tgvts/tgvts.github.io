@@ -571,26 +571,27 @@
       background: #ffd966;
       color: #075147;
     }
-    <style>
-.scroll-text {
-  white-space: nowrap;
+ .scroll-container {
+  width: 100%;
   overflow: hidden;
-  display: block;
-}
-
-.scroll-text::after {
-  content: attr(data-text);
+  background-color: #000; /* optional: dark background */
 }
 
 .scroll-text {
+  white-space: nowrap;        /* keeps text in one line */
+  color: white;               /* text color */
   display: inline-block;
-  padding-left: 100%;
-  animation: scroll 10s linear infinite;
+  padding-left: 100%;         /* start off screen */
+  animation: scroll-left 12s linear infinite;
 }
 
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
     .footer {
       background: linear-gradient(135deg, rgba(5, 32, 28, 0.95) 0%, rgba(10, 47, 42, 0.95) 100%);
@@ -636,8 +637,10 @@
   </header>
 
   <!-- BREADCRUMB - FIXED VISIBILITY -->
+ <div class="scroll-container">
   <div class="scroll-text">
-  Temboni Government Secondary School (TGVTS) - Official Website
+    Temboni Government Secondary School (TGVTS) - Official Website
+  </div>
 </div>
   <!-- RESULTS NAVIGATION -->
   <div class="results-nav" id="results">
