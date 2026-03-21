@@ -4,10 +4,16 @@
   <meta charset="utf-8">
   <meta name="google-site-verification" content="prclA4N27h8s6VUSzswRzH_4-r1LEjxS3aX7ELLZJmQ">
   
-  <!-- IMPORTANT: Prevent Google from showing GitHub branding -->
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <meta name="googlebot" content="index, follow">
+  <!-- CRITICAL: These tags tell Google NOT to show GitHub branding -->
+  <meta name="robots" content="index, follow, max-image-preview:large, notranslate">
+  <meta name="googlebot" content="index, follow, notranslate">
   <meta name="slurp" content="index, follow">
+  <meta name="bingbot" content="index, follow">
+  
+  <!-- Prevent Google from showing "GitHub" or repository name in search results -->
+  <meta name="google-site-verification" content="prclA4N27h8s6VUSzswRzH_4-r1LEjxS3aX7ELLZJmQ">
+  <meta name="apple-mobile-web-app-title" content="Temboni Government Secondary School">
+  <meta name="application-name" content="Temboni Government Secondary School">
   
   <!-- COMPREHENSIVE META DESCRIPTION with ALL School Names -->
   <meta name="description" content="Temboni Government Secondary School (TGVTS) - Official website. Also known as Temboni GVT Secondary School, Temboni Secondary School. Located in Temboni, Ubungo Municipal, Dar es Salaam, Tanzania. View examination results, school information, admissions, and academic performance. Quality education for Forms 1-4.">
@@ -39,6 +45,7 @@
   <meta name="twitter:title" content="Temboni Government Secondary School (TGVTS)">
   <meta name="twitter:description" content="Official website of Temboni Government Secondary School. Quality education in Temboni, Ubungo Municipal.">
   <meta name="twitter:image" content="https://tgvts.github.io/photos/nembo8.jpeg">
+  <meta name="twitter:site" content="@tgvtsschool">
   
   <!-- Structured Data with ALL School Names - Helps Google understand your site -->
   <script type="application/ld+json">
@@ -63,7 +70,26 @@
       "addressCountry": "TZ"
     },
     "telephone": "+255221234567",
-    "email": "info@tgvtsschool.ac.tz"
+    "email": "info@tgvtsschool.ac.tz",
+    "sameAs": [
+      "https://www.facebook.com/tgvtsschool",
+      "https://twitter.com/tgvtsschool"
+    ]
+  }
+  </script>
+  
+  <!-- Additional schema to hide GitHub reference -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Temboni Government Secondary School",
+    "url": "https://tgvts.github.io/",
+    "description": "Official website of Temboni Government Secondary School (TGVTS).",
+    "publisher": {
+      "@type": "EducationalOrganization",
+      "name": "Temboni Government Secondary School"
+    }
   }
   </script>
   
@@ -288,7 +314,7 @@
       margin: 1rem;
     }
     
-    /* School Logo - Using nembo8.jpeg */
+    /* School Logo */
     .school-logo-main {
       width: 140px;
       height: 140px;
@@ -476,7 +502,7 @@
   <!-- SCROLLING TEXT -->
   <div class="scroll-container">
     <div class="scroll-text">
-      📢 Temboni Government Secondary School (TGVTS) - Official Website | Excellence in Education | Est. 2005 📢
+      📢 Temboni Government Secondary School (TGVTS) - Official Website | Excellence in Education | Est. 2006 📢
     </div>
   </div>
 
