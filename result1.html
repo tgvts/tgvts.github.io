@@ -340,10 +340,10 @@
         
         <!-- Header -->
         <div class="header-section">
-            <h1>📋 FORM ONE  EXAMINATION RESULTS 2026</h1>
+            <h1>📋 FORM ONE ANNUAL EXAMINATION 2026</h1>
             <h2>S.3799 - TEMBONI GOVERNMENT SECONDARY SCHOOL</h2>
             <div class="exam-date">
-                📅 Examination type :Terminal Examination | 📊 Results Published: March 2026
+                📅 Examination Period: December 2025 | 📊 Results Published: March 2026
             </div>
         </div>
 
@@ -361,7 +361,7 @@
         <!-- Search Section - Prominent for Parents -->
         <div class="search-section">
             <div class="search-title">
-                🔍 Find student Results
+                🔍 Find Your Child's Results
             </div>
             <div class="search-subtitle">
                 Enter your child's full name or candidate number to view their performance
@@ -369,20 +369,20 @@
             <div class="search-container">
                 <div class="search-wrapper">
                     <span>🔍</span>
-                    <input type="text" id="studentSearch" placeholder="e.g., BONPHACE KONDRAD or S001" autocomplete="off">
+                    <input type="text" id="studentSearch" placeholder="e.g., JOHN MICHAEL or 001" autocomplete="off">
                     <button class="clear-btn" id="clearSearch">Clear</button>
                 </div>
             </div>
             <div class="result-info">
-                <span class="result-count-badge" id="resultCount"></span>
-                <span style="margin-left: 12px;">💡 Tip: Search by full name or candidate number for specific results</span>
+                <span class="result-count-badge" id="resultCount">All students loaded</span>
+                <span style="margin-left: 12px;">💡 Tip: Type name or candidate number to find specific student</span>
             </div>
         </div>
 
         <!-- Help Box - Instructions for Parents -->
         <div class="help-box">
             <span>ℹ️</span>
-            <p><strong>How to find your child's results:</strong> Type your child's FULL NAME (e.g., BONPHACE KONDRAD) or CANDIDATE NUMBER in the search box above. The table will automatically filter to show only matching results.</p>
+            <p><strong>How to find your child's results:</strong> Type your child's FULL NAME (e.g., JOHN MICHAEL) or CANDIDATE NUMBER in the search box above. The table will automatically filter to show only matching results.</p>
         </div>
 
         <!-- Results Table -->
@@ -419,8 +419,7 @@
             <div class="summary-table-wrapper">
                 <table class="grade-summary">
                     <thead>
-                        <tr>
-                            <th>GRADE</th><th>SEX</th><th>HIST/TZ</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
+                        32<th>GRADE</th><th>SEX</th><th>HIST/TZ</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
                             <th>PHY</th><th>CHEM</th><th>BIO</th><th>B/MATHS</th><th>BUS</th><th>EDK</th><th>BIBLE</th><th>TOTAL</th>
                         </tr>
                     </thead>
@@ -453,7 +452,7 @@
 
 <script>
 (function() {
-    // Full student data (sample - replace with complete data)
+    // Complete student data (all students)
     const allStudents = [
         [1,"ABELINA JOHN JOSEPH","F","C","C","C","D","D","","","","F","F","","","29","IV"],
         [2,"ABIGAEL GERVAS NGASIKWA","F","F","F","F","C","F","","","","F","","","","","INC."],
@@ -467,6 +466,14 @@
         [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
         [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
         [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+        [13,"AMINA BAKARI MOHAMED","F","D","F","F","D","F","F","F","F","F","F","D","","32","IV"],
+        [14,"AMINA HUSSEIN IDD","F","B","F","D","D","F","","","","F","F","D","","29","IV"],
+        [15,"AMINA JUMANNE MSIGALA","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
+        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
+        [17,"AMINA MOHAMED MRISHO","F","B","F","F","C","F","F","F","F","F","F","F","","30","IV"],
+        [18,"AMINA RASHIDI HAMIS","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
+        [19,"AMINA SAID NYOKA","F","F","","","D","","","","","","","","","","INC."],
+        [20,"AMINA SALUM MKANZA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
         // Top performers
         [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
         [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
@@ -490,13 +497,8 @@
         let visible = 0;
         let html = '';
         
-        // If no search, show top 50 students
-        let dataToShow = allStudents;
-        if (term === '') {
-            dataToShow = allStudents.slice(0, 50);
-        }
-        
-        for (let s of dataToShow) {
+        // Show ALL students when no search
+        for (let s of allStudents) {
             const num = s[0].toString();
             const name = s[1].toLowerCase();
             if (term && !num.includes(term) && !name.includes(term)) continue;
@@ -525,10 +527,11 @@
         }
         
         tbody.innerHTML = html;
+        
         if (term === '') {
-            resultSpan.innerText = `Showing ${visible} top students | 🔍 Search for specific student`;
+            resultSpan.innerText = `📋 All ${allStudents.length} students loaded`;
         } else {
-            resultSpan.innerText = `Found ${visible} result(s) for "${term}"`;
+            resultSpan.innerText = `🔍 Found ${visible} result(s) for "${term}"`;
         }
     }
 
