@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEMBONI SECONDARY SCHOOL | Form One Results 2026 - Find Your Child's Results</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -182,34 +181,6 @@
             font-weight: 600;
         }
 
-        /* Download Button */
-        .download-area {
-            text-align: center;
-            padding: 16px 28px;
-            background: #f8fafc;
-            border-bottom: 1px solid #e9edf2;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #1e6b3e 0%, #15803d 100%);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 40px;
-            font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: all 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(21,128,61,0.3);
-        }
-
         /* Table Wrapper */
         .table-wrapper {
             overflow-x: auto;
@@ -244,8 +215,9 @@
             font-size: 0.7rem;
         }
 
+        /* Name column - LEFT ALIGNED (not centered) */
         .cand-name-cell {
-            text-align: left;
+            text-align: left !important;
             padding-left: 12px;
             font-weight: 500;
             background: #fafcff;
@@ -356,7 +328,7 @@
 
         @media print {
             body { background: white; padding: 0; }
-            .search-section, .download-area, .help-box { display: none; }
+            .search-section, .help-box { display: none; }
             .table-wrapper { max-height: none; overflow: visible; }
         }
     </style>
@@ -389,37 +361,28 @@
         <!-- Search Section - Prominent for Parents -->
         <div class="search-section">
             <div class="search-title">
-                <i class="fas fa-search" style="margin-right: 8px;"></i> Find Your Child's Results
+                🔍 Find Your Child's Results
             </div>
             <div class="search-subtitle">
                 Enter your child's full name or candidate number to view their performance
             </div>
             <div class="search-container">
                 <div class="search-wrapper">
-                    <i>🔍</i>
+                    <span>🔍</span>
                     <input type="text" id="studentSearch" placeholder="e.g., JOHN MICHAEL or S001" autocomplete="off">
                     <button class="clear-btn" id="clearSearch">Clear</button>
                 </div>
             </div>
             <div class="result-info">
-                <span class="result-count-badge" id="resultCount">Showing 25 top students</span>
+                <span class="result-count-badge" id="resultCount">Showing 50 top students</span>
                 <span style="margin-left: 12px;">💡 Tip: Search by full name or candidate number for specific results</span>
             </div>
         </div>
 
         <!-- Help Box - Instructions for Parents -->
         <div class="help-box">
-            <i class="fas fa-info-circle"></i>
+            <span>ℹ️</span>
             <p><strong>How to find your child's results:</strong> Type your child's FULL NAME (e.g., JOHN MICHAEL) or CANDIDATE NUMBER in the search box above. The table will automatically filter to show only matching results.</p>
-            <i class="fas fa-print"></i>
-            <p>Click "Download Full Report" to save a PDF copy.</p>
-        </div>
-
-        <!-- Download Button Area -->
-        <div class="download-area">
-            <button class="download-btn" id="downloadPdfBtn">
-                📄 Download Full Report (PDF)
-            </button>
         </div>
 
         <!-- Results Table -->
@@ -497,7 +460,14 @@
         [3,"ABIGAELL EMMANUEL SILLA","F","B","F","D","C","F","","","","F","F","","","29","IV"],
         [4,"ABIGAIL AUGUSTINO MTENGA","F","C","C","C","B","C","C","F","C","C","D","","","20","II"],
         [5,"AISHA ABDALLAH KILEO","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
-        // Add more students here. For demonstration, including top performers
+        [6,"AISHA ABUBAKARI RAMADHANI","F","B","D","F","C","D","","","","F","F","D","","27","IV"],
+        [7,"AISHA ADAM RASHID","F","A","F","F","C","F","","","","F","F","D","","28","IV"],
+        [8,"AISHA FARAHANI ABAS","F","A","D","C","C","C","","","","F","D","C","","21","II"],
+        [9,"AISHA HABIBU ABDALLAH","F","F","F","F","D","F","","","","F","F","D","","33","IV"],
+        [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
+        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
+        [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+        // Top performers
         [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
         [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
         [253,"YUSRA KUBO MTOA","F","B","A","A","B","C","B","D","A","B","D","C","","11","I"],
@@ -506,7 +476,6 @@
         [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
         [280,"ALVIN HASSAN SHEHE","M","A","C","A","B","C","C","B","F","F","C","B","","14","I"],
         [204,"SAKINA ASIAGI HUSSEIN","F","A","B","A","B","D","C","C","C","D","D","C","","15","I"],
-        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
         [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
         [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"]
     ];
@@ -521,7 +490,7 @@
         let visible = 0;
         let html = '';
         
-        // If no search, show top 50 students, else show all matching
+        // If no search, show top 50 students
         let dataToShow = allStudents;
         if (term === '') {
             dataToShow = allStudents.slice(0, 50);
@@ -552,7 +521,7 @@
         }
         
         if (visible === 0 && term !== '') {
-            html = '<tr><td colspan="17" style="text-align: center; padding: 40px;"><i class="fas fa-user-graduate" style="font-size: 2rem; color: #cbd5e1;"></i><br><br><strong>No results found for "' + term + '"</strong><br><br>Please check the spelling or try searching by candidate number.<br><br>💡 Tip: Use full name like "JOHN MICHAEL" or candidate number like "312"</td></tr>';
+            html = '<tr><td colspan="17" style="text-align: center; padding: 40px;"><span style="font-size: 2rem;">🔍</span><br><br><strong>No results found for "' + term + '"</strong><br><br>Please check the spelling or try searching by candidate number.<br><br>💡 Tip: Use full name like "JOHN MICHAEL" or candidate number like "312"</td></tr>';
         }
         
         tbody.innerHTML = html;
@@ -570,17 +539,6 @@
         searchInput.value = ''; 
         renderRows(''); 
         searchInput.focus();
-    });
-
-    document.getElementById('downloadPdfBtn').addEventListener('click', function() {
-        const element = document.getElementById('reportCard');
-        html2pdf().set({
-            margin: [0.4, 0.4, 0.4, 0.4],
-            filename: 'TEMBONI_FORM_ONE_RESULTS_2026.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, letterRendering: true },
-            jsPDF: { unit: 'in', format: 'a2', orientation: 'landscape' }
-        }).from(element).save();
     });
 })();
 </script>
