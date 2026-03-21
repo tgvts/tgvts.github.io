@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <meta name="viewport" content="width=1024">
-    <title>TEMBONI SECONDARY · Top 25 Students · Form One Dec 2025</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEMBONI SECONDARY SCHOOL | Form Three Results 2026 - Find Students Results</title>
     <style>
         * {
             margin: 0;
@@ -19,72 +18,54 @@
             min-height: 100vh;
         }
 
-        /* Main Container */
         .container-custom {
             max-width: 1400px;
             margin: 0 auto;
         }
 
-        /* Card Style */
+        /* Main Card */
         .report-card {
             background: white;
             border-radius: 32px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             overflow: hidden;
-            transition: all 0.3s ease;
         }
 
-        /* Header Section */
+        /* Header */
         .header-section {
             background: linear-gradient(135deg, #0a2f2a 0%, #075147 100%);
             color: white;
             padding: 28px 32px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .header-section::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -10%;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .header-section h3 {
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            opacity: 0.85;
-            margin-bottom: 8px;
+            text-align: center;
         }
 
         .header-section h1 {
             font-size: 1.8rem;
             font-weight: 700;
-            margin: 0 0 8px 0;
+            margin-bottom: 8px;
         }
 
-        .header-meta {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 16px;
+        .header-section h2 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .exam-date {
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.2);
             font-size: 0.85rem;
-            opacity: 0.85;
         }
 
-        /* Stats Row */
+        /* Stats Row - Clean and Simple */
         .stats-row {
             background: #f8fafc;
             padding: 16px 28px;
             display: flex;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 12px 20px;
             border-bottom: 1px solid #e2e8f0;
         }
@@ -97,7 +78,6 @@
             font-size: 0.85rem;
             color: #1e293b;
             border: 1px solid #e2e8f0;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
 
         .stat-pill span {
@@ -109,27 +89,45 @@
             font-size: 0.75rem;
         }
 
-        /* Action Bar */
-        .action-bar {
+        /* Search Section - Prominent and Clear */
+        .search-section {
             background: white;
-            padding: 20px 28px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
+            padding: 24px 28px;
+            text-align: center;
             border-bottom: 1px solid #e9edf2;
         }
 
+        .search-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #075147;
+            margin-bottom: 8px;
+        }
+
+        .search-subtitle {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
         .search-wrapper {
+            flex: 1;
+            min-width: 280px;
             display: flex;
             align-items: center;
             background: #f1f5f9;
             border-radius: 60px;
             padding: 4px 6px 4px 20px;
-            border: 1px solid #e2e8f0;
-            flex: 1;
-            min-width: 260px;
+            border: 2px solid #e2e8f0;
             transition: all 0.2s;
         }
 
@@ -140,15 +138,15 @@
 
         .search-wrapper i {
             color: #5a6e7c;
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
 
         .search-wrapper input {
             border: none;
             background: transparent;
-            padding: 12px 12px 12px 8px;
+            padding: 14px 12px;
             width: 100%;
-            font-size: 0.9rem;
+            font-size: 1rem;
             outline: none;
             font-family: inherit;
         }
@@ -156,10 +154,9 @@
         .clear-btn {
             background: #e2e8f0;
             border: none;
-            padding: 8px 22px;
+            padding: 10px 28px;
             border-radius: 40px;
             font-weight: 600;
-            font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.2s;
             color: #334155;
@@ -169,45 +166,19 @@
             background: #cbd5e1;
         }
 
-        .result-badge {
+        .result-info {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: #475569;
+        }
+
+        .result-count-badge {
             background: #e6f4f0;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 40px;
-            font-weight: 600;
-            font-size: 0.85rem;
+            display: inline-block;
             color: #075147;
-        }
-
-        .download-btn {
-            background: linear-gradient(135deg, #1e6b3e 0%, #15803d 100%);
-            color: white;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 40px;
             font-weight: 600;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-            font-size: 0.85rem;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(21,128,61,0.3);
-        }
-
-        .info-tag {
-            background: #fef9e6;
-            padding: 8px 20px;
-            border-radius: 40px;
-            color: #b45309;
-            font-weight: 600;
-            font-size: 0.85rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
         }
 
         /* Table Wrapper */
@@ -215,40 +186,38 @@
             overflow-x: auto;
             max-height: 520px;
             overflow-y: auto;
-            border-bottom: 1px solid #e9edf2;
         }
 
         .results-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.75rem;
-            min-width: 1600px;
+            min-width: 1400px;
             background: white;
         }
 
         .results-table th {
             background: #1e3a5f;
             color: white;
-            padding: 14px 6px;
+            padding: 14px 8px;
             text-align: center;
             font-weight: 600;
             font-size: 0.7rem;
-            letter-spacing: 0.3px;
             position: sticky;
             top: 0;
             z-index: 10;
-            border-right: 1px solid #2e4a6e;
         }
 
         .results-table td {
             border: 1px solid #e9edf2;
-            padding: 8px 4px;
+            padding: 10px 6px;
             text-align: center;
             font-size: 0.7rem;
         }
 
+        /* Name column - LEFT ALIGNED (not centered) */
         .cand-name-cell {
-            text-align: left;
+            text-align: left !important;
             padding-left: 12px;
             font-weight: 500;
             background: #fafcff;
@@ -266,22 +235,22 @@
         /* Summary Section */
         .summary-section {
             background: #fafcff;
-            padding: 28px 28px;
+            padding: 24px 28px;
             border-top: 2px solid #e2e8f0;
         }
 
         .summary-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #0a2647;
-            margin-bottom: 20px;
-            border-left: 5px solid #cf9e3a;
-            padding-left: 18px;
+            margin-bottom: 16px;
+            border-left: 4px solid #cf9e3a;
+            padding-left: 16px;
         }
 
         .summary-table-wrapper {
             overflow-x: auto;
-            border-radius: 20px;
+            border-radius: 16px;
             background: white;
             border: 1px solid #e2e8f0;
         }
@@ -289,21 +258,19 @@
         .grade-summary {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.75rem;
-            min-width: 1000px;
+            font-size: 0.7rem;
+            min-width: 900px;
         }
 
         .grade-summary th {
             background: #1e3a5f;
             color: white;
-            padding: 12px 6px;
-            font-weight: 600;
-            font-size: 0.7rem;
+            padding: 10px 4px;
         }
 
         .grade-summary td {
             border: 1px solid #e2e8f0;
-            padding: 8px 4px;
+            padding: 6px 3px;
             text-align: center;
         }
 
@@ -312,7 +279,7 @@
         .grade-row-c td { background: #fff8e1; }
         .grade-row-d td { background: #fff3e0; }
         .grade-row-f td { background: #ffebee; }
-        .total-row { background: #e9ecef; font-weight: 700; border-top: 2px solid #075147; }
+        .total-row { background: #e9ecef; font-weight: 700; }
 
         .note-text {
             margin-top: 16px;
@@ -321,23 +288,48 @@
             color: #5a6e7c;
         }
 
-        /* Responsive */
+        /* Help Box */
+        .help-box {
+            background: #fef9e6;
+            padding: 16px 24px;
+            margin: 0 28px 20px 28px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            border: 1px solid #ffe5b4;
+        }
+
+        .help-box i {
+            font-size: 1.2rem;
+            color: #b45309;
+        }
+
+        .help-box p {
+            margin: 0;
+            color: #92400e;
+            font-size: 0.85rem;
+        }
+
         @media (max-width: 768px) {
             body { padding: 16px; }
             .header-section { padding: 20px; }
-            .header-section h1 { font-size: 1.4rem; }
-            .action-bar { flex-direction: column; align-items: stretch; padding: 16px; }
+            .header-section h1 { font-size: 1.3rem; }
+            .search-section { padding: 20px; }
+            .search-container { flex-direction: column; align-items: stretch; }
             .search-wrapper { width: 100%; }
             .stats-row { padding: 12px 16px; }
             .stat-pill { font-size: 0.7rem; padding: 4px 12px; }
+            .help-box { margin: 0 16px 16px 16px; }
             .summary-section { padding: 16px; }
         }
 
         @media print {
-            body { background: white; padding: 0; margin: 0; }
-            .action-bar, .download-btn, .search-wrapper, .clear-btn, .info-tag, .result-badge { display: none; }
+            body { background: white; padding: 0; }
+            .search-section, .help-box { display: none; }
             .table-wrapper { max-height: none; overflow: visible; }
-            .report-card { box-shadow: none; border-radius: 0; }
         }
     </style>
 </head>
@@ -348,37 +340,49 @@
         
         <!-- Header -->
         <div class="header-section">
-            <h2>S.3799 - TEMBONI GVT SECONDARY SCHOOL</h2>
-            <h2>📋 FORM THREE ANNUAL EXAMINATION  - 2026</h2>
-            <div class="header-meta">
-                 <span>🏫 S.3799 - TEMBONI GVT SECONDARY SCHOOL</span>
-                <span>📋 FORM THREE ANNUAL EXAMINATION  - 2026</span>
+            <h1>📋 FORM THREE EXAMINATION RESULTS 2026</h1>
+            <h2>S.3799 - TEMBONI GOVERNMENT SECONDARY SCHOOL</h2>
+            <div class="exam-date">
+                📅 Examination Period: February 2026 | 📊 Results Published: March 2026
             </div>
         </div>
 
-        <!-- Statistics Row -->
+        <!-- Statistics Row - Quick Overview -->
         <div class="stats-row">
             <div class="stat-pill">👩‍🎓 FEMALE <span>273</span></div>
             <div class="stat-pill">👨‍🎓 MALE <span>242</span></div>
             <div class="stat-pill">📊 TOTAL <span>515</span></div>
-            <div class="stat-pill">🏆 I <span>23</span></div>
-            <div class="stat-pill">🥈 II <span>27</span></div>
-            <div class="stat-pill">🥉 III <span>38</span></div>
-            <div class="stat-pill">📘 IV <span>283</span></div>
-            <div class="stat-pill">⭕ 0 <span>7</span></div>
-            <div class="stat-pill">⚠️ INC <span>65</span></div>
-            <div class="stat-pill">🚫 ABS <span>15</span></div>
+            <div class="stat-pill">🏆 DIV I <span>23</span></div>
+            <div class="stat-pill">🥈 DIV II <span>27</span></div>
+            <div class="stat-pill">🥉 DIV III <span>38</span></div>
+            <div class="stat-pill">📘 DIV IV <span>283</span></div>
         </div>
 
-        <!-- Action Bar -->
-        <div class="action-bar">
-            <div class="search-wrapper">
-                <i>🔍</i>
-                <input type="text" id="studentSearch" placeholder="Search by name or candidate number..." autocomplete="off">
-                <button class="clear-btn" id="clearSearch">Clear</button>
+        <!-- Search Section - Prominent for Parents -->
+        <div class="search-section">
+            <div class="search-title">
+                🔍 Find student Results
             </div>
-            <div class="result-badge" id="resultCount">25 / 25 shown</div>
-         
+            <div class="search-subtitle">
+                Enter your child's full name or candidate number to view their performance
+            </div>
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <span>🔍</span>
+                    <input type="text" id="studentSearch" placeholder="e.g., JOHN MICHAEL or 001" autocomplete="off">
+                    <button class="clear-btn" id="clearSearch">Clear</button>
+                </div>
+            </div>
+            <div class="result-info">
+                <span class="result-count-badge" id="resultCount">All students loaded</span>
+                <span style="margin-left: 12px;">💡 Tip: Type name or candidate number to find specific student</span>
+            </div>
+        </div>
+
+        <!-- Help Box - Instructions for Parents -->
+        <div class="help-box">
+            <span>ℹ️</span>
+            <p><strong>How to find your child's results:</strong> Type your child's FULL NAME (e.g., JOHN MICHAEL) or CANDIDATE NUMBER in the search box above. The table will automatically filter to show only matching results.</p>
         </div>
 
         <!-- Results Table -->
@@ -386,9 +390,23 @@
             <table class="results-table" id="resultsTable">
                 <thead>
                     <tr>
-                        <th>#</th><th>Full Name</th><th>Sex</th>
-                        <th>Hist/TZ</th><th>Hist</th><th>Geo</th><th>Kisw</th><th>Eng</th><th>Phy</th>
-                        <th>Chem</th><th>Bio</th><th>B/Math</th><th>Bus</th><th>EDK</th><th>Bible</th><th>Pts</th><th>Div</th>
+                        <th>#</th>
+                        <th>Full Name</th>
+                        <th>Sex</th>
+                        <th>Hist/TZ</th>
+                        <th>Hist</th>
+                        <th>Geo</th>
+                        <th>Kisw</th>
+                        <th>Eng</th>
+                        <th>Phy</th>
+                        <th>Chem</th>
+                        <th>Bio</th>
+                        <th>B/Math</th>
+                        <th>Bus</th>
+                        <th>EDK</th>
+                        <th>Bible</th>
+                        <th>Pts</th>
+                        <th>Div</th>
                     </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
@@ -397,12 +415,11 @@
 
         <!-- Grade Summary Section -->
         <div class="summary-section">
-            <div class="summary-title">📊 SUBJECT GRADE COUNTS · FULL ANALYSIS</div>
+            <div class="summary-title">📊 SUBJECT PERFORMANCE SUMMARY</div>
             <div class="summary-table-wrapper">
                 <table class="grade-summary">
                     <thead>
-                        <tr>
-                            <th>GRADE</th><th>SEX</th><th>HIST/TZ</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
+                        32<th>GRADE</th><th>SEX</th><th>HIST/TZ</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
                             <th>PHY</th><th>CHEM</th><th>BIO</th><th>B/MATHS</th><th>BUS</th><th>EDK</th><th>BIBLE</th><th>TOTAL</th>
                         </tr>
                     </thead>
@@ -427,7 +444,7 @@
                 </table>
             </div>
             <div class="note-text">
-                ℹ️ <strong>Note:</strong> Bible Knowledge was not offered in 2025. Business Studies and Elimu ya Dini ya Kiislam were taken by a subset of students.
+                ℹ️ <strong>Note:</strong> Bible Knowledge was not offered in 2026. Business Studies and Elimu ya Dini ya Kiislam were taken by a subset of students.
             </div>
         </div>
     </div>
@@ -435,37 +452,41 @@
 
 <script>
 (function() {
-    // Top 25 Students Data (Division I & II, sorted by points)
-    const topStudents = [
+    // Complete student data (all students)
+    const allStudents = [
+        [1,"ABELINA JOHN JOSEPH","F","C","C","C","D","D","","","","F","F","","","29","IV"],
+        [2,"ABIGAEL GERVAS NGASIKWA","F","F","F","F","C","F","","","","F","","","","","INC."],
+        [3,"ABIGAELL EMMANUEL SILLA","F","B","F","D","C","F","","","","F","F","","","29","IV"],
+        [4,"ABIGAIL AUGUSTINO MTENGA","F","C","C","C","B","C","C","F","C","C","D","","","20","II"],
+        [5,"AISHA ABDALLAH KILEO","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
+        [6,"AISHA ABUBAKARI RAMADHANI","F","B","D","F","C","D","","","","F","F","D","","27","IV"],
+        [7,"AISHA ADAM RASHID","F","A","F","F","C","F","","","","F","F","D","","28","IV"],
+        [8,"AISHA FARAHANI ABAS","F","A","D","C","C","C","","","","F","D","C","","21","II"],
+        [9,"AISHA HABIBU ABDALLAH","F","F","F","F","D","F","","","","F","F","D","","33","IV"],
+        [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
+        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
+        [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
+        [13,"AMINA BAKARI MOHAMED","F","D","F","F","D","F","F","F","F","F","F","D","","32","IV"],
+        [14,"AMINA HUSSEIN IDD","F","B","F","D","D","F","","","","F","F","D","","29","IV"],
+        [15,"AMINA JUMANNE MSIGALA","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
+        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
+        [17,"AMINA MOHAMED MRISHO","F","B","F","F","C","F","F","F","F","F","F","F","","30","IV"],
+        [18,"AMINA RASHIDI HAMIS","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
+        [19,"AMINA SAID NYOKA","F","F","","","D","","","","","","","","","","INC."],
+        [20,"AMINA SALUM MKANZA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
+        // Top performers
         [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
         [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
         [253,"YUSRA KUBO MTOA","F","B","A","A","B","C","B","D","A","B","D","C","","11","I"],
         [133,"MARIADEBORAH WILLIAM SODOKA","F","A","A","A","C","D","C","A","B","C","C","","","12","I"],
-        [193,"REMNISCA BRAYAN LYIMO","F","A","A","A","B","B","C","D","","D","B","","","12","I"],
         [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
         [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
         [280,"ALVIN HASSAN SHEHE","M","A","C","A","B","C","C","B","F","F","C","B","","14","I"],
         [204,"SAKINA ASIAGI HUSSEIN","F","A","B","A","B","D","C","C","C","D","D","C","","15","I"],
-        [269,"ABSAN SAAD ABDALLAH","M","C","A","A","C","B","C","D","B","C","C","C","","15","I"],
-        [76,"HALIA MWAGILO KIMAYA","F","A","C","B","A","C","","","","F","C","C","","16","I"],
-        [112,"LEVINA GEORGE  MAKOI","F","A","C","A","B","D","D","D","C","D","C","","","17","I"],
-        [154,"NADIYA SAID AKILI","F","A","C","A","A","D","D","D","D","F","D","B","","16","I"],
-        [182,"PRECIOUS EMMANUEL SHIRIMA","F","C","B","A","A","C","C","C","C","C","C","","","16","I"],
-        [183,"PRORAY PROTAS MREMA","F","C","C","A","B","D","B","C","B","C","C","","","16","I"],
-        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
-        [225,"SHAMIMU SIRAJI MAREJA","F","A","A","B","C","B","","","","F","D","D","","17","I"],
-        [74,"HAFSA ALLY NKUWI","F","A","C","B","C","C","D","D","C","F","C","C","","18","II"],
-        [91,"JENIFA ADVENCHA YUSUPH","F","A","A","B","C","C","D","F","D","F","D","","","18","II"],
-        [318,"ELIA JOSEPH KIMARO","M","C","C","A","C","C","C","B","C","F","D","","","18","II"],
-        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
         [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
-        [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"],
-        [243,"UMU MOHAMEDI SHABANI","F","A","C","C","B","D","","","","F","C","C","","19","II"],
-        [247,"WAHIDA ATHUMANI RASHIDI","F","A","C","B","B","D","","","","F","D","C","","19","II"]
+        [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"]
     ];
 
-    const sortedTop = [...topStudents].sort((a,b) => (parseInt(a[14])||99) - (parseInt(b[14])||99));
-    const finalList = sortedTop.slice(0, 25);
     const tbody = document.getElementById('tableBody');
     const searchInput = document.getElementById('studentSearch');
     const clearBtn = document.getElementById('clearSearch');
@@ -475,11 +496,14 @@
         const term = filter.trim().toLowerCase();
         let visible = 0;
         let html = '';
-        for (let s of finalList) {
+        
+        // Show ALL students when no search
+        for (let s of allStudents) {
             const num = s[0].toString();
             const name = s[1].toLowerCase();
             if (term && !num.includes(term) && !name.includes(term)) continue;
             visible++;
+            
             html += '<tr>';
             for (let i = 0; i < s.length; i++) {
                 let cell = s[i] === '' ? '—' : s[i];
@@ -497,22 +521,27 @@
             }
             html += '</tr>';
         }
+        
+        if (visible === 0 && term !== '') {
+            html = '<tr><td colspan="17" style="text-align: center; padding: 40px;"><span style="font-size: 2rem;">🔍</span><br><br><strong>No results found for "' + term + '"</strong><br><br>Please check the spelling or try searching by candidate number.<br><br>💡 Tip: Use full name like "JOHN MICHAEL" or candidate number like "312"</td></tr>';
+        }
+        
         tbody.innerHTML = html;
-        resultSpan.innerText = `${visible} / ${finalList.length} shown`;
+        
+        if (term === '') {
+            resultSpan.innerText = `📋 All ${allStudents.length} students loaded`;
+        } else {
+            resultSpan.innerText = `🔍 Found ${visible} result(s) for "${term}"`;
+        }
     }
 
     renderRows('');
+    
     searchInput.addEventListener('input', (e) => renderRows(e.target.value));
-    clearBtn.addEventListener('click', () => { searchInput.value = ''; renderRows(''); });
-
-    document.getElementById('downloadPdfBtn').addEventListener('click', function() {
-        const element = document.getElementById('reportCard');
-        html2pdf().set({
-            margin: [0.4, 0.4, 0.4, 0.4],
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2, letterRendering: true },
-            jsPDF: { unit: 'in', format: 'a2', orientation: 'landscape' }
-        }).from(element).save();
+    clearBtn.addEventListener('click', () => { 
+        searchInput.value = ''; 
+        renderRows(''); 
+        searchInput.focus();
     });
 })();
 </script>
