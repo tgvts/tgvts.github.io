@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="Temboni Government Secondary School (TGVTS) Photo Gallery - View our campus, events, sports, and academic activities. Temboni GVT Secondary School Gallery.">
+  <meta name="keywords" content="Temboni Government Secondary School gallery, TGVTS photos, Temboni GVT school photos, school events, campus photos">
+  <meta name="author" content="Temboni Government Secondary School">
+  <meta name="robots" content="index, follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="canonical" href="https://tgvts.github.io/gallery.html" />
+  
+  <title>TGVTS Gallery | Temboni Government Secondary School Photos - Temboni GVT Secondary School</title>
+  
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Lightbox CSS for image popup -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #1e293b;
+      scroll-behavior: smooth;
+      min-height: 100vh;
+    }
+    
+    /* Header */
+    .custom-header {
+      background: linear-gradient(135deg, #0a2f2a 0%, #075147 100%);
+      color: white;
+      padding: 1.5rem 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .head-photo {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #cf9e3a;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    
+    .head-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .header-text {
+      text-align: center;
+    }
+    
+    .custom-header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+    
+    .custom-header p {
+      font-size: 0.85rem;
+      opacity: 0.9;
+    }
+    
+    /* Navigation */
+    .main-nav {
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      padding: 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(7,81,71,0.2);
+    }
+    
+    .navbar-custom {
+      padding: 0.5rem 1rem;
+    }
+    
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #075147 !important;
+    }
+    
+    .nav-link {
+      font-weight: 500;
+      color: #1e293b !important;
+      padding: 0.8rem 1rem !important;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-link:hover, .nav-link.active {
+      color: #075147 !important;
+    }
+    
+    /* Breadcrumb */
+    .breadcrumb-container {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 0.6rem 1rem;
+      margin: 0.5rem auto;
+      max-width: 1200px;
+      width: 95%;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+    }
+    
+    .custom-breadcrumb {
+      margin: 0;
+      background: transparent;
+    }
+    
+    .custom-breadcrumb .breadcrumb-item a {
+      color: #ffd966;
+      text-decoration: none;
+    }
+    
+    .custom-breadcrumb .breadcrumb-item.active {
+      color: white;
+    }
+    
+    /* Gallery Header */
+    .gallery-header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: linear-gradient(135deg, #075147, #0a5f53);
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    
+    .gallery-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    
+    .gallery-header p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1rem;
+    }
+    
+    /* Category Filter Buttons */
+    .filter-section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .filter-btn {
+      background: transparent;
+      border: 2px solid #075147;
+      color: #075147;
+      padding: 0.6rem 1.5rem;
+      margin: 0.3rem;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .filter-btn:hover, .filter-btn.active {
+      background: #075147;
+      color: white;
+    }
+    
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+    
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      background: white;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+    
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 1rem;
+      color: white;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+    
+    .gallery-overlay h4 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    
+    .gallery-overlay p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+      margin: 0;
+    }
+    
+    .category-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #075147;
+      color: white;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      z-index: 5;
+    }
+    
+    /* Stats Section */
+    .stats-section {
+      background: linear-gradient(135deg, #0a2f2a, #075147);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      margin: 2rem auto;
+      max-width: 1200px;
+      border-radius: 30px;
+    }
+    
+    .stats-section h3 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stats-section p {
+      opacity: 0.9;
+    }
+    
+    /* Footer */
+    .footer {
+      background: linear-gradient(135deg, #05201c, #0a2f2a);
+      color: #b8cfca;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      margin-top: 3rem;
+    }
+    
+    /* Lightbox Customization */
+    .lb-data .lb-caption {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery-header h1 { font-size: 1.8rem; }
+      .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem; }
+      .gallery-item img { height: 200px; }
+      .filter-btn { padding: 0.4rem 1rem; font-size: 0.8rem; }
+      .header-container { flex-direction: column; gap: 0.8rem; }
+      .custom-header h1 { font-size: 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="custom-header">
+    <div class="container">
+      <div class="header-container">
+        <div class="head-photo">
+          <img src="photos/head_of_school.jpg" alt="Head of School - Temboni Government Secondary School" onerror="this.src='https://placehold.co/80x80/075147/white?text=HEAD'">
+        </div>
+        <div class="header-text">
+          <h1>TEMBONI GOVERNMENT SECONDARY SCHOOL</h1>
+          <p><i class="fas fa-map-marker-alt me-2"></i>Temboni, Ubungo Municipal, Dar es Salaam, Tanzania</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb-container">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb custom-breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Photo Gallery</li>
+        </ol>
+      </nav>
+    </div>
+  </div>
+
+  <!-- MAIN NAVIGATION -->
+  <nav class="main-nav">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-custom p-0">
+        <a class="navbar-brand" href="index.html"><i class="fas fa-school"></i> TGVTS</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li>
+            <li class="nav-item"><a class="nav-link active" href="gallery.html"><i class="fas fa-images"></i> Gallery</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#results">Results</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </nav>
+
+  <!-- GALLERY HEADER -->
+  <div class="gallery-header">
+    <div class="container">
+      <h1><i class="fas fa-camera-retro me-3"></i> TGVTS Photo Gallery</h1>
+      <p>Explore the vibrant life, events, and achievements of Temboni Government Secondary School</p>
+    </div>
+  </div>
+
+  <!-- FILTER BUTTONS -->
+  <div class="filter-section">
+    <button class="filter-btn active" data-filter="all">All Photos</button>
+    <button class="filter-btn" data-filter="campus">🏫 Campus & Facilities</button>
+    <button class="filter-btn" data-filter="academic">📚 Academic Activities</button>
+    <button class="filter-btn" data-filter="sports">⚽ Sports & Games</button>
+    <button class="filter-btn" data-filter="events">🎉 Events & Celebrations</button>
+    <button class="filter-btn" data-filter="students">👨‍🎓 Student Life</button>
+  </div>
+
+  <!-- GALLERY GRID -->
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Images will be loaded dynamically -->
+  </div>
+
+  <!-- STATS SECTION -->
+  <div class="stats-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>500+</h3>
+          <p>Memorable Moments</p>
+        </div>
+        <div class="col-md-4">
+          <h3>15+</h3>
+          <p>Years of Excellence</p>
+        </div>
+        <div class="col-md-4">
+          <h3>1000+</h3>
+          <p>Graduates</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="container">
+      <p>© 2026 Temboni Government Secondary School (TGVTS) - Temboni GVT Secondary School | All Rights Reserved</p>
+      <p><i class="fas fa-camera me-1"></i> Capturing memories, celebrating excellence</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  
+  <script>
+    // Gallery Data - Replace image URLs with your actual photos
+    const galleryData = [
+      // Campus & Facilities (8 photos)
+      { src: "photos/campus1.jpg", title: "Main School Building", category: "campus", description: "The iconic main building of Temboni Government Secondary School" },
+      { src: "photos/campus2.jpg", title: "School Entrance", category: "campus", description: "Welcome to TGVTS - Gateway to excellence" },
+      { src: "photos/campus3.jpg", title: "Library", category: "campus", description: "Well-stocked library with over 5,000 books" },
+      { src: "photos/campus4.jpg", title: "Science Laboratory", category: "campus", description: "Modern laboratory for practical learning" },
+      { src: "photos/campus5.jpg", title: "Computer Lab", category: "campus", description: "ICT education for the digital age" },
+      { src: "photos/campus6.jpg", title: "Assembly Ground", category: "campus", description: "Morning assembly - Building discipline" },
+      { src: "photos/campus7.jpg", title: "Classroom", category: "campus", description: "Spacious and well-equipped classrooms" },
+      { src: "photos/campus8.jpg", title: "School Garden", category: "campus", description: "Green campus initiative" },
+      
+      // Academic Activities (8 photos)
+      { src: "photos/academic1.jpg", title: "Classroom Session", category: "academic", description: "Interactive learning with dedicated teachers" },
+      { src: "photos/academic2.jpg", title: "Science Experiment", category: "academic", description: "Hands-on science practical session" },
+      { src: "photos/academic3.jpg", title: "Library Study", category: "academic", description: "Students engaged in reading" },
+      { src: "photos/academic4.jpg", title: "Mathematics Class", category: "academic", description: "Problem-solving session" },
+      { src: "photos/academic5.jpg", title: "Chemistry Practical", category: "academic", description: "Conducting experiments" },
+      { src: "photos/academic6.jpg", title: "Computer Studies", category: "academic", description: "Learning essential digital skills" },
+      { src: "photos/academic7.jpg", title: "Group Discussion", category: "academic", description: "Collaborative learning" },
+      { src: "photos/academic8.jpg", title: "Exam Preparation", category: "academic", description: "Focused study sessions" },
+      
+      // Sports & Games (8 photos)
+      { src: "photos/sports1.jpg", title: "Football Match", category: "sports", description: "TGVTS football team in action" },
+      { src: "photos/sports2.jpg", title: "Athletics Day", category: "sports", description: "Track and field competitions" },
+      { src: "photos/sports3.jpg", title: "Basketball", category: "sports", description: "Exciting basketball game" },
+      { src: "photos/sports4.jpg", title: "Netball", category: "sports", description: "Girls netball team" },
+      { src: "photos/sports5.jpg", title: "Sports Day Celebration", category: "sports", description: "Annual sports day awards" },
+      { src: "photos/sports6.jpg", title: "Volleyball", category: "sports", description: "Volleyball tournament" },
+      { src: "photos/sports7.jpg", title: "Warm-up Session", category: "sports", description: "Pre-game preparations" },
+      { src: "photos/sports8.jpg", title: "Winning Team", category: "sports", description: "Champions - Inter-school competition" },
+      
+      // Events & Celebrations (8 photos)
+      { src: "photos/events1.jpg", title: "Graduation Day", category: "events", description: "Form Four graduation ceremony" },
+      { src: "photos/events2.jpg", title: "Independence Day", category: "events", description: "Tanzania Independence celebrations" },
+      { src: "photos/events3.jpg", title: "Prize Giving Day", category: "events", description: "Awarding top performers" },
+      { src: "photos/events4.jpg", title: "Cultural Day", category: "events", description: "Celebrating Tanzanian culture" },
+      { src: "photos/events5.jpg", title: "Parent's Day", category: "events", description: "Parent-teacher interaction" },
+      { src: "photos/events6.jpg", title: "Science Exhibition", category: "events", description: "Student science projects showcase" },
+      { src: "photos/events7.jpg", title: "Career Day", category: "events", description: "Guidance and counseling session" },
+      { src: "photos/events8.jpg", title: "Farewell Party", category: "events", description: "Saying goodbye to graduating class" },
+      
+      // Student Life (8 photos)
+      { src: "photos/students1.jpg", title: "Student Council", category: "students", description: "Elected student leaders" },
+      { src: "photos/students2.jpg", title: "Break Time", category: "students", description: "Relaxing and socializing" },
+      { src: "photos/students3.jpg", title: "Art Club", category: "students", description: "Creative art session" },
+      { src: "photos/students4.jpg", title: "Music Practice", category: "students", description: "Choir and music club" },
+      { src: "photos/students5.jpg", title: "Drama Club", category: "students", description: "Theater practice" },
+      { src: "photos/students6.jpg", title: "Study Group", category: "students", description: "Peer learning sessions" },
+      { src: "photos/students7.jpg", title: "Volunteer Day", category: "students", description: "Community service" },
+      { src: "photos/students8.jpg", title: "School Friends", category: "students", description: "Friendship and camaraderie" }
+    ];
+
+    let currentFilter = "all";
+
+    function renderGallery() {
+      const galleryGrid = document.getElementById("galleryGrid");
+      const filteredData = currentFilter === "all" 
+        ? galleryData 
+        : galleryData.filter(item => item.category === currentFilter);
+      
+      let html = "";
+      
+      filteredData.forEach((item, index) => {
+        // Get category display name
+        let categoryName = "";
+        switch(item.category) {
+          case "campus": categoryName = "🏫 Campus"; break;
+          case "academic": categoryName = "📚 Academic"; break;
+          case "sports": categoryName = "⚽ Sports"; break;
+          case "events": categoryName = "🎉 Events"; break;
+          case "students": categoryName = "👨‍🎓 Student Life"; break;
+          default: categoryName = "📸 Gallery";
+        }
+        
+        html += `
+          <div class="gallery-item" data-category="${item.category}">
+            <a href="${item.src}" data-lightbox="gallery" data-title="${item.title} - ${item.description}">
+              <img src="${item.src}" alt="${item.title}" onerror="this.src='https://placehold.co/400x300/075147/white?text=${encodeURIComponent(item.title)}'">
+              <div class="category-badge">${categoryName}</div>
+              <div class="gallery-overlay">
+                <h4>${item.title}</h4>
+                <p>${item.description}</p>
+              </div>
+            </a>
+          </div>
+        `;
+      });
+      
+      galleryGrid.innerHTML = html;
+      
+      // Re-initialize lightbox for new images
+      if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true,
+          'albumLabel': 'Image %1 of %2'
+        });
+      }
+    }
+
+    // Filter functionality
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    filterButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // Update active button
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        
+        // Update filter
+        currentFilter = btn.getAttribute("data-filter");
+        renderGallery();
+      });
+    });
+
+    // Initial render
+    renderGallery();
+  </script>
+</body>
+</html>
