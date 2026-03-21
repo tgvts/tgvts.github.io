@@ -52,6 +52,7 @@
       z-index: 2;
     }
 
+    /* Header with Floating Head of School Photo */
     .custom-header {
       background: linear-gradient(135deg, rgba(10, 47, 42, 0.95) 0%, rgba(7, 81, 71, 0.95) 70%, rgba(10, 95, 83, 0.95) 100%);
       color: white;
@@ -72,6 +73,40 @@
       background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
       border-radius: 50%;
       pointer-events: none;
+    }
+    
+    .header-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .head-photo {
+      flex-shrink: 0;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #cf9e3a;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      background: rgba(255,255,255,0.1);
+    }
+    
+    .head-photo:hover {
+      transform: scale(1.05);
+    }
+    
+    .head-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .header-text {
+      text-align: center;
     }
     
     .custom-header h1 {
@@ -561,6 +596,14 @@
     }
     
     @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .head-photo {
+        width: 80px;
+        height: 80px;
+      }
       .custom-header h1 { font-size: 1.3rem; }
       .hero-section { margin: 0.5rem; padding: 1rem; }
       .hero-section h2 { font-size: 1.3rem; }
@@ -586,11 +629,19 @@
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER WITH FLOATING HEAD OF SCHOOL PHOTO -->
   <header class="custom-header">
-    <div class="container text-center">
-      <h1>TEMBONI GOVERNMENT SECONDARY SCHOOL</h1>
-      <p><i class="fas fa-map-marker-alt me-2"></i>Temboni, Ubungo Municipal, Dar es Salaam, Tanzania</p>
+    <div class="container">
+      <div class="header-container">
+        <div class="head-photo">
+          <img src="photos/head_of_school.jpg" alt="Head of School - Temboni Secondary" onerror="this.src='https://placehold.co/100x100/075147/white?text=HEAD'">
+        </div>
+        <div class="header-text">
+          <h1>TEMBONI GOVERNMENT SECONDARY SCHOOL</h1>
+          <p><i class="fas fa-map-marker-alt me-2"></i>Temboni, Ubungo Municipal, Dar es Salaam, Tanzania</p>
+          <p><small><i class="fas fa-user-graduate me-1"></i>Head of School: Mr. John Michael</small></p>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -799,19 +850,4 @@
       sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
-        if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-          current = section.getAttribute('id');
-        }
-      });
-      
-      navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href');
-        if (href === `#${current}` || (current === '' && href === '#')) {
-          link.classList.add('active');
-        }
-      });
-    });
-  </script>
-</body>
-</html>
+        if (scrollPos >= sectionTop && scrollPos < sectionTop +
