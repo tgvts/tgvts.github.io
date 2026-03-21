@@ -11,7 +11,6 @@
   <meta name="bingbot" content="index, follow">
   
   <!-- Prevent Google from showing "GitHub" or repository name in search results -->
-  <meta name="google-site-verification" content="prclA4N27h8s6VUSzswRzH_4-r1LEjxS3aX7ELLZJmQ">
   <meta name="apple-mobile-web-app-title" content="Temboni Government Secondary School">
   <meta name="application-name" content="Temboni Government Secondary School">
   
@@ -105,6 +104,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   
   <style>
+    /* Remove any GitHub branding that might appear */
+    .js-repo-pjax-container, 
+    .header, 
+    .application-main, 
+    .page-header,
+    .Header,
+    .AppHeader,
+    [data-testid="header"],
+    .border-bottom,
+    .color-bg-subtle {
+      display: none !important;
+    }
+    
+    /* Hide GitHub's top bar if it appears */
+    body > div:first-child {
+      margin-top: 0 !important;
+    }
+    
+    /* Remove any extra padding caused by GitHub bar */
+    body {
+      padding-top: 0 !important;
+    }
+    
     * {
       margin: 0;
       padding: 0;
@@ -121,6 +143,8 @@
       color: #1e293b;
       scroll-behavior: smooth;
       position: relative;
+      margin: 0;
+      padding: 0;
     }
     
     body::before {
@@ -554,14 +578,24 @@
     </div>
   </div>
 
-  <!-- MAP SECTION -->
+  <!-- MAP SECTION - SATELLITE MODE -->
   <div class="map-section">
     <div class="container">
       <div class="section-title">
-        <h2><i class="fas fa-location-dot"></i> Temboni GVT Secondary School Location</h2>
+        <h2><i class="fas fa-satellite me-2"></i> Temboni GVT Secondary School Location (Satellite View)</h2>
+        <p class="text-muted">Satellite map showing our school campus and surroundings</p>
       </div>
       <div class="map-container">
-        <iframe src="https://www.google.com/maps?q=Temboni+GVTS+Secondary+School,+Ubungo+Municipal&output=embed" title="Temboni Government Secondary School Location Map" allowfullscreen="" loading="lazy"></iframe>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15860.361615273543!2d39.2083!3d-6.7924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2stz!4v1700000000000!5m2!1sen!2stz&t=k" 
+          title="Temboni Government Secondary School Satellite Location" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="address-info mt-3 text-center">
+        <p><i class="fas fa-map-pin me-1"></i> Temboni, Ubungo Municipal, Dar es Salaam, Tanzania</p>
+        <p class="mt-1"><i class="fas fa-phone-alt me-1"></i> +255 22 123 4567 | <i class="fas fa-envelope me-1"></i> info@tgvtsschool.ac.tz</p>
       </div>
     </div>
   </div>
