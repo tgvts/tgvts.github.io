@@ -1,95 +1,99 @@
-console.log("SCRIPT LOADED");
+// script.js
 
-const subjects = [
-    "History", "Geography", "Kiswahili", "English",
-    "Physics", "Chemistry", "Biology", "Mathematics",
-    "Business", "Book Keeping", "Religion", "Civics"
-];
+// Load students data
+let studentsData = [];
+fetch('students.json')
+  .then(response => response.json())
+  .then(data => {
+    studentsData = data;
+  })
+  .catch(err => console.error('Error loading student data:', err));
 
-async function verifyPhone() {
-    console.log("BUTTON CLICKED");
+// Display single student result
+function viewStudentResult() {
+  const studentId = document.getElementById('studentId').value.trim();
+  const container = document.getElementById('resultContainer');
+  container.innerHTML = '';
 
-    const phone = document.getElementById("phoneNumber").value.trim();
-    const error = document.getElementById("error");
-    const results = document.getElementById("results");
+  if (!studentId) {
+    container.innerHTML = '<div class="alert alert-warning">Please enter a student ID.</div>';
+    return;
+  }
 
-    error.style.display = "none";
-    results.innerHTML = "";
+  const student = studentsData.find(s => s.id === studentId);
+  if (!student) {
+    container.innerHTML = `<div class="alert alert-danger">Student with ID ${studentId} not found!</div>`;
+    return;
+  }
 
-    if (!phone) {
-        error.innerText = "Enter phone number";
-        error.style.display = "block";
-        return;
-    }
+  let subjectsHTML = '<table class="table table-bordered"><thead><tr><th>Subject</th><th>Marks</th></tr></thead><tbody>';
+  student.subjects.forEach(sub => {
+    subjectsHTML += `<tr><td>${sub.name}</td><td>${sub.marks}</td></tr>`;
+  });
+  subjectsHTML += '</tbody></table>';
 
-    try {
-        const res = await fetch("students.json");
-        const data = await res.json();
-
-        const student = data.find(s => s.phone === phone);
-
-        if (!student) {
-            error.innerText = "Phone not found";
-            error.style.display = "block";
-            return;
-        }
-
-        displayResults(student);
-
-    } catch (e) {
-        console.error(e);
-        error.innerText = "Error loading data";
-        error.style.display = "block";
-    }
+  container.innerHTML = `
+    <h4>${student.name} - ${student.class} (${student.term} ${student.year})</h4>
+    ${subjectsHTML}
+    <p><strong>Total Marks:</strong> ${student.total}</p>
+    <p><strong>Average:</strong> ${student.average}</p>
+    <p><strong>Division:</strong> ${student.division}</p>
+    <p><strong>Remarks:</strong> ${student.remarks}</p>
+  `;
 }
 
-function displayResults(student) {
+// Display all students
+function showAllStudents() {
+  const container = document.getElementById('resultContainer');
+  container.innerHTML = '';
 
-    let rows = '';
+  if (!studentsData.length) {
+    container.innerHTML = '<div class="alert alert-warning">No student data available.</div>';
+    return;
+  }
 
-    for (let i = 0; i < subjects.length; i++) {
-        let grade = student.grades[i] || '-';
-        let point = student.points[i] || 0;
-
-        rows += `
+  let tableHTML = `
+    <table class="table table-striped">
+      <thead>
         <tr>
-            <td>${subjects[i]}</td>
-            <td>${grade}</td>
-            <td>${point}</td>
-        </tr>`;
-    }
+          <th>ID</th>
+          <th>Name</th>
+          <th>Class</th>
+          <th>Subjects</th>
+          <th>Total</th>
+          <th>Average</th>
+          <th>Division</th>
+          <th>Remarks</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
 
-    document.getElementById("results").innerHTML = `
-        <div class="card p-3">
-
-            <h5>${student.name}</h5>
-
-            <p>
-                Candidate: ${student.candidate}<br>
-                Form: ${student.form}<br>
-                Parent: ${student.parent}
-            </p>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Subject</th>
-                        <th>Grade</th>
-                        <th>Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${rows}
-                </tbody>
-            </table>
-
-            <hr>
-
-            <p><strong>Total Points:</strong> ${student.totalPoints}</p>
-            <p><strong>Division:</strong> ${student.division}</p>
-            <p><strong>Average:</strong> ${student.average}</p>
-            <p><strong>Remarks:</strong> ${student.remarks}</p>
-
-        </div>
+  studentsData.forEach(student => {
+    const subjectsList = student.subjects.map(s => `${s.name}: ${s.marks}`).join('<br>');
+    tableHTML += `
+      <tr>
+        <td>${student.id}</td>
+        <td>${student.name}</td>
+        <td>${student.class}</td>
+        <td>${subjectsList}</td>
+        <td>${student.total}</td>
+        <td>${student.average}</td>
+        <td>${student.division}</td>
+        <td>${student.remarks}</td>
+      </tr>
     `;
+  });
+
+  tableHTML += '</tbody></table>';
+  container.innerHTML = tableHTML;
 }
+
+// Event listeners
+document.addEventListener('DOMContentLoaded', () => {
+  const viewBtn = document.getElementById('viewResult');
+  if (viewBtn) viewBtn.addEventListener('click', viewStudentResult);
+
+  const showAllBtn = document.getElementById('showAllResults');
+  if (showAllBtn) showAllBtn.addEventListener('click', showAllStudents);
+});

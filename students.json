@@ -1,35 +1,56 @@
 [
   {
-    "id": 1,
-    "name": "ABELINA JOHN JOSEPH",
-    "candidate": "001",
-    "form": "Form One",
-    "phone": "717874348",
-    "parent": "John Joseph",
-
-    "grades": ["C","C","C","D","D","C","C","C","F","F","D","D"],
-    "points": [5,5,5,4,4,5,5,5,2,2,4,4],
-
-    "totalPoints": 50,
-    "division": "II",
-    "average": 4.2,
-    "remarks": "PASS"
-  },
-
-  {
-    "id": 2,
+    "id": "002",
     "name": "JOHN MWITA",
-    "candidate": "002",
-    "form": "Form One",
-    "phone": "752636637",
-    "parent": "Mwita Juma",
-
-    "grades": ["B","B","C","C","D","C","C","B","A","B","C","D"],
-    "points": [6,6,5,5,4,5,5,6,7,6,5,4],
-
-    "totalPoints": 64,
+    "class": "Form 2",
+    "term": "1st Term",
+    "year": "2025",
+    "subjects": [
+      {"name": "Mathematics", "marks": 12},
+      {"name": "Physics", "marks": 14},
+      {"name": "Chemistry", "marks": 15},
+      {"name": "Biology", "marks": 23},
+      {"name": "History", "marks": 10}
+    ],
+    "total": 74,
+    "average": 14.8,
     "division": "I",
-    "average": 5.3,
-    "remarks": "PASS"
+    "remarks": "Excellent performance"
+  },
+  {
+    "id": "003",
+    "name": "MARY JOHN",
+    "class": "Form 2",
+    "term": "1st Term",
+    "year": "2025",
+    "subjects": [
+      {"name": "Mathematics", "marks": 10},
+      {"name": "Physics", "marks": 11},
+      {"name": "Chemistry", "marks": 13},
+      {"name": "Biology", "marks": 20},
+      {"name": "History", "marks": 12}
+    ],
+    "total": 66,
+    "average": 13.2,
+    "division": "II",
+    "remarks": "Good performance"
+  },
+  {
+    "id": "004",
+    "name": "ALI HASSAN",
+    "class": "Form 2",
+    "term": "1st Term",
+    "year": "2025",
+    "subjects": [
+      {"name": "Mathematics", "marks": 15},
+      {"name": "Physics", "marks": 17},
+      {"name": "Chemistry", "marks": 18},
+      {"name": "Biology", "marks": 19},
+      {"name": "History", "marks": 16}
+    ],
+    "total": 85,
+    "average": 17,
+    "division": "I",
+    "remarks": "Outstanding"
   }
 ]
