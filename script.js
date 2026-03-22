@@ -1,97 +1,54 @@
-// ================= LOAD DATA =================
-async function loadStudents() {
-    const response = await fetch('students.json');
-    return await response.json();
+const allSubjects = ["History of Tanzania & Civics","History","Geography","Kiswahili","English Language","Physics","Chemistry","Biology","Mathematics","Business Studies","Book Keeping","Islamic Religious Education"];
+const subjectCodes = ["HistoriaTZ","History","Geography","Kiswahili","English","Physics","Chemistry","Biology","Mathematics","BusinessStudies","BookKeeping","ElimuDini"];
+
+async function loadData() {
+  const response = await fetch('students.json');
+  const data = await response.json();
+  return data;
 }
 
-// ================= VERIFY PHONE =================
 async function verifyPhone() {
-    console.log("Button clicked"); // debug
+  const phoneInput = document.getElementById('phoneNumber').value.trim();
+  const errorDiv = document.getElementById('loginError');
+  const resultsContainer = document.getElementById('resultsContainer');
 
-    const phoneInput = document.getElementById('phoneNumber').value.trim();
-    const error = document.getElementById('error');
-    const results = document.getElementById('results');
+  errorDiv.style.display = 'none';
+  resultsContainer.innerHTML = '';
 
-    error.style.display = 'none';
-    results.innerHTML = '';
+  if (!phoneInput) {
+    errorDiv.innerText = 'Please enter your phone number';
+    errorDiv.style.display = 'block';
+    return;
+  }
 
-    if (!phoneInput) {
-        error.innerText = "Enter phone number";
-        error.style.display = 'block';
-        return;
-    }
+  let cleanedPhone = phoneInput.replace(/[^0-9]/g,'');
+  const students = await loadData();
+  const student = students.find(s => s.phone === cleanedPhone);
 
-    const cleanPhone = phoneInput.replace(/\D/g, '');
-
-    try {
-        const students = await loadStudents();
-
-        const student = students.find(s => s.phone === cleanPhone);
-
-        if (!student) {
-            error.innerText = "Phone not found";
-            error.style.display = 'block';
-            return;
-        }
-
-        displayResults(student);
-
-    } catch (err) {
-        console.error(err);
-        error.innerText = "Failed to load data";
-        error.style.display = 'block';
-    }
+  if (student) {
+    displayResults(student);
+  } else {
+    errorDiv.innerText = 'Phone number not found. Contact school.';
+    errorDiv.style.display = 'block';
+  }
 }
 
-// ================= DISPLAY =================
 function displayResults(student) {
+  const resultsContainer = document.getElementById('resultsContainer');
+  let subjectsHtml = '';
+  for (let i=0;i<allSubjects.length;i++){
+    const grade = student.grades[i] || '-';
+    const points = student.points[i] || 0;
+    let gradeClass = grade==='A'?'grade-a':grade==='B'?'grade-b':grade==='C'?'grade-c':grade==='D'?'grade-d':'grade-f';
+    subjectsHtml += `<tr><td>${allSubjects[i]}</td><td class="${gradeClass}"><strong>${grade}</strong></td><td class="text-center">${points}</td></tr>`;
+  }
 
-    const subjects = [
-        "History","Geography","Kiswahili","English",
-        "Physics","Chemistry","Biology","Math",
-        "Business","Book Keeping","Religion","Civics"
-    ];
-
-    let rows = '';
-
-    for (let i = 0; i < subjects.length; i++) {
-        const g = student.grades[i] || '-';
-        const p = student.points[i] || 0;
-
-        let cls = '';
-        if (g === 'A') cls = 'grade-a';
-        else if (g === 'B') cls = 'grade-b';
-        else if (g === 'C') cls = 'grade-c';
-        else if (g === 'D') cls = 'grade-d';
-        else cls = 'grade-f';
-
-        rows += `
-        <tr>
-            <td>${subjects[i]}</td>
-            <td class="${cls}">${g}</td>
-            <td>${p}</td>
-        </tr>`;
-    }
-
-    document.getElementById('results').innerHTML = `
-        <div class="card p-3">
-            <h5>${student.name}</h5>
-
-            <p>
-                Candidate: ${student.candidate}<br>
-                Form: ${student.form}<br>
-                Parent: ${student.parent}
-            </p>
-
-            <table class="table table-bordered">
-                <thead>
-                    <tr><th>Subject</th><th>Grade</th><th>Points</th></tr>
-                </thead>
-                <tbody>${rows}</tbody>
-            </table>
-
-            <b>Total Points:</b> ${student.totalPoints} <br>
-            <b>Division:</b> ${student.division}
-        </div>
-    `;
+  resultsContainer.innerHTML = `
+    <div class="result-card p-3 border rounded">
+      <h5>${student.name}</h5>
+      <p>Candidate: ${student.candidate} | ${student.form} | ${student.sex==='M'?'Male':'Female'}<br>Parent: ${student.parent}</p>
+      <table class="table table-sm table-bordered subject-table"><thead><tr><th>Subject</th><th>Grade</th><th>Points</th></tr></thead><tbody>${subjectsHtml}</tbody></table>
+      <div class="points-badge">Total Points: ${student.totalPoints} | Division: ${student.division}</div>
+    </div>
+  `;
 }
