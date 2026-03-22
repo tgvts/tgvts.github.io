@@ -68,15 +68,12 @@
             margin-top: 15px;
         }
         .btn-verify:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(7,81,71,0.3); }
-        .btn-verify:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        .btn-teacher {
+        .btn-verify:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-admin {
             background: #6c757d;
             margin-top: 10px;
         }
-        .btn-teacher:hover { background: #5a6268; }
+        .btn-admin:hover { background: #5a6268; }
         .alert { border-radius: 20px; padding: 12px 20px; margin-bottom: 20px; }
         .result-card { background: #f8fafc; border-radius: 24px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
         .student-name { font-size: 1.3rem; font-weight: 700; color: #075147; margin-bottom: 5px; }
@@ -146,8 +143,8 @@
                 <i class="fas fa-search me-2"></i> View Results
             </button>
             
-            <a href="admin.html" class="btn-verify btn-teacher" style="display: block; text-align: center; text-decoration: none;">
-                <i class="fas fa-chalkboard-user me-2"></i> Teacher Portal
+            <a href="admin.html" class="btn-verify btn-admin" style="display: block; text-align: center; text-decoration: none;">
+                <i class="fas fa-chalkboard-user me-2"></i> Admin Portal
             </a>
             
             <div id="resultsContainer" style="margin-top: 20px;"></div>
@@ -222,7 +219,11 @@
             const grade = student.grades[i] || '-';
             const points = student.points[i] || 0;
             const gradeClass = getGradeClass(grade);
-            subjectsHtml += '汽水<td><strong>' + allSubjects[i] + '</strong>汽水<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong>汽水<td class="text-center">' + points + '汽水</tr>';
+            subjectsHtml += '<tr>' +
+                '<td><strong>' + allSubjects[i] + '</strong></td>' +
+                '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong></td>' +
+                '<td class="text-center">' + points + '</td>' +
+                '</tr>';
         }
         
         let divisionClass = getDivisionClass(student.division);
@@ -249,9 +250,9 @@
             '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
             '</div></div>' +
             '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
-            '<div class="table-responsive"><table class="subject-table"><thead>汽水<th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th> </thead><tbody>' +
+            '<div class="table-responsive"><table class="subject-table"><thead><tr><th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th></tr></thead><tbody>' +
             subjectsHtml +
-            '</tbody>  </table></div></div>' +
+            '</tbody></table></div></div>' +
             '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
             '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
             '</div>';
