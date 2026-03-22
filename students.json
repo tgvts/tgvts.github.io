@@ -6,9 +6,16 @@
     "form": "Form One",
     "phone": "717874348",
     "parent": "John Joseph",
+
+    "grades": ["C","C","C","D","D","C","C","C","F","F","D","D"],
+    "points": [5,5,5,4,4,5,5,5,2,2,4,4],
+
     "totalPoints": 50,
-    "division": "II"
+    "division": "II",
+    "average": 4.2,
+    "remarks": "PASS"
   },
+
   {
     "id": 2,
     "name": "JOHN MWITA",
@@ -16,17 +23,13 @@
     "form": "Form One",
     "phone": "752636637",
     "parent": "Mwita Juma",
+
+    "grades": ["B","B","C","C","D","C","C","B","A","B","C","D"],
+    "points": [6,6,5,5,4,5,5,6,7,6,5,4],
+
     "totalPoints": 64,
-    "division": "I"
-  },
-  {
-    "id": 3,
-    "name": "ESTHER PAULINA",
-    "candidate": "003",
-    "form": "Form One",
-    "phone": "713456789",
-    "parent": "Paulina Mk",
-    "totalPoints": 66,
-    "division": "I"
+    "division": "I",
+    "average": 5.3,
+    "remarks": "PASS"
   }
 ]
