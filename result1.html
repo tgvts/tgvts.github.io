@@ -3,47 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Parent Portal | TGVTS</title>
+<title>TGVTS Parent Portal</title>
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
-/* Paste your CSS from your current index.html here or separate style.css */
-body { font-family: 'Inter', sans-serif; background: #f1f5f9; padding: 20px; }
-.portal-card { max-width: 1000px; margin: 0 auto; background: #fff; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-.portal-header { text-align: center; padding: 20px; background: #075147; color: #fff; border-radius: 20px 20px 0 0; }
-.portal-header img { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 10px; }
-.portal-body { padding: 20px; }
-.subject-table th, .subject-table td { font-size: 0.8rem; }
-.grade-a { color: #166534; background: #e8f5e9; font-weight: 700; }
-.grade-b { color: #1e40af; background: #e3f2fd; font-weight: 600; }
-.grade-c { color: #854d0e; background: #fff8e1; }
-.grade-d { color: #9a3412; background: #fff3e0; }
-.grade-f { color: #991b1b; background: #ffebee; font-weight: 600; }
-.points-badge { background: #075147; color: #fff; padding: 5px 10px; border-radius: 20px; display:inline-block; font-size:0.7rem; margin-top:10px;}
+body { background:#f1f5f9; padding:20px; font-family: Arial; }
+.portal { max-width:800px; margin:auto; background:white; padding:20px; border-radius:10px; }
+.grade-a { color:green; font-weight:bold; }
+.grade-b { color:blue; }
+.grade-c { color:orange; }
+.grade-d { color:brown; }
+.grade-f { color:red; }
 </style>
 </head>
+
 <body>
 
-<div class="portal-card">
-  <div class="portal-header">
-    <img src="photos/nembo8.png" alt="School Logo" onerror="this.src='https://placehold.co/80x80/075147/white?text=TGVTS'">
-    <h2>Temboni Government Secondary School</h2>
-    <p>Parent Portal - Examination Results 2026</p>
-  </div>
-  
-  <div class="portal-body">
-    <div class="form-group">
-      <label>📱 Enter Parent Phone Number</label>
-      <input type="tel" id="phoneNumber" class="form-control" placeholder="e.g., 752636637">
-      <small class="text-muted">Enter 9-digit phone number you registered with the school</small>
-    </div>
-    <button class="btn btn-success mt-2" onclick="verifyPhone()"><i class="fas fa-search me-1"></i> View Results</button>
-    
-    <div id="loginError" class="alert alert-danger mt-3" style="display:none;"></div>
-    <div id="resultsContainer" class="mt-3"></div>
-  </div>
+<div class="portal">
+    <h3 class="text-center">Temboni Government Secondary School</h3>
+    <p class="text-center">Parent Portal</p>
+
+    <label>Phone Number</label>
+    <input type="text" id="phoneNumber" class="form-control" placeholder="Enter phone">
+
+    <button class="btn btn-success mt-3 w-100" onclick="verifyPhone()">
+        View Results
+    </button>
+
+    <div id="error" class="alert alert-danger mt-3" style="display:none;"></div>
+
+    <div id="results" class="mt-3"></div>
 </div>
 
-<script src="script.js"></script>
+<!-- IMPORTANT: script must be at bottom -->
+<script src="./script.js"></script>
+
 </body>
 </html>

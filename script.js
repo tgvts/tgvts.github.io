@@ -1,61 +1,97 @@
+// ================= LOAD DATA =================
+async function loadStudents() {
+    const response = await fetch('students.json');
+    return await response.json();
+}
+
+// ================= VERIFY PHONE =================
+async function verifyPhone() {
+    console.log("Button clicked"); // debug
+
+    const phoneInput = document.getElementById('phoneNumber').value.trim();
+    const error = document.getElementById('error');
+    const results = document.getElementById('results');
+
+    error.style.display = 'none';
+    results.innerHTML = '';
+
+    if (!phoneInput) {
+        error.innerText = "Enter phone number";
+        error.style.display = 'block';
+        return;
+    }
+
+    const cleanPhone = phoneInput.replace(/\D/g, '');
+
+    try {
+        const students = await loadStudents();
+
+        const student = students.find(s => s.phone === cleanPhone);
+
+        if (!student) {
+            error.innerText = "Phone not found";
+            error.style.display = 'block';
+            return;
+        }
+
+        displayResults(student);
+
+    } catch (err) {
+        console.error(err);
+        error.innerText = "Failed to load data";
+        error.style.display = 'block';
+    }
+}
+
+// ================= DISPLAY =================
 function displayResults(student) {
-  const resultsContainer = document.getElementById('resultsContainer');
 
-  let subjectsHtml = '';
-  for (let i = 0; i < allSubjects.length; i++) {
-    const grade = student.grades[i] || '-';
-    const points = student.points[i] || 0;
+    const subjects = [
+        "History","Geography","Kiswahili","English",
+        "Physics","Chemistry","Biology","Math",
+        "Business","Book Keeping","Religion","Civics"
+    ];
 
-    let gradeClass = '';
-    if (grade === 'A') gradeClass = 'grade-a';
-    else if (grade === 'B') gradeClass = 'grade-b';
-    else if (grade === 'C') gradeClass = 'grade-c';
-    else if (grade === 'D') gradeClass = 'grade-d';
-    else gradeClass = 'grade-f';
+    let rows = '';
 
-    subjectsHtml += `
-      <tr>
-        <td>${allSubjects[i]}</td>
-        <td class="${gradeClass}"><strong>${grade}</strong></td>
-        <td class="text-center">${points}</td>
-      </tr>`;
-  }
+    for (let i = 0; i < subjects.length; i++) {
+        const g = student.grades[i] || '-';
+        const p = student.points[i] || 0;
 
-  resultsContainer.innerHTML = `
-    <div class="result-card p-3 border rounded">
-      
-      <h4>${student.name}</h4>
+        let cls = '';
+        if (g === 'A') cls = 'grade-a';
+        else if (g === 'B') cls = 'grade-b';
+        else if (g === 'C') cls = 'grade-c';
+        else if (g === 'D') cls = 'grade-d';
+        else cls = 'grade-f';
 
-      <p>
-        <strong>Candidate:</strong> ${student.candidate} <br>
-        <strong>Form:</strong> ${student.form} <br>
-        <strong>Sex:</strong> ${student.sex === 'M' ? 'Male' : 'Female'} <br>
-        <strong>Parent:</strong> ${student.parent}
-      </p>
+        rows += `
+        <tr>
+            <td>${subjects[i]}</td>
+            <td class="${cls}">${g}</td>
+            <td>${p}</td>
+        </tr>`;
+    }
 
-      <div class="row text-center mb-3">
-        <div class="col"><strong>Total Points</strong><br>${student.totalPoints}</div>
-        <div class="col"><strong>Division</strong><br>${student.division}</div>
-        <div class="col"><strong>Average</strong><br>${student.average || '-'}</div>
-        <div class="col"><strong>Position</strong><br>${student.position || '-'}</div>
-      </div>
+    document.getElementById('results').innerHTML = `
+        <div class="card p-3">
+            <h5>${student.name}</h5>
 
-      <div class="alert alert-info text-center">
-        <strong>Remarks:</strong> ${student.remarks || 'N/A'}
-      </div>
+            <p>
+                Candidate: ${student.candidate}<br>
+                Form: ${student.form}<br>
+                Parent: ${student.parent}
+            </p>
 
-      <table class="table table-bordered subject-table">
-        <thead>
-          <tr><th>Subject</th><th>Grade</th><th>Points</th></tr>
-        </thead>
-        <tbody>
-          ${subjectsHtml}
-        </tbody>
-      </table>
+            <table class="table table-bordered">
+                <thead>
+                    <tr><th>Subject</th><th>Grade</th><th>Points</th></tr>
+                </thead>
+                <tbody>${rows}</tbody>
+            </table>
 
-      <button class="btn btn-secondary mt-2" onclick="window.print()">
-        Print Results
-      </button>
-    </div>
-  `;
+            <b>Total Points:</b> ${student.totalPoints} <br>
+            <b>Division:</b> ${student.division}
+        </div>
+    `;
 }
