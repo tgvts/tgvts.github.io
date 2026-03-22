@@ -77,8 +77,8 @@
         .student-name { font-size: 1.3rem; font-weight: 700; color: #075147; margin-bottom: 5px; }
         .student-detail { color: #475569; font-size: 0.85rem; margin-bottom: 15px; }
         .subject-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        .subject-table th { background: #e2e8f0; padding: 10px 8px; text-align: left; font-size: 0.7rem; font-weight: 700; }
-        .subject-table td { padding: 8px 6px; border-bottom: 1px solid #e2e8f0; font-size: 0.7rem; }
+        .subject-table th { background: #e2e8f0; padding: 12px 8px; text-align: left; font-size: 0.75rem; font-weight: 700; }
+        .subject-table td { padding: 10px 8px; border-bottom: 1px solid #e2e8f0; font-size: 0.8rem; }
         .grade-a { color: #166534; font-weight: 700; background: #e8f5e9; }
         .grade-b { color: #1e40af; font-weight: 600; background: #e3f2fd; }
         .grade-c { color: #854d0e; background: #fff8e1; }
@@ -108,7 +108,10 @@
             .result-card { padding: 10px; }
             @page { size: A4; margin: 0.5cm; }
         }
-        @media (max-width: 768px) { .portal-body { padding: 20px; } }
+        @media (max-width: 768px) { 
+            .portal-body { padding: 20px; }
+            .subject-table th, .subject-table td { padding: 6px 4px; font-size: 0.7rem; }
+        }
     </style>
 </head>
 <body>
@@ -149,7 +152,8 @@
 
 <script>
     // ============================================================
-    // ALL STUDENT DATA IS EMBEDDED HERE - NO EXTERNAL FILES NEEDED!
+    // ALL STUDENT DATA WITH UPDATED SUBJECT NAMES
+    // Subjects: HTM, HIST, GEO, KISW, ENG, PHY, CHEM, BIO, MATH, BUS, BK, EDK
     // ============================================================
     const studentsData = [
         {
@@ -232,9 +236,20 @@
         }
     ];
     
+    // SUBJECTS - Updated names (HTM, HIST, GEO, KISW, ENG, PHY, CHEM, BIO, MATH, BUS, BK, EDK)
     const allSubjects = [
-        "History of Tanzania & Civics", "History", "Geography", "Kiswahili", "English Language",
-        "Physics", "Chemistry", "Biology", "Mathematics", "Business Studies", "Book Keeping", "Islamic Religious Education"
+        "HTM",      // History of Tanzania & Civics
+        "HIST",     // History
+        "GEO",      // Geography
+        "KISW",     // Kiswahili
+        "ENG",      // English Language
+        "PHY",      // Physics
+        "CHEM",     // Chemistry
+        "BIO",      // Biology
+        "MATH",     // Mathematics
+        "BUS",      // Business Studies
+        "BK",       // Book Keeping
+        "EDK"       // Elimu ya Dini ya Kiislam (Islamic Religious Education)
     ];
     
     // DOM elements
@@ -293,17 +308,18 @@
     }
     
     function displayResults(student) {
+        // Build subjects table with vertical layout
         let subjectsHtml = '';
         for (let i = 0; i < allSubjects.length; i++) {
             const grade = student.grades[i] || '-';
             const points = student.points[i] || 0;
             const gradeClass = getGradeClass(grade);
             
-            subjectsHtml += '汽水' +
-                '汽水' + allSubjects[i] + '汽水' +
-                '<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水' +
-                '<td class="text-center">' + points + '汽水' +
-                '汽水';
+            subjectsHtml += '<tr>' +
+                '<td><strong>' + allSubjects[i] + '</strong></td>' +
+                '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong></td>' +
+                '<td class="text-center">' + points + '</td>' +
+                '</tr>';
         }
         
         let divisionClass = getDivisionClass(student.division);
@@ -330,9 +346,9 @@
             '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
             '</div></div>' +
             '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
-            '<div class="table-responsive"><table class="subject-table"><thead>汽水<th>Subject</th><th style="width:70px;">Grade</th><th style="width:60px;">Points</th>汽水</thead><tbody>' +
+            '<div class="table-responsive"><table class="subject-table"><thead><tr><th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th></tr></thead><tbody>' +
             subjectsHtml +
-            '</tbody> </table></div></div>' +
+            '</tbody></table></div></div>' +
             '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
             '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
             '</div>';
