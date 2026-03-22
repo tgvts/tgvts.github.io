@@ -72,6 +72,11 @@
             opacity: 0.6;
             cursor: not-allowed;
         }
+        .btn-teacher {
+            background: #6c757d;
+            margin-top: 10px;
+        }
+        .btn-teacher:hover { background: #5a6268; }
         .alert { border-radius: 20px; padding: 12px 20px; margin-bottom: 20px; }
         .result-card { background: #f8fafc; border-radius: 24px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
         .student-name { font-size: 1.3rem; font-weight: 700; color: #075147; margin-bottom: 5px; }
@@ -141,6 +146,10 @@
                 <i class="fas fa-search me-2"></i> View Results
             </button>
             
+            <a href="admin.html" class="btn-verify btn-teacher" style="display: block; text-align: center; text-decoration: none;">
+                <i class="fas fa-chalkboard-user me-2"></i> Teacher Portal
+            </a>
+            
             <div id="resultsContainer" style="margin-top: 20px;"></div>
             
             <div class="text-center mt-3 no-print">
@@ -151,115 +160,15 @@
 </div>
 
 <script>
-    // ============================================================
-    // ALL STUDENT DATA WITH UPDATED SUBJECT NAMES
-    // Subjects: HTM, HIST, GEO, KISW, ENG, PHY, CHEM, BIO, MATH, BUS, BK, EDK
-    // ============================================================
-    const studentsData = [
-        {
-            id: 1,
-            name: "ABELINA JOHN JOSEPH",
-            candidate: "001",
-            form: "Form One",
-            sex: "F",
-            phone: "717874348",
-            parent: "John Joseph",
-            grades: ["C","C","C","D","D","-","-","-","F","F","-","-"],
-            points: [5,5,5,4,4,0,0,0,2,2,0,0],
-            totalPoints: 0,
-            division: "ABS"
-        },
-        {
-            id: 2,
-            name: "DERICK BARAKA KWAY",
-            candidate: "312",
-            form: "Form One",
-            sex: "M",
-            phone: "752636637",
-            parent: "Baraka Kway",
-            grades: ["A","A","A","A","A","B","B","B","B","A","A","A"],
-            points: [10,10,10,10,10,8,8,8,8,10,10,10],
-            totalPoints: 118,
-            division: "I"
-        },
-        {
-            id: 3,
-            name: "DAVIS PHILIP MANOTA",
-            candidate: "309",
-            form: "Form One",
-            sex: "M",
-            phone: "712743881",
-            parent: "Philip Manota",
-            grades: ["B","A","A","A","A","C","C","A","C","C","C","C"],
-            points: [8,10,10,10,10,5,5,10,5,5,5,5],
-            totalPoints: 108,
-            division: "I"
-        },
-        {
-            id: 4,
-            name: "MICHELLE DAVID TEMBA",
-            candidate: "143",
-            form: "Form One",
-            sex: "F",
-            phone: "655509122",
-            parent: "David Temba",
-            grades: ["A","C","A","A","B","D","C","C","F","C","-","-"],
-            points: [10,5,10,10,8,4,5,5,2,5,0,0],
-            totalPoints: 86,
-            division: "I"
-        },
-        {
-            id: 5,
-            name: "CHRISTABELLA DAVID MUSHI",
-            candidate: "037",
-            form: "Form One",
-            sex: "F",
-            phone: "750855927",
-            parent: "David Mushi",
-            grades: ["A","B","A","C","B","C","D","C","D","B","-","-"],
-            points: [10,8,10,5,8,5,4,5,4,8,0,0],
-            totalPoints: 88,
-            division: "I"
-        },
-        {
-            id: 6,
-            name: "YUSRA KUBO MTOA",
-            candidate: "253",
-            form: "Form One",
-            sex: "F",
-            phone: "755731133",
-            parent: "Kubo Mtoa",
-            grades: ["B","A","A","B","C","B","D","A","B","D","C","C"],
-            points: [8,10,10,8,5,8,4,10,8,4,5,5],
-            totalPoints: 98,
-            division: "I"
-        }
-    ];
+    let studentsData = [];
+    const allSubjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     
-    // SUBJECTS - Updated names (HTM, HIST, GEO, KISW, ENG, PHY, CHEM, BIO, MATH, BUS, BK, EDK)
-    const allSubjects = [
-        "HTM",      // History of Tanzania & Civics
-        "HIST",     // History
-        "GEO",      // Geography
-        "KISW",     // Kiswahili
-        "ENG",      // English Language
-        "PHY",      // Physics
-        "CHEM",     // Chemistry
-        "BIO",      // Biology
-        "MATH",     // Mathematics
-        "BUS",      // Business Studies
-        "BK",       // Book Keeping
-        "EDK"       // Elimu ya Dini ya Kiislam (Islamic Religious Education)
-    ];
-    
-    // DOM elements
     const phoneInput = document.getElementById('phoneNumber');
     const viewBtn = document.getElementById('viewResultBtn');
     const resultsContainer = document.getElementById('resultsContainer');
     const errorDiv = document.getElementById('errorMessage');
     const successDiv = document.getElementById('successMessage');
     
-    // Helper functions
     function showError(message) {
         errorDiv.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> ' + message;
         errorDiv.style.display = 'block';
@@ -308,18 +217,12 @@
     }
     
     function displayResults(student) {
-        // Build subjects table with vertical layout
         let subjectsHtml = '';
         for (let i = 0; i < allSubjects.length; i++) {
             const grade = student.grades[i] || '-';
             const points = student.points[i] || 0;
             const gradeClass = getGradeClass(grade);
-            
-            subjectsHtml += '<tr>' +
-                '<td><strong>' + allSubjects[i] + '</strong></td>' +
-                '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong></td>' +
-                '<td class="text-center">' + points + '</td>' +
-                '</tr>';
+            subjectsHtml += '汽水<td><strong>' + allSubjects[i] + '</strong>汽水<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong>汽水<td class="text-center">' + points + '汽水</tr>';
         }
         
         let divisionClass = getDivisionClass(student.division);
@@ -346,9 +249,9 @@
             '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
             '</div></div>' +
             '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
-            '<div class="table-responsive"><table class="subject-table"><thead><tr><th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th></tr></thead><tbody>' +
+            '<div class="table-responsive"><table class="subject-table"><thead>汽水<th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th> </thead><tbody>' +
             subjectsHtml +
-            '</tbody></table></div></div>' +
+            '</tbody>  </table></div></div>' +
             '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
             '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
             '</div>';
@@ -357,28 +260,18 @@
     }
     
     function verifyPhone() {
-        // Clear previous
         errorDiv.style.display = 'none';
         successDiv.style.display = 'none';
         resultsContainer.innerHTML = '';
         
         const phone = phoneInput.value.trim();
-        
-        if (!phone) {
-            showError('Please enter your phone number');
-            return;
-        }
+        if (!phone) { showError('Please enter your phone number'); return; }
         
         let cleanedPhone = cleanPhoneNumber(phone);
-        
-        if (cleanedPhone.length < 9) {
-            showError('Please enter a valid phone number (at least 9 digits)');
-            return;
-        }
+        if (cleanedPhone.length < 9) { showError('Please enter a valid phone number (at least 9 digits)'); return; }
         
         setLoading(true);
         
-        // Simulate delay for better UX
         setTimeout(() => {
             let foundStudent = null;
             for (let i = 0; i < studentsData.length; i++) {
@@ -387,7 +280,6 @@
                     break;
                 }
             }
-            
             setLoading(false);
             
             if (foundStudent) {
@@ -403,20 +295,20 @@
         }, 300);
     }
     
-    // Event listeners
+    // Load data from students.json
+    fetch('students.json')
+        .then(response => response.json())
+        .then(data => {
+            studentsData = data;
+            showSuccess('✅ System ready! ' + studentsData.length + ' students loaded. Enter a phone number to search.');
+        })
+        .catch(err => {
+            showError('Error loading student data. Please make sure students.json file exists.');
+            console.error(err);
+        });
+    
     viewBtn.addEventListener('click', verifyPhone);
-    phoneInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-            verifyPhone();
-        }
-    });
-    
-    // Show welcome message
-    setTimeout(() => {
-        showSuccess('✅ System ready! ' + studentsData.length + ' students loaded. Enter a phone number to search.');
-    }, 500);
-    
-    // Make function available globally
+    phoneInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') verifyPhone(); });
     window.verifyPhone = verifyPhone;
 </script>
 </body>
