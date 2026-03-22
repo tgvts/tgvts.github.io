@@ -4,12 +4,9 @@
     "name": "ABELINA JOHN JOSEPH",
     "candidate": "001",
     "form": "Form One",
-    "sex": "F",
     "phone": "717874348",
     "parent": "John Joseph",
-    "grades": ["C","C","C","D","D","-","-","-","F","F","-","-"],
-    "points": [5,5,5,4,4,0,0,0,2,2,0,0],
-    "totalPoints": 32,
+    "totalPoints": 50,
     "division": "II"
   },
   {
@@ -17,12 +14,19 @@
     "name": "JOHN MWITA",
     "candidate": "002",
     "form": "Form One",
-    "sex": "M",
     "phone": "752636637",
     "parent": "Mwita Juma",
-    "grades": ["B","B","C","C","D","C","C","B","A","B","C","D"],
-    "points": [6,6,5,5,4,5,5,6,7,6,5,4],
     "totalPoints": 64,
+    "division": "I"
+  },
+  {
+    "id": 3,
+    "name": "ESTHER PAULINA",
+    "candidate": "003",
+    "form": "Form One",
+    "phone": "713456789",
+    "parent": "Paulina Mk",
+    "totalPoints": 66,
     "division": "I"
   }
 ]
