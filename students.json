@@ -1,0 +1,24 @@
+[
+  {
+    "id":1,
+    "name":"ABELINA JOHN",
+    "candidate":"001",
+    "phone":"717874348",
+    "parent":"John Joseph",
+    "totalPoints":50,
+    "division":"I",
+    "grades":["A","B","C","D","A","B","C","D","A","B","C","D"],
+    "points":[6,5,4,3,6,5,4,3,6,5,4,3]
+  },
+  {
+    "id":2,
+    "name":"MICHAEL MWANAFA",
+    "candidate":"002",
+    "phone":"752636637",
+    "parent":"Mwanafa Senior",
+    "totalPoints":45,
+    "division":"II",
+    "grades":["B","B","C","C","B","C","C","D","B","C","B","C"],
+    "points":[5,5,4,4,5,4,4,3,5,4,5,4]
+  }
+]
