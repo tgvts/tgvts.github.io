@@ -24,18 +24,5 @@
     "points": [10,10,8,10,8,8,5,10,8,10,10,8],
     "totalPoints": 105,
     "division": "I"
-  },
-  {
-    "id": 3,
-    "name": "PETER JAMES",
-    "candidate": "203",
-    "form": "Form Two",
-    "sex": "M",
-    "phone": "734567890",
-    "parent": "James Peter",
-    "grades": ["C","C","B","C","C","D","C","C","D","C","C","C"],
-    "points": [5,5,8,5,5,4,5,5,4,5,5,5],
-    "totalPoints": 61,
-    "division": "II"
   }
 ]

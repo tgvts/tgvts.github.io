@@ -24,18 +24,5 @@
     "points": [8,8,10,8,8,5,5,8,5,8,8,8],
     "totalPoints": 89,
     "division": "I"
-  },
-  {
-    "id": 3,
-    "name": "SARAH DAVID",
-    "candidate": "303",
-    "form": "Form Three",
-    "sex": "F",
-    "phone": "767890123",
-    "parent": "David Sarah",
-    "grades": ["C","C","B","C","C","D","D","C","D","C","C","C"],
-    "points": [5,5,8,5,5,4,4,5,4,5,5,5],
-    "totalPoints": 60,
-    "division": "II"
   }
 ]

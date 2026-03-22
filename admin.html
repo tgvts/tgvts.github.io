@@ -2,139 +2,68 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Admin Portal | Temboni Government Secondary School</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Portal | Temboni Secondary School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            min-height: 100vh;
-            padding: 20px;
-        }
-        .portal-card {
-            background: white;
-            border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-            overflow: hidden;
-            max-width: 1400px;
-            margin: 0 auto;
-            width: 100%;
-        }
-        .portal-header {
-            background: linear-gradient(135deg, #075147, #0a5f53);
-            color: white;
-            padding: 30px;
-            text-align: center;
-        }
-        .school-logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ffd966;
-            margin-bottom: 15px;
-        }
-        .portal-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
-        .portal-header p { font-size: 0.85rem; opacity: 0.9; }
-        .portal-body { padding: 30px; }
-        .password-container {
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .password-input-wrapper {
-            display: flex;
-            align-items: center;
-            background: #f1f5f9;
-            border-radius: 60px;
-            border: 2px solid #e2e8f0;
-            padding: 4px 6px 4px 20px;
-            margin-bottom: 15px;
-        }
-        .form-control { border: none; background: transparent; padding: 12px; width: 100%; outline: none; }
-        .btn-login {
-            background: linear-gradient(135deg, #075147, #0a5f53);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 60px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-        }
-        .btn-login:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(7,81,71,0.3); }
-        .alert { border-radius: 20px; padding: 12px 20px; margin-bottom: 20px; }
-        .student-table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
-        .student-table th { background: #1e3a5f; color: white; padding: 12px 6px; position: sticky; top: 0; z-index: 10; }
-        .student-table td { border: 1px solid #e2e8f0; padding: 8px 4px; }
-        .table-wrapper { overflow-x: auto; max-height: 550px; overflow-y: auto; }
-        .badge-i { background: #166534; color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.65rem; }
-        .badge-ii { background: #1e40af; color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.65rem; }
-        .badge-iii { background: #854d0e; color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.65rem; }
-        .badge-iv { background: #9a3412; color: white; padding: 2px 8px; border-radius: 20px; font-size: 0.65rem; }
-        .grade-a { background: #dcfce7; color: #166534; font-weight: 700; }
-        .grade-b { background: #dbeafe; color: #1e40af; font-weight: 600; }
-        .grade-c { background: #fef9c3; color: #854d0e; }
-        .grade-d { background: #ffedd5; color: #9a3412; }
-        .grade-f { background: #fee2e2; color: #991b1b; font-weight: 600; }
-        .btn-back {
-            background: #6c757d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 40px;
-            text-decoration: none;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-        .btn-back:hover { background: #5a6268; color: white; }
-        .form-filter { margin-bottom: 20px; }
-        .form-filter select {
-            padding: 8px 15px;
-            border-radius: 40px;
-            border: 1px solid #e2e8f0;
-            background: white;
-        }
-        @media (max-width: 768px) { .portal-body { padding: 20px; } .student-table { font-size: 0.6rem; } }
+        body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; padding: 20px; font-family: Arial, sans-serif; }
+        .card { max-width: 1400px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; }
+        .header { background: #075147; color: white; padding: 25px; text-align: center; }
+        .logo { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #ffd966; margin-bottom: 10px; }
+        .body { padding: 25px; }
+        .password-box { max-width: 400px; margin: 0 auto; text-align: center; }
+        .password-input { display: flex; background: #f1f5f9; border-radius: 50px; border: 1px solid #ddd; padding: 5px 15px; margin-bottom: 15px; }
+        .password-input input { border: none; background: none; padding: 12px; width: 100%; outline: none; }
+        .btn { background: #075147; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; font-weight: bold; }
+        .btn:hover { background: #0a5f53; }
+        table { width: 100%; border-collapse: collapse; font-size: 12px; }
+        th { background: #1e3a5f; color: white; padding: 10px; position: sticky; top: 0; }
+        td { border: 1px solid #ddd; padding: 6px; }
+        .table-wrapper { overflow-x: auto; max-height: 500px; overflow-y: auto; }
+        .grade-A { background: #dcfce7; color: #166534; font-weight: bold; }
+        .grade-B { background: #dbeafe; color: #1e40af; font-weight: bold; }
+        .grade-C { background: #fef9c3; color: #854d0e; }
+        .grade-D { background: #ffedd5; color: #9a3412; }
+        .grade-F { background: #fee2e2; color: #991b1b; font-weight: bold; }
+        .badge-I { background: #166534; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+        .badge-II { background: #1e40af; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+        .filter { margin-bottom: 15px; }
+        .filter select { padding: 8px 15px; border-radius: 40px; border: 1px solid #ddd; }
+        .stats { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .stat-box { background: #f8fafc; padding: 12px; border-radius: 12px; text-align: center; flex: 1; min-width: 100px; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #075147; }
+        .alert { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 12px; margin-bottom: 15px; }
     </style>
 </head>
 <body>
 
-<div class="portal-card">
-    <div class="portal-header">
-        <img src="photos/nembo8.png" alt="School Logo" class="school-logo" onerror="this.src='https://placehold.co/80x80/075147/white?text=TGVTS'">
-        <h2><i class="fas fa-chalkboard-user me-2"></i> Admin Portal</h2>
-        <p>View All Student Results by Form</p>
+<div class="card">
+    <div class="header">
+        <img src="photos/nembo8.png" class="logo" onerror="this.src='https://placehold.co/70x70/075147/white?text=TGVTS'">
+        <h2>Admin Portal</h2>
+        <p>View All Student Results</p>
     </div>
-    
-    <div class="portal-body">
-        <!-- Password Form -->
-        <div id="passwordForm">
-            <div class="password-container">
-                <div id="passwordError" class="alert alert-danger" style="display: none;"></div>
-                <div class="password-input-wrapper">
-                    <i class="fas fa-lock me-2 text-muted"></i>
-                    <input type="password" id="passwordInput" class="form-control" placeholder="Enter admin password" autocomplete="off">
+    <div class="body">
+        <div id="loginArea">
+            <div class="password-box">
+                <div id="loginError" class="alert" style="display: none;"></div>
+                <div class="password-input">
+                    <span style="padding:8px;">🔒</span>
+                    <input type="password" id="password" placeholder="Enter admin password">
                 </div>
-                <button class="btn-login" onclick="checkPassword()">
-                    <i class="fas fa-sign-in-alt me-2"></i> Access Admin Portal
-                </button>
-                <div class="text-center mt-3">
-                    <a href="result1.html" class="text-muted">← Back to Parent Portal</a>
+                <button class="btn" onclick="checkPassword()">Access Admin Portal</button>
+                <div style="text-align:center; margin-top:15px;">
+                    <a href="parent.html" style="color:#6c757d;">← Back to Parent Portal</a>
                 </div>
             </div>
         </div>
         
-        <!-- Results Table (hidden initially) -->
-        <div id="resultsView" style="display: none;">
-            <a href="result1.html" class="btn-back"><i class="fas fa-arrow-left me-2"></i> Back to Parent Portal</a>
+        <div id="dataArea" style="display: none;">
+            <a href="parent.html" style="background:#6c757d; color:white; padding:8px 20px; border-radius:40px; text-decoration:none; display:inline-block; margin-bottom:15px;">← Back to Parent Portal</a>
             
-            <div class="form-filter">
-                <label class="me-2">Filter by Form:</label>
-                <select id="formFilter" onchange="filterByForm()">
+            <div class="filter">
+                <label>Filter by Form: </label>
+                <select id="formFilter" onchange="filterData()">
                     <option value="all">All Forms</option>
                     <option value="Form One">Form One</option>
                     <option value="Form Two">Form Two</option>
@@ -143,17 +72,18 @@
                 </select>
             </div>
             
-            <div id="stats" class="mb-3"></div>
+            <div id="statsArea" class="stats"></div>
+            
             <div class="table-wrapper">
-                <table class="student-table">
+                <table id="studentsTable">
                     <thead>
-                        汽水
+                        <tr>
                             <th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>
                             <th>HTM</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
                             <th>PHY</th><th>CHEM</th><th>BIO</th><th>MATH</th><th>BUS</th><th>BK</th><th>EDK</th>
                             <th>Points</th><th>Division</th>
-                         </thead>
-                    <tbody id="studentsTable"></tbody>
+                        </thead>
+                    <tbody id="tableBody"></tbody>
                  </table
             </div>
         </div>
@@ -161,160 +91,110 @@
 </div>
 
 <script>
-    let allStudentsData = [];
-    let filteredStudents = [];
+    let allStudents = [];
+    let currentData = [];
+    const subjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     const ADMIN_PASSWORD = "admin123";
-    const allSubjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     
-    function loadAllData() {
-        const forms = [
-            { file: 'students_form1.json', form: 'Form One' },
-            { file: 'students_form2.json', form: 'Form Two' },
-            { file: 'students_form3.json', form: 'Form Three' },
-            { file: 'students_form4.json', form: 'Form Four' }
-        ];
+    function loadData() {
+        let files = ['students_form1.json', 'students_form2.json', 'students_form3.json', 'students_form4.json'];
+        let loaded = 0;
         
-        let loadedCount = 0;
-        
-        forms.forEach(form => {
-            fetch(form.file)
-                .then(response => response.json())
+        files.forEach(file => {
+            fetch(file)
+                .then(res => res.json())
                 .then(data => {
-                    allStudentsData.push(...data);
-                    loadedCount++;
-                    if (loadedCount === forms.length) {
-                        filteredStudents = [...allStudentsData];
-                        if (document.getElementById('resultsView').style.display === 'block') {
-                            displayAllStudents();
+                    allStudents.push(...data);
+                    loaded++;
+                    if (loaded === files.length) {
+                        currentData = [...allStudents];
+                        if (document.getElementById('dataArea').style.display === 'block') {
+                            displayTable();
                         }
                     }
                 })
-                .catch(err => {
-                    console.warn('Could not load ' + form.file);
-                    loadedCount++;
-                    if (loadedCount === forms.length) {
-                        filteredStudents = [...allStudentsData];
-                        if (document.getElementById('resultsView').style.display === 'block') {
-                            displayAllStudents();
-                        }
-                    }
-                });
+                .catch(err => console.log('Could not load', file));
         });
-    }
-    
-    function filterByForm() {
-        const selectedForm = document.getElementById('formFilter').value;
-        if (selectedForm === 'all') {
-            filteredStudents = [...allStudentsData];
-        } else {
-            filteredStudents = allStudentsData.filter(s => s.form === selectedForm);
-        }
-        displayAllStudents();
-    }
-    
-    function getGradeClass(grade) {
-        if (grade === 'A') return 'grade-a';
-        if (grade === 'B') return 'grade-b';
-        if (grade === 'C') return 'grade-c';
-        if (grade === 'D') return 'grade-d';
-        if (grade === 'F') return 'grade-f';
-        return '';
-    }
-    
-    function getDivisionBadge(division) {
-        if (division === 'I') return '<span class="badge-i">I</span>';
-        if (division === 'II') return '<span class="badge-ii">II</span>';
-        if (division === 'III') return '<span class="badge-iii">III</span>';
-        if (division === 'IV') return '<span class="badge-iv">IV</span>';
-        return '<span class="badge-ii">' + division + '</span>';
-    }
-    
-    function displayAllStudents() {
-        const tbody = document.getElementById('studentsTable');
-        const statsDiv = document.getElementById('stats');
-        
-        let html = '';
-        filteredStudents.forEach((student, index) => {
-            html += '汽水';
-            html += '汽水' + (index + 1) + '汽水';
-            html += '汽水<strong>' + student.name + '</strong>汽水';
-            html += '汽水' + student.candidate + '汽水';
-            html += '汽水' + student.form + '汽水';
-            html += '汽水' + (student.sex === 'M' ? 'M' : 'F') + '汽水';
-            html += '汽水' + student.phone + '汽水';
-            html += '汽水' + student.parent + '汽水';
-            
-            for (let i = 0; i < allSubjects.length; i++) {
-                const grade = student.grades[i] || '-';
-                const gradeClass = getGradeClass(grade);
-                html += '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong>汽水';
-            }
-            
-            html += '汽水<strong>' + student.totalPoints + '</strong>汽水';
-            html += '汽水' + getDivisionBadge(student.division) + '汽水';
-            html += '\\';
-        });
-        
-        tbody.innerHTML = html;
-        
-        const totalStudents = filteredStudents.length;
-        const divisionICount = filteredStudents.filter(s => s.division === 'I').length;
-        const divisionIICount = filteredStudents.filter(s => s.division === 'II').length;
-        const divisionIIICount = filteredStudents.filter(s => s.division === 'III').length;
-        const divisionIVCount = filteredStudents.filter(s => s.division === 'IV').length;
-        const avgPoints = filteredStudents.length > 0 ? (filteredStudents.reduce((sum, s) => sum + s.totalPoints, 0) / totalStudents).toFixed(1) : 0;
-        
-        statsDiv.innerHTML = `
-            <div class="row g-3">
-                <div class="col-md-3">
-                    <div class="bg-light p-3 rounded text-center">
-                        <h4>${totalStudents}</h4>
-                        <small>Total Students</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="bg-light p-3 rounded text-center">
-                        <h4 class="text-success">${divisionICount}</h4>
-                        <small>Division I</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="bg-light p-3 rounded text-center">
-                        <h4 class="text-primary">${divisionIICount}</h4>
-                        <small>Division II</small>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="bg-light p-3 rounded text-center">
-                        <h4>${avgPoints}</h4>
-                        <small>Average Points</small>
-                    </div>
-                </div>
-            </div>
-        `;
     }
     
     function checkPassword() {
-        const password = document.getElementById('passwordInput').value;
-        const errorDiv = document.getElementById('passwordError');
+        let pwd = document.getElementById('password').value;
+        let errorDiv = document.getElementById('loginError');
         
-        if (password === ADMIN_PASSWORD) {
-            document.getElementById('passwordForm').style.display = 'none';
-            document.getElementById('resultsView').style.display = 'block';
-            displayAllStudents();
+        if (pwd === ADMIN_PASSWORD) {
+            document.getElementById('loginArea').style.display = 'none';
+            document.getElementById('dataArea').style.display = 'block';
+            displayTable();
         } else {
-            errorDiv.innerHTML = '<i class="fas fa-exclamation-circle me-2"></i> Incorrect password. Please try again.';
+            errorDiv.innerHTML = 'Incorrect password. Please try again.';
             errorDiv.style.display = 'block';
-            document.getElementById('passwordInput').value = '';
+            document.getElementById('password').value = '';
         }
     }
     
-    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') checkPassword();
-    });
+    function filterData() {
+        let form = document.getElementById('formFilter').value;
+        if (form === 'all') {
+            currentData = [...allStudents];
+        } else {
+            currentData = allStudents.filter(s => s.form === form);
+        }
+        displayTable();
+    }
     
-    loadAllData();
-    window.filterByForm = filterByForm;
+    function getGradeClass(grade) {
+        if (grade === 'A') return 'grade-A';
+        if (grade === 'B') return 'grade-B';
+        if (grade === 'C') return 'grade-C';
+        if (grade === 'D') return 'grade-D';
+        if (grade === 'F') return 'grade-F';
+        return '';
+    }
+    
+    function displayTable() {
+        let tbody = document.getElementById('tableBody');
+        let statsDiv = document.getElementById('statsArea');
+        
+        let html = '';
+        for (let i = 0; i < currentData.length; i++) {
+            let s = currentData[i];
+            html += '<tr>';
+            html += '<td>' + (i+1) + '</td>';
+            html += '<td><strong>' + s.name + '</strong></td>';
+            html += '<td>' + s.candidate + '</td>';
+            html += '<td>' + s.form + '</td>';
+            html += '<td>' + (s.sex === 'M' ? 'M' : 'F') + '</td>';
+            html += '<td>' + s.phone + '</td>';
+            html += '<td>' + s.parent + '</td>';
+            
+            for (let j = 0; j < subjects.length; j++) {
+                let grade = s.grades[j] || '-';
+                let gradeClass = getGradeClass(grade);
+                html += '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>';
+            }
+            
+            html += '<td><strong>' + s.totalPoints + '</strong></td>';
+            html += '<td><span class="badge-' + s.division + '">' + s.division + '</span></td>';
+            html += '</tr>';
+        }
+        tbody.innerHTML = html;
+        
+        let total = currentData.length;
+        let div1 = currentData.filter(s => s.division === 'I').length;
+        let div2 = currentData.filter(s => s.division === 'II').length;
+        let avg = total > 0 ? (currentData.reduce((sum, s) => sum + s.totalPoints, 0) / total).toFixed(1) : 0;
+        
+        statsDiv.innerHTML = `
+            <div class="stat-box"><div class="stat-number">${total}</div><small>Total Students</small></div>
+            <div class="stat-box"><div class="stat-number" style="color:#166534;">${div1}</div><small>Division I</small></div>
+            <div class="stat-box"><div class="stat-number" style="color:#1e40af;">${div2}</div><small>Division II</small></div>
+            <div class="stat-box"><div class="stat-number">${avg}</div><small>Average Points</small></div>
+        `;
+    }
+    
+    loadData();
+    window.filterData = filterData;
+    window.checkPassword = checkPassword;
 </script>
 </body>
 </html>
