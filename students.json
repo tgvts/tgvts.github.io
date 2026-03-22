@@ -2,6 +2,8 @@
   {
     "id": "002",
     "name": "JOHN MWITA",
+    "parent_name": "MR. MWITA",
+    "parent_phone": "0712345678",
     "class": "Form 2",
     "term": "1st Term",
     "year": "2025",
@@ -10,16 +12,24 @@
       {"name": "Physics", "marks": 14},
       {"name": "Chemistry", "marks": 15},
       {"name": "Biology", "marks": 23},
-      {"name": "History", "marks": 10}
+      {"name": "History", "marks": 10},
+      {"name": "Geography", "marks": 18},
+      {"name": "English", "marks": 20},
+      {"name": "Kiswahili", "marks": 17},
+      {"name": "Computer", "marks": 16},
+      {"name": "CRE", "marks": 19},
+      {"name": "Art", "marks": 14}
     ],
-    "total": 74,
-    "average": 14.8,
+    "total": 188,
+    "average": 17.09,
     "division": "I",
     "remarks": "Excellent performance"
   },
   {
     "id": "003",
     "name": "MARY JOHN",
+    "parent_name": "MRS. JOHN",
+    "parent_phone": "0723456789",
     "class": "Form 2",
     "term": "1st Term",
     "year": "2025",
@@ -28,29 +38,17 @@
       {"name": "Physics", "marks": 11},
       {"name": "Chemistry", "marks": 13},
       {"name": "Biology", "marks": 20},
-      {"name": "History", "marks": 12}
+      {"name": "History", "marks": 12},
+      {"name": "Geography", "marks": 15},
+      {"name": "English", "marks": 18},
+      {"name": "Kiswahili", "marks": 16},
+      {"name": "Computer", "marks": 14},
+      {"name": "CRE", "marks": 17},
+      {"name": "Art", "marks": 13}
     ],
-    "total": 66,
-    "average": 13.2,
+    "total": 169,
+    "average": 15.36,
     "division": "II",
     "remarks": "Good performance"
-  },
-  {
-    "id": "004",
-    "name": "ALI HASSAN",
-    "class": "Form 2",
-    "term": "1st Term",
-    "year": "2025",
-    "subjects": [
-      {"name": "Mathematics", "marks": 15},
-      {"name": "Physics", "marks": 17},
-      {"name": "Chemistry", "marks": 18},
-      {"name": "Biology", "marks": 19},
-      {"name": "History", "marks": 16}
-    ],
-    "total": 85,
-    "average": 17,
-    "division": "I",
-    "remarks": "Outstanding"
   }
 ]
