@@ -49,10 +49,7 @@
             padding: 4px 6px 4px 20px;
             transition: all 0.3s;
         }
-        .phone-input-wrapper:focus-within {
-            border-color: #075147;
-            box-shadow: 0 0 0 3px rgba(7,81,71,0.1);
-        }
+        .phone-input-wrapper:focus-within { border-color: #075147; box-shadow: 0 0 0 3px rgba(7,81,71,0.1); }
         .country-code { font-weight: 600; color: #075147; background: #e6f4f0; padding: 8px 12px; border-radius: 40px; font-size: 0.9rem; }
         .form-control { border: none; background: transparent; padding: 12px 12px; width: 100%; font-size: 1rem; outline: none; }
         .btn-verify {
@@ -103,6 +100,7 @@
         }
         @keyframes spin { to { transform: rotate(360deg); } }
         .btn-secondary-custom { background: #e2e8f0; color: #334155; border: none; padding: 10px; border-radius: 40px; width: 100%; cursor: pointer; }
+        .form-selector { margin-bottom: 20px; }
         @media print {
             body { background: white; padding: 0; margin: 0; }
             .no-print { display: none !important; }
@@ -157,7 +155,7 @@
 </div>
 
 <script>
-    let studentsData = [];
+    let allStudentsData = [];
     const allSubjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     
     const phoneInput = document.getElementById('phoneNumber');
@@ -219,11 +217,11 @@
             const grade = student.grades[i] || '-';
             const points = student.points[i] || 0;
             const gradeClass = getGradeClass(grade);
-            subjectsHtml += '<tr>' +
-                '<td><strong>' + allSubjects[i] + '</strong></td>' +
-                '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong></td>' +
-                '<td class="text-center">' + points + '</td>' +
-                '</tr>';
+            subjectsHtml += '汽水' +
+                '汽水<strong>' + allSubjects[i] + '</strong>汽水' +
+                '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong>汽水' +
+                '<td class="text-center">' + points + '汽水' +
+                '汽水';
         }
         
         let divisionClass = getDivisionClass(student.division);
@@ -250,9 +248,9 @@
             '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
             '</div></div>' +
             '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
-            '<div class="table-responsive"><table class="subject-table"><thead><tr><th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th></tr></thead><tbody>' +
+            '<div class="table-responsive"><table class="subject-table"><thead>汽水<th style="width:40%">Subject</th><th style="width:30%">Grade</th><th style="width:30%">Points</th> </thead><tbody>' +
             subjectsHtml +
-            '</tbody></table></div></div>' +
+            '</tbody>  </table</div></div>' +
             '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
             '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
             '</div>';
@@ -275,9 +273,9 @@
         
         setTimeout(() => {
             let foundStudent = null;
-            for (let i = 0; i < studentsData.length; i++) {
-                if (studentsData[i].phone === cleanedPhone) {
-                    foundStudent = studentsData[i];
+            for (let i = 0; i < allStudentsData.length; i++) {
+                if (allStudentsData[i].phone === cleanedPhone) {
+                    foundStudent = allStudentsData[i];
                     break;
                 }
             }
@@ -285,28 +283,53 @@
             
             if (foundStudent) {
                 displayResults(foundStudent);
-                showSuccess('Results found for ' + foundStudent.name);
+                showSuccess('Results found for ' + foundStudent.name + ' (' + foundStudent.form + ')');
             } else {
                 let availableNumbers = '';
-                for (let i = 0; i < studentsData.length; i++) {
-                    availableNumbers += '<strong>' + studentsData[i].phone + '</strong> - ' + studentsData[i].name + '<br>';
+                for (let i = 0; i < allStudentsData.length; i++) {
+                    availableNumbers += '<strong>' + allStudentsData[i].phone + '</strong> - ' + allStudentsData[i].name + ' (' + allStudentsData[i].form + ')<br>';
                 }
                 showError('Phone number "' + phone + '" not found.<br><br><strong>Available phone numbers:</strong><br>' + availableNumbers);
             }
         }, 300);
     }
     
-    // Load data from students.json
-    fetch('students.json')
-        .then(response => response.json())
-        .then(data => {
-            studentsData = data;
-            showSuccess('✅ System ready! ' + studentsData.length + ' students loaded. Enter a phone number to search.');
-        })
-        .catch(err => {
-            showError('Error loading student data. Please make sure students.json file exists.');
-            console.error(err);
+    // Load all form data
+    function loadAllData() {
+        const forms = [
+            { file: 'students_form1.json', form: 'Form One' },
+            { file: 'students_form2.json', form: 'Form Two' },
+            { file: 'students_form3.json', form: 'Form Three' },
+            { file: 'students_form4.json', form: 'Form Four' }
+        ];
+        
+        let loadedCount = 0;
+        
+        forms.forEach(form => {
+            fetch(form.file)
+                .then(response => response.json())
+                .then(data => {
+                    allStudentsData.push(...data);
+                    loadedCount++;
+                    if (loadedCount === forms.length) {
+                        showSuccess('✅ System ready! ' + allStudentsData.length + ' students loaded across all forms. Enter a phone number to search.');
+                    }
+                })
+                .catch(err => {
+                    console.warn('Could not load ' + form.file);
+                    loadedCount++;
+                    if (loadedCount === forms.length) {
+                        if (allStudentsData.length === 0) {
+                            showError('No student data found. Please ensure JSON files exist.');
+                        } else {
+                            showSuccess('✅ System ready! ' + allStudentsData.length + ' students loaded.');
+                        }
+                    }
+                });
         });
+    }
+    
+    loadAllData();
     
     viewBtn.addEventListener('click', verifyPhone);
     phoneInput.addEventListener('keypress', function(e) { if (e.key === 'Enter') verifyPhone(); });

@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "PATRICK KIMARO",
+    "candidate": "401",
+    "form": "Form Four",
+    "sex": "M",
+    "phone": "778901234",
+    "parent": "Kimaro Patrick",
+    "grades": ["A","A","A","A","A","A","A","A","A","A","A","A"],
+    "points": [10,10,10,10,10,10,10,10,10,10,10,10],
+    "totalPoints": 120,
+    "division": "I"
+  },
+  {
+    "id": 2,
+    "name": "GRACE JOSEPH",
+    "candidate": "402",
+    "form": "Form Four",
+    "sex": "F",
+    "phone": "789012345",
+    "parent": "Joseph Grace",
+    "grades": ["B","A","A","B","A","B","B","A","B","A","A","B"],
+    "points": [8,10,10,8,10,8,8,10,8,10,10,8],
+    "totalPoints": 108,
+    "division": "I"
+  },
+  {
+    "id": 3,
+    "name": "JAMES LUCAS",
+    "candidate": "403",
+    "form": "Form Four",
+    "sex": "M",
+    "phone": "790123456",
+    "parent": "Lucas James",
+    "grades": ["C","C","B","C","C","D","C","C","D","C","C","C"],
+    "points": [5,5,8,5,5,4,5,5,4,5,5,5],
+    "totalPoints": 61,
+    "division": "II"
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "ELIZABETH JAMES",
+    "candidate": "301",
+    "form": "Form Three",
+    "sex": "F",
+    "phone": "745678901",
+    "parent": "James Elizabeth",
+    "grades": ["A","A","A","A","B","A","B","A","A","A","A","A"],
+    "points": [10,10,10,10,8,10,8,10,10,10,10,10],
+    "totalPoints": 116,
+    "division": "I"
+  },
+  {
+    "id": 2,
+    "name": "DANIEL WILLIAM",
+    "candidate": "302",
+    "form": "Form Three",
+    "sex": "M",
+    "phone": "756789012",
+    "parent": "William Daniel",
+    "grades": ["B","B","A","B","B","C","C","B","C","B","B","B"],
+    "points": [8,8,10,8,8,5,5,8,5,8,8,8],
+    "totalPoints": 89,
+    "division": "I"
+  },
+  {
+    "id": 3,
+    "name": "SARAH DAVID",
+    "candidate": "303",
+    "form": "Form Three",
+    "sex": "F",
+    "phone": "767890123",
+    "parent": "David Sarah",
+    "grades": ["C","C","B","C","C","D","D","C","D","C","C","C"],
+    "points": [5,5,8,5,5,4,4,5,4,5,5,5],
+    "totalPoints": 60,
+    "division": "II"
+  }
+]

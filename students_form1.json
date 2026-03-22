@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "ABELINA JOHN JOSEPH",
+    "candidate": "001",
+    "form": "Form One",
+    "sex": "F",
+    "phone": "717874348",
+    "parent": "John Joseph",
+    "grades": ["C","C","C","D","D","-","-","-","F","F","-","-"],
+    "points": [5,5,5,4,4,0,0,0,2,2,0,0],
+    "totalPoints": 0,
+    "division": "ABS"
+  },
+  {
+    "id": 2,
+    "name": "DERICK BARAKA KWAY",
+    "candidate": "312",
+    "form": "Form One",
+    "sex": "M",
+    "phone": "752636637",
+    "parent": "Baraka Kway",
+    "grades": ["A","A","A","A","A","B","B","B","B","A","A","A"],
+    "points": [10,10,10,10,10,8,8,8,8,10,10,10],
+    "totalPoints": 118,
+    "division": "I"
+  },
+  {
+    "id": 3,
+    "name": "DAVIS PHILIP MANOTA",
+    "candidate": "309",
+    "form": "Form One",
+    "sex": "M",
+    "phone": "712743881",
+    "parent": "Philip Manota",
+    "grades": ["B","A","A","A","A","C","C","A","C","C","C","C"],
+    "points": [8,10,10,10,10,5,5,10,5,5,5,5],
+    "totalPoints": 108,
+    "division": "I"
+  }
+]

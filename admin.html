@@ -91,6 +91,13 @@
             margin-bottom: 20px;
         }
         .btn-back:hover { background: #5a6268; color: white; }
+        .form-filter { margin-bottom: 20px; }
+        .form-filter select {
+            padding: 8px 15px;
+            border-radius: 40px;
+            border: 1px solid #e2e8f0;
+            background: white;
+        }
         @media (max-width: 768px) { .portal-body { padding: 20px; } .student-table { font-size: 0.6rem; } }
     </style>
 </head>
@@ -100,7 +107,7 @@
     <div class="portal-header">
         <img src="photos/nembo8.png" alt="School Logo" class="school-logo" onerror="this.src='https://placehold.co/80x80/075147/white?text=TGVTS'">
         <h2><i class="fas fa-chalkboard-user me-2"></i> Admin Portal</h2>
-        <p>View All Student Results</p>
+        <p>View All Student Results by Form</p>
     </div>
     
     <div class="portal-body">
@@ -124,39 +131,85 @@
         <!-- Results Table (hidden initially) -->
         <div id="resultsView" style="display: none;">
             <a href="result1.html" class="btn-back"><i class="fas fa-arrow-left me-2"></i> Back to Parent Portal</a>
+            
+            <div class="form-filter">
+                <label class="me-2">Filter by Form:</label>
+                <select id="formFilter" onchange="filterByForm()">
+                    <option value="all">All Forms</option>
+                    <option value="Form One">Form One</option>
+                    <option value="Form Two">Form Two</option>
+                    <option value="Form Three">Form Three</option>
+                    <option value="Form Four">Form Four</option>
+                </select>
+            </div>
+            
             <div id="stats" class="mb-3"></div>
             <div class="table-wrapper">
                 <table class="student-table">
                     <thead>
-                        <tr>
+                        汽水
                             <th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>
                             <th>HTM</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
                             <th>PHY</th><th>CHEM</th><th>BIO</th><th>MATH</th><th>BUS</th><th>BK</th><th>EDK</th>
                             <th>Points</th><th>Division</th>
-                        </tr>
-                    </thead>
+                         </thead>
                     <tbody id="studentsTable"></tbody>
-                </table>
+                 </table
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    let studentsData = [];
+    let allStudentsData = [];
+    let filteredStudents = [];
     const ADMIN_PASSWORD = "admin123";
     const allSubjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     
-    function loadData() {
-        fetch('students.json')
-            .then(response => response.json())
-            .then(data => {
-                studentsData = data;
-            })
-            .catch(err => {
-                document.getElementById('passwordError').innerHTML = 'Error loading student data. Please make sure students.json exists.';
-                document.getElementById('passwordError').style.display = 'block';
-            });
+    function loadAllData() {
+        const forms = [
+            { file: 'students_form1.json', form: 'Form One' },
+            { file: 'students_form2.json', form: 'Form Two' },
+            { file: 'students_form3.json', form: 'Form Three' },
+            { file: 'students_form4.json', form: 'Form Four' }
+        ];
+        
+        let loadedCount = 0;
+        
+        forms.forEach(form => {
+            fetch(form.file)
+                .then(response => response.json())
+                .then(data => {
+                    allStudentsData.push(...data);
+                    loadedCount++;
+                    if (loadedCount === forms.length) {
+                        filteredStudents = [...allStudentsData];
+                        if (document.getElementById('resultsView').style.display === 'block') {
+                            displayAllStudents();
+                        }
+                    }
+                })
+                .catch(err => {
+                    console.warn('Could not load ' + form.file);
+                    loadedCount++;
+                    if (loadedCount === forms.length) {
+                        filteredStudents = [...allStudentsData];
+                        if (document.getElementById('resultsView').style.display === 'block') {
+                            displayAllStudents();
+                        }
+                    }
+                });
+        });
+    }
+    
+    function filterByForm() {
+        const selectedForm = document.getElementById('formFilter').value;
+        if (selectedForm === 'all') {
+            filteredStudents = [...allStudentsData];
+        } else {
+            filteredStudents = allStudentsData.filter(s => s.form === selectedForm);
+        }
+        displayAllStudents();
     }
     
     function getGradeClass(grade) {
@@ -181,35 +234,35 @@
         const statsDiv = document.getElementById('stats');
         
         let html = '';
-        studentsData.forEach((student, index) => {
-            html += '<tr>';
-            html += '<td>' + (index + 1) + '</td>';
-            html += '<td><strong>' + student.name + '</strong></td>';
-            html += '<td>' + student.candidate + '</td>';
-            html += '<td>' + student.form + '</td>';
-            html += '<td>' + (student.sex === 'M' ? 'M' : 'F') + '</td>';
-            html += '<td>' + student.phone + '</td>';
-            html += '<td>' + student.parent + '</td>';
+        filteredStudents.forEach((student, index) => {
+            html += '汽水';
+            html += '汽水' + (index + 1) + '汽水';
+            html += '汽水<strong>' + student.name + '</strong>汽水';
+            html += '汽水' + student.candidate + '汽水';
+            html += '汽水' + student.form + '汽水';
+            html += '汽水' + (student.sex === 'M' ? 'M' : 'F') + '汽水';
+            html += '汽水' + student.phone + '汽水';
+            html += '汽水' + student.parent + '汽水';
             
             for (let i = 0; i < allSubjects.length; i++) {
                 const grade = student.grades[i] || '-';
                 const gradeClass = getGradeClass(grade);
-                html += '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong></td>';
+                html += '<td class="' + gradeClass + ' text-center"><strong>' + grade + '</strong>汽水';
             }
             
-            html += '<td><strong>' + student.totalPoints + '</strong></td>';
-            html += '<td>' + getDivisionBadge(student.division) + '</td>';
-            html += '</tr>';
+            html += '汽水<strong>' + student.totalPoints + '</strong>汽水';
+            html += '汽水' + getDivisionBadge(student.division) + '汽水';
+            html += '\\';
         });
         
         tbody.innerHTML = html;
         
-        const totalStudents = studentsData.length;
-        const divisionICount = studentsData.filter(s => s.division === 'I').length;
-        const divisionIICount = studentsData.filter(s => s.division === 'II').length;
-        const divisionIIICount = studentsData.filter(s => s.division === 'III').length;
-        const divisionIVCount = studentsData.filter(s => s.division === 'IV').length;
-        const avgPoints = (studentsData.reduce((sum, s) => sum + s.totalPoints, 0) / totalStudents).toFixed(1);
+        const totalStudents = filteredStudents.length;
+        const divisionICount = filteredStudents.filter(s => s.division === 'I').length;
+        const divisionIICount = filteredStudents.filter(s => s.division === 'II').length;
+        const divisionIIICount = filteredStudents.filter(s => s.division === 'III').length;
+        const divisionIVCount = filteredStudents.filter(s => s.division === 'IV').length;
+        const avgPoints = filteredStudents.length > 0 ? (filteredStudents.reduce((sum, s) => sum + s.totalPoints, 0) / totalStudents).toFixed(1) : 0;
         
         statsDiv.innerHTML = `
             <div class="row g-3">
@@ -260,7 +313,8 @@
         if (e.key === 'Enter') checkPassword();
     });
     
-    loadData();
+    loadAllData();
+    window.filterByForm = filterByForm;
 </script>
 </body>
 </html>

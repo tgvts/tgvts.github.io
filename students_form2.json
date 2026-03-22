@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "JOHN MICHAEL",
+    "candidate": "201",
+    "form": "Form Two",
+    "sex": "M",
+    "phone": "712345678",
+    "parent": "Michael John",
+    "grades": ["B","B","A","B","A","C","C","B","C","B","B","B"],
+    "points": [8,8,10,8,10,5,5,8,5,8,8,8],
+    "totalPoints": 91,
+    "division": "I"
+  },
+  {
+    "id": 2,
+    "name": "MARY JOSEPH",
+    "candidate": "202",
+    "form": "Form Two",
+    "sex": "F",
+    "phone": "723456789",
+    "parent": "Joseph Mwita",
+    "grades": ["A","A","B","A","B","B","C","A","B","A","A","B"],
+    "points": [10,10,8,10,8,8,5,10,8,10,10,8],
+    "totalPoints": 105,
+    "division": "I"
+  },
+  {
+    "id": 3,
+    "name": "PETER JAMES",
+    "candidate": "203",
+    "form": "Form Two",
+    "sex": "M",
+    "phone": "734567890",
+    "parent": "James Peter",
+    "grades": ["C","C","B","C","C","D","C","C","D","C","C","C"],
+    "points": [5,5,8,5,5,4,5,5,4,5,5,5],
+    "totalPoints": 61,
+    "division": "II"
+  }
+]
