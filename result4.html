@@ -2,548 +2,626 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEMBONI SECONDARY SCHOOL | Form Four Results 2026 - Find Students Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Parent Portal | Temboni Government Secondary School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e6edf4 100%);
-            padding: 30px 20px;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
+            padding: 20px;
         }
-
-        .container-custom {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Main Card */
-        .report-card {
+        .portal-card {
             background: white;
             border-radius: 32px;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
             overflow: hidden;
-        }
-
-        /* Header */
-        .header-section {
-            background: linear-gradient(135deg, #0a2f2a 0%, #075147 100%);
-            color: white;
-            padding: 28px 32px;
-            position: relative;
-            text-align: center;
-        }
-
-        .header-section h1 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .header-section h2 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        .exam-date {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            font-size: 0.85rem;
-        }
-
-        /* Stats Row - Clean and Simple */
-        .stats-row {
-            background: #f8fafc;
-            padding: 16px 28px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px 20px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .stat-pill {
-            background: white;
-            border-radius: 40px;
-            padding: 6px 18px;
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: #1e293b;
-            border: 1px solid #e2e8f0;
-        }
-
-        .stat-pill span {
-            background: #075147;
-            color: white;
-            border-radius: 30px;
-            padding: 2px 12px;
-            margin-left: 8px;
-            font-size: 0.75rem;
-        }
-
-        /* Search Section - Prominent and Clear */
-        .search-section {
-            background: white;
-            padding: 24px 28px;
-            text-align: center;
-            border-bottom: 1px solid #e9edf2;
-        }
-
-        .search-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #075147;
-            margin-bottom: 8px;
-        }
-
-        .search-subtitle {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 20px;
-        }
-
-        .search-container {
-            max-width: 600px;
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            justify-content: center;
+            width: 100%;
         }
-
-        .search-wrapper {
-            flex: 1;
-            min-width: 280px;
+        .portal-header {
+            background: linear-gradient(135deg, #075147, #0a5f53);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd966;
+            margin-bottom: 15px;
+        }
+        .portal-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+        .portal-header p { font-size: 0.85rem; opacity: 0.9; }
+        .portal-body { padding: 30px; }
+        .phone-input-wrapper {
             display: flex;
             align-items: center;
             background: #f1f5f9;
             border-radius: 60px;
-            padding: 4px 6px 4px 20px;
             border: 2px solid #e2e8f0;
-            transition: all 0.2s;
+            padding: 4px 6px 4px 20px;
+            transition: all 0.3s;
         }
-
-        .search-wrapper:focus-within {
+        .phone-input-wrapper:focus-within {
             border-color: #075147;
             box-shadow: 0 0 0 3px rgba(7,81,71,0.1);
         }
-
-        .search-wrapper i {
-            color: #5a6e7c;
-            font-size: 1.1rem;
-        }
-
-        .search-wrapper input {
+        .country-code { font-weight: 600; color: #075147; background: #e6f4f0; padding: 8px 12px; border-radius: 40px; font-size: 0.9rem; }
+        .form-control { border: none; background: transparent; padding: 12px 12px; width: 100%; font-size: 1rem; outline: none; }
+        .btn-verify, .btn-upload {
+            background: linear-gradient(135deg, #075147, #0a5f53);
+            color: white;
             border: none;
-            background: transparent;
-            padding: 14px 12px;
-            width: 100%;
-            font-size: 1rem;
-            outline: none;
-            font-family: inherit;
-        }
-
-        .clear-btn {
-            background: #e2e8f0;
-            border: none;
-            padding: 10px 28px;
-            border-radius: 40px;
+            padding: 14px;
+            border-radius: 60px;
             font-weight: 600;
+            width: 100%;
             cursor: pointer;
-            transition: all 0.2s;
-            color: #334155;
+            transition: all 0.3s;
         }
-
-        .clear-btn:hover {
-            background: #cbd5e1;
-        }
-
-        .result-info {
-            margin-top: 16px;
-            font-size: 0.85rem;
-            color: #475569;
-        }
-
-        .result-count-badge {
-            background: #e6f4f0;
-            padding: 6px 16px;
-            border-radius: 40px;
+        .btn-verify:hover, .btn-upload:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(7,81,71,0.3); }
+        .btn-secondary-custom { background: #e2e8f0; color: #334155; border: none; padding: 10px; border-radius: 40px; width: 100%; cursor: pointer; transition: all 0.2s; }
+        .btn-secondary-custom:hover { background: #cbd5e1; }
+        .alert { border-radius: 20px; padding: 12px 20px; margin-bottom: 20px; }
+        .result-card { background: #f8fafc; border-radius: 24px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .student-name { font-size: 1.3rem; font-weight: 700; color: #075147; margin-bottom: 5px; }
+        .student-detail { color: #475569; font-size: 0.85rem; margin-bottom: 15px; }
+        .subject-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .subject-table th { background: #e2e8f0; padding: 10px 8px; text-align: left; font-size: 0.7rem; font-weight: 700; }
+        .subject-table td { padding: 8px 6px; border-bottom: 1px solid #e2e8f0; font-size: 0.7rem; }
+        .grade-a { color: #166534; font-weight: 700; background: #e8f5e9; }
+        .grade-b { color: #1e40af; font-weight: 600; background: #e3f2fd; }
+        .grade-c { color: #854d0e; background: #fff8e1; }
+        .grade-d { color: #9a3412; background: #fff3e0; }
+        .grade-f { color: #991b1b; font-weight: 600; background: #ffebee; }
+        .points-badge { background: #075147; color: white; padding: 6px 12px; border-radius: 40px; display: inline-block; font-weight: 600; margin-top: 10px; font-size: 0.75rem; }
+        .division-i { background: #166534; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-ii { background: #1e40af; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-iii { background: #854d0e; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-iv { background: #9a3412; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .loading-spinner {
             display: inline-block;
-            color: #075147;
-            font-weight: 600;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
         }
-
-        /* Table Wrapper */
-        .table-wrapper {
-            overflow-x: auto;
-            max-height: 520px;
-            overflow-y: auto;
-        }
-
-        .results-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.75rem;
-            min-width: 1400px;
-            background: white;
-        }
-
-        .results-table th {
-            background: #1e3a5f;
-            color: white;
-            padding: 14px 8px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 0.7rem;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .results-table td {
-            border: 1px solid #e9edf2;
-            padding: 10px 6px;
-            text-align: center;
-            font-size: 0.7rem;
-        }
-
-        /* Name column - LEFT ALIGNED (not centered) */
-        .cand-name-cell {
-            text-align: left !important;
-            padding-left: 12px;
-            font-weight: 500;
-            background: #fafcff;
-        }
-
-        /* Grade Colors */
-        .grade-a { background: #dcfce7; font-weight: 700; color: #166534; }
-        .grade-b { background: #dbeafe; font-weight: 600; color: #1e40af; }
-        .grade-c { background: #fef9c3; color: #854d0e; }
-        .grade-d { background: #ffedd5; color: #9a3412; }
-        .grade-f { background: #fee2e2; color: #991b1b; font-weight: 600; }
-        .points-cell { font-weight: 800; background: #f1f5f9; }
-        .division-cell { font-weight: 800; background: #eef2ff; }
-
-        /* Summary Section */
-        .summary-section {
-            background: #fafcff;
-            padding: 24px 28px;
-            border-top: 2px solid #e2e8f0;
-        }
-
-        .summary-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #0a2647;
-            margin-bottom: 16px;
-            border-left: 4px solid #cf9e3a;
-            padding-left: 16px;
-        }
-
-        .summary-table-wrapper {
-            overflow-x: auto;
-            border-radius: 16px;
-            background: white;
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        .admin-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 30px;
             border: 1px solid #e2e8f0;
         }
-
-        .grade-summary {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.7rem;
-            min-width: 900px;
+        .admin-section h4 { color: #075147; margin-bottom: 15px; }
+        .csv-template {
+            background: #1e1e1e;
+            color: #0f0;
+            padding: 15px;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 11px;
+            overflow-x: auto;
+            margin-top: 15px;
         }
-
-        .grade-summary th {
-            background: #1e3a5f;
-            color: white;
-            padding: 10px 4px;
-        }
-
-        .grade-summary td {
-            border: 1px solid #e2e8f0;
-            padding: 6px 3px;
-            text-align: center;
-        }
-
-        .grade-row-a td { background: #e8f5e9; }
-        .grade-row-b td { background: #e3f2fd; }
-        .grade-row-c td { background: #fff8e1; }
-        .grade-row-d td { background: #fff3e0; }
-        .grade-row-f td { background: #ffebee; }
-        .total-row { background: #e9ecef; font-weight: 700; }
-
-        .note-text {
-            margin-top: 16px;
-            text-align: center;
-            font-size: 0.7rem;
-            color: #5a6e7c;
-        }
-
-        /* Help Box */
-        .help-box {
-            background: #fef9e6;
-            padding: 16px 24px;
-            margin: 0 28px 20px 28px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            border: 1px solid #ffe5b4;
-        }
-
-        .help-box i {
-            font-size: 1.2rem;
-            color: #b45309;
-        }
-
-        .help-box p {
-            margin: 0;
-            color: #92400e;
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 16px; }
-            .header-section { padding: 20px; }
-            .header-section h1 { font-size: 1.3rem; }
-            .search-section { padding: 20px; }
-            .search-container { flex-direction: column; align-items: stretch; }
-            .search-wrapper { width: 100%; }
-            .stats-row { padding: 12px 16px; }
-            .stat-pill { font-size: 0.7rem; padding: 4px 12px; }
-            .help-box { margin: 0 16px 16px 16px; }
-            .summary-section { padding: 16px; }
-        }
-
+        .nav-tabs .nav-link { color: #475569; font-weight: 500; }
+        .nav-tabs .nav-link.active { color: #075147; border-bottom-color: #075147; }
+        
         @media print {
-            body { background: white; padding: 0; }
-            .search-section, .help-box { display: none; }
-            .table-wrapper { max-height: none; overflow: visible; }
+            body { background: white; padding: 0; margin: 0; }
+            .no-print, .admin-section, .nav-tabs { display: none !important; }
+            .portal-card { box-shadow: none; border: none; }
+            .portal-header { background: #075147; padding: 15px; }
+            .portal-header img { width: 50px; height: 50px; }
+            .result-card { padding: 10px; }
+            .subject-table th, .subject-table td { padding: 4px 3px; font-size: 0.6rem; }
+            @page { size: A4; margin: 0.5cm; }
+        }
+        
+        @media (max-width: 768px) {
+            .portal-body { padding: 20px; }
+            .subject-table th, .subject-table td { padding: 5px 3px; font-size: 0.65rem; }
         }
     </style>
 </head>
 <body>
 
-<div class="container-custom">
-    <div class="report-card" id="reportCard">
+<div class="portal-card">
+    <div class="portal-header">
+        <img src="photos/nembo8.png" alt="School Logo" class="school-logo" onerror="this.src='https://placehold.co/80x80/075147/white?text=TGVTS'">
+        <h2><i class="fas fa-school me-2"></i> Temboni Government Secondary School</h2>
+        <p>Parent Portal - Examination Results 2026</p>
+    </div>
+    
+    <div class="portal-body">
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <button class="nav-link active" id="parent-tab" data-bs-toggle="tab" data-bs-target="#parent" type="button" role="tab">
+                    <i class="fas fa-user me-2"></i> Parent Portal
+                </button>
+            </li>
+            <li class="nav-item">
+                <button class="nav-link" id="admin-tab" data-bs-toggle="tab" data-bs-target="#admin" type="button" role="tab">
+                    <i class="fas fa-cog me-2"></i> Admin Panel
+                </button>
+            </li>
+        </ul>
         
-        <!-- Header -->
-        <div class="header-section">
-            <h1>📋 FORM FOUR EXAMINATION RESULTS 2026</h1>
-            <h2>S.3799 - TEMBONI GOVERNMENT SECONDARY SCHOOL</h2>
-            <div class="exam-date">
-                📅 Examination Period: February 2026 | 📊 Results Published: March 2026
-            </div>
-        </div>
-
-        <!-- Statistics Row - Quick Overview -->
-        <div class="stats-row">
-            <div class="stat-pill">👩‍🎓 FEMALE <span>273</span></div>
-            <div class="stat-pill">👨‍🎓 MALE <span>242</span></div>
-            <div class="stat-pill">📊 TOTAL <span>515</span></div>
-            <div class="stat-pill">🏆 DIV I <span>23</span></div>
-            <div class="stat-pill">🥈 DIV II <span>27</span></div>
-            <div class="stat-pill">🥉 DIV III <span>38</span></div>
-            <div class="stat-pill">📘 DIV IV <span>283</span></div>
-        </div>
-
-        <!-- Search Section - Prominent for Parents -->
-        <div class="search-section">
-            <div class="search-title">
-                🔍 Find student Results
-            </div>
-            <div class="search-subtitle">
-                Enter your child's full name or candidate number to view their performance
-            </div>
-            <div class="search-container">
-                <div class="search-wrapper">
-                    <span>🔍</span>
-                    <input type="text" id="studentSearch" placeholder="e.g., JOHN MICHAEL or 001" autocomplete="off">
-                    <button class="clear-btn" id="clearSearch">Clear</button>
+        <div class="tab-content">
+            <!-- PARENT PORTAL TAB -->
+            <div class="tab-pane fade show active" id="parent" role="tabpanel">
+                <div id="parentView">
+                    <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+                    
+                    <div class="form-group">
+                        <label class="form-label fw-bold">📱 Phone Number</label>
+                        <div class="phone-input-wrapper">
+                            <span class="country-code">+255</span>
+                            <input type="tel" id="phoneNumber" class="form-control" placeholder="e.g., 752636637" autocomplete="off">
+                        </div>
+                        <small class="text-muted">Enter the 9-digit phone number you registered with the school</small>
+                    </div>
+                    
+                    <button id="verifyBtn" class="btn-verify" onclick="verifyPhone()">
+                        <i class="fas fa-search me-2"></i> View Results
+                    </button>
+                    
+                    <div id="resultsContainer" style="margin-top: 20px;"></div>
+                    
+                    <div class="text-center mt-3 no-print">
+                        <small class="text-muted"><i class="fas fa-info-circle me-1"></i> Need help? Contact school office: +255 22 123 4567</small>
+                    </div>
                 </div>
             </div>
-            <div class="result-info">
-                <span class="result-count-badge" id="resultCount">All students loaded</span>
-                <span style="margin-left: 12px;">💡 Tip: Type name or candidate number to find specific student</span>
-            </div>
-        </div>
-
-        <!-- Help Box - Instructions for Parents -->
-        <div class="help-box">
-            <span>ℹ️</span>
-            <p><strong>How to find your child's results:</strong> Type your child's FULL NAME (e.g., JOHN MICHAEL) or CANDIDATE NUMBER in the search box above. The table will automatically filter to show only matching results.</p>
-        </div>
-
-        <!-- Results Table -->
-        <div class="table-wrapper">
-            <table class="results-table" id="resultsTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Full Name</th>
-                        <th>Sex</th>
-                        <th>Hist/TZ</th>
-                        <th>Hist</th>
-                        <th>Geo</th>
-                        <th>Kisw</th>
-                        <th>Eng</th>
-                        <th>Phy</th>
-                        <th>Chem</th>
-                        <th>Bio</th>
-                        <th>B/Math</th>
-                        <th>Bus</th>
-                        <th>EDK</th>
-                        <th>Bible</th>
-                        <th>Pts</th>
-                        <th>Div</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody"></tbody>
-            </table>
-        </div>
-
-        <!-- Grade Summary Section -->
-        <div class="summary-section">
-            <div class="summary-title">📊 SUBJECT PERFORMANCE SUMMARY</div>
-            <div class="summary-table-wrapper">
-                <table class="grade-summary">
-                    <thead>
-                        <th>GRADE</th><th>SEX</th><th>HIST/TZ</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
-                            <th>PHY</th><th>CHEM</th><th>BIO</th><th>B/MATHS</th><th>BUS</th><th>EDK</th><th>BIBLE</th><th>TOTAL</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="grade-row-a"><td rowspan="3">A</td><td>F</td><td>52</td><td>6</td><td>16</td><td>12</td><td>0</td><td>0</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td><td>88</td></tr>
-                        <tr class="grade-row-a"><td>M</td><td>18</td><td>5</td><td>17</td><td>12</td><td>2</td><td>2</td><td>2</td><td>1</td><td>0</td><td>2</td><td>0</td><td>0</td><td>61</td></tr>
-                        <tr class="grade-row-a"><td>TOT</td><td>70</td><td>11</td><td>33</td><td>24</td><td>2</td><td>2</td><td>3</td><td>2</td><td>0</td><td>2</td><td>0</td><td>0</td><td>149</td></tr>
-                        <tr class="grade-row-b"><td rowspan="3">B</td><td>F</td><td>49</td><td>6</td><td>12</td><td>27</td><td>6</td><td>2</td><td>0</td><td>3</td><td>1</td><td>2</td><td>2</td><td>0</td><td>110</td></tr>
-                        <tr class="grade-row-b"><td>M</td><td>15</td><td>4</td><td>10</td><td>14</td><td>4</td><td>2</td><td>4</td><td>3</td><td>2</td><td>0</td><td>2</td><td>0</td><td>60</td></tr>
-                        <tr class="grade-row-b"><td>TOT</td><td>64</td><td>10</td><td>22</td><td>41</td><td>10</td><td>4</td><td>4</td><td>6</td><td>3</td><td>2</td><td>4</td><td>0</td><td>170</td></tr>
-                        <tr class="grade-row-c"><td rowspan="3">C</td><td>M</td><td>85</td><td>18</td><td>43</td><td>110</td><td>19</td><td>7</td><td>4</td><td>9</td><td>5</td><td>12</td><td>38</td><td>0</td><td>350</td></tr>
-                        <tr class="grade-row-c"><td>F</td><td>43</td><td>16</td><td>22</td><td>64</td><td>14</td><td>8</td><td>5</td><td>11</td><td>3</td><td>9</td><td>10</td><td>0</td><td>206</td></tr>
-                        <tr class="grade-row-c"><td>TOT</td><td>128</td><td>34</td><td>65</td><td>174</td><td>33</td><td>15</td><td>9</td><td>20</td><td>8</td><td>21</td><td>48</td><td>0</td><td>556</td></tr>
-                        <tr class="grade-row-d"><td rowspan="3">D</td><td>M</td><td>40</td><td>29</td><td>51</td><td>78</td><td>50</td><td>18</td><td>11</td><td>13</td><td>6</td><td>26</td><td>60</td><td>0</td><td>392</td></tr>
-                        <tr class="grade-row-d"><td>F</td><td>63</td><td>18</td><td>41</td><td>77</td><td>28</td><td>12</td><td>12</td><td>12</td><td>4</td><td>25</td><td>31</td><td>0</td><td>323</td></tr>
-                        <tr class="grade-row-d"><td>TOT</td><td>103</td><td>47</td><td>92</td><td>155</td><td>78</td><td>30</td><td>23</td><td>25</td><td>10</td><td>51</td><td>91</td><td>0</td><td>715</td></tr>
-                        <tr class="grade-row-f"><td rowspan="3">F</td><td>M</td><td>34</td><td>191</td><td>131</td><td>28</td><td>171</td><td>29</td><td>42</td><td>31</td><td>238</td><td>206</td><td>32</td><td>0</td><td>1191</td></tr>
-                        <tr class="grade-row-f"><td>F</td><td>75</td><td>166</td><td>124</td><td>48</td><td>162</td><td>30</td><td>32</td><td>27</td><td>201</td><td>169</td><td>26</td><td>0</td><td>1100</td></tr>
-                        <tr class="grade-row-f"><td>TOT</td><td>109</td><td>357</td><td>255</td><td>76</td><td>333</td><td>59</td><td>74</td><td>58</td><td>439</td><td>375</td><td>58</td><td>0</td><td>2291</td></tr>
-                        <tr class="total-row"><td colspan="2">TOTAL STUDENTS SAT</td><td>474</td><td>459</td><td>467</td><td>470</td><td>456</td><td>110</td><td>113</td><td>111</td><td>460</td><td>201</td><td>201</td><td>0</td><td>—</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="note-text">
-                ℹ️ <strong>Note:</strong> Bible Knowledge was not offered in 2026. Business Studies and Elimu ya Dini ya Kiislam were taken by a subset of students.
+            
+            <!-- ADMIN PANEL TAB -->
+            <div class="tab-pane fade" id="admin" role="tabpanel">
+                <!-- Admin Locked View -->
+                <div id="adminLocked" class="text-center py-5">
+                    <i class="fas fa-lock fa-3x text-muted mb-3"></i>
+                    <h5>Admin Panel Locked</h5>
+                    <p>Enter password to access the admin panel</p>
+                    <input type="password" id="adminPassword" class="form-control w-50 mx-auto mb-3" placeholder="Enter password" style="max-width: 300px;">
+                    <button class="btn btn-success" onclick="verifyAdminPassword()">Unlock</button>
+                </div>
+                
+                <!-- Admin Content -->
+                <div id="adminContent" style="display: none;">
+                    <div class="admin-section">
+                        <h4><i class="fas fa-upload me-2"></i> Import Students from CSV</h4>
+                        <p>Upload your CSV file with student results. The system will use your data exactly as provided.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-download me-2"></i> <strong>Download Template</strong>
+                                </div>
+                                <button class="btn btn-primary mb-3" onclick="downloadTemplate()">
+                                    <i class="fas fa-download me-2"></i> Download CSV Template
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="alert alert-success">
+                                    <i class="fas fa-upload me-2"></i> <strong>Upload Your CSV</strong>
+                                </div>
+                                <input type="file" id="csvFileInput" class="form-control mb-3" accept=".csv">
+                                <button class="btn btn-success w-100" onclick="uploadCSV()">
+                                    <i class="fas fa-upload me-2"></i> Upload and Import
+                                </button>
+                                <div id="uploadProgress" class="mt-2" style="display: none;">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 100%">Processing...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <hr class="my-4">
+                        
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h5><i class="fas fa-users me-2"></i> Students in Database (<span id="studentCount">0</span>)</h5>
+                            <button class="btn btn-sm btn-danger" onclick="clearAllData()">
+                                <i class="fas fa-trash me-1"></i> Clear All Data
+                            </button>
+                        </div>
+                        
+                        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                            <table class="table table-hover table-sm">
+                                <thead class="table-light">
+                                    <tr><th>ID</th><th>Name</th><th>Candidate</th><th>Phone</th><th>Parent</th><th>Points</th><th>Division</th><th>Action</th></tr>
+                                </thead>
+                                <tbody id="studentsTable"></tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="csv-template mt-3">
+                            <strong>✅ Your CSV format is supported!</strong><br>
+                            The system reads: name, candidateNo, form, sex, parentPhone, parentName, totalPoints, division,<br>
+                            then 12 subject grades (HistoriaTZ to ElimuDini), then 12 subject points.
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-(function() {
-    // Complete student data (all students)
-    const allStudents = [
-        [1,"ABELINA JOHN JOSEPH","F","C","C","C","D","D","","","","F","F","","","29","IV"],
-        [2,"ABIGAEL GERVAS NGASIKWA","F","F","F","F","C","F","","","","F","","","","","INC."],
-        [3,"ABIGAELL EMMANUEL SILLA","F","B","F","D","C","F","","","","F","F","","","29","IV"],
-        [4,"ABIGAIL AUGUSTINO MTENGA","F","C","C","C","B","C","C","F","C","C","D","","","20","II"],
-        [5,"AISHA ABDALLAH KILEO","F","B","F","F","C","F","","","","F","F","C","","28","IV"],
-        [6,"AISHA ABUBAKARI RAMADHANI","F","B","D","F","C","D","","","","F","F","D","","27","IV"],
-        [7,"AISHA ADAM RASHID","F","A","F","F","C","F","","","","F","F","D","","28","IV"],
-        [8,"AISHA FARAHANI ABAS","F","A","D","C","C","C","","","","F","D","C","","21","II"],
-        [9,"AISHA HABIBU ABDALLAH","F","F","F","F","D","F","","","","F","F","D","","33","IV"],
-        [10,"AISHA SALUMU RASHIDI","F","A","F","F","D","F","","","","F","F","D","","29","IV"],
-        [11,"ALICE ALEX SHAYO","F","B","D","A","A","C","","","","F","D","","","19","II"],
-        [12,"AMINA ANTHONY MANGERA","F","C","F","D","C","F","","","","F","F","","","30","IV"],
-        [13,"AMINA BAKARI MOHAMED","F","D","F","F","D","F","F","F","F","F","F","D","","32","IV"],
-        [14,"AMINA HUSSEIN IDD","F","B","F","D","D","F","","","","F","F","D","","29","IV"],
-        [15,"AMINA JUMANNE MSIGALA","F","C","F","F","C","F","","","","F","F","F","","31","IV"],
-        [16,"AMINA MOHAMED ABEDI","F","A","B","A","B","D","D","D","C","D","D","D","","17","I"],
-        [17,"AMINA MOHAMED MRISHO","F","B","F","F","C","F","F","F","F","F","F","F","","30","IV"],
-        [18,"AMINA RASHIDI HAMIS","F","B","F","D","C","F","","","","F","F","D","","28","IV"],
-        [19,"AMINA SAID NYOKA","F","F","","","D","","","","","","","","","","INC."],
-        [20,"AMINA SALUM MKANZA","F","C","F","F","D","F","","","","F","F","F","","32","IV"],
-        // Top performers
-        [312,"DERICK BARAKA KWAY","M","A","A","A","A","A","B","B","B","B","A","","","8","I"],
-        [309,"DAVIS PHILIP MANOTA","M","B","A","A","A","A","C","C","A","C","C","","","10","I"],
-        [253,"YUSRA KUBO MTOA","F","B","A","A","B","C","B","D","A","B","D","C","","11","I"],
-        [133,"MARIADEBORAH WILLIAM SODOKA","F","A","A","A","C","D","C","A","B","C","C","","","12","I"],
-        [37,"CHRISTABELLA DAVID MUSHI","F","A","B","A","C","B","C","D","C","D","B","","","14","I"],
-        [143,"MICHELLE DAVID TEMBA","F","A","C","A","A","B","D","C","C","F","C","","","14","I"],
-        [280,"ALVIN HASSAN SHEHE","M","A","C","A","B","C","C","B","F","F","C","B","","14","I"],
-        [204,"SAKINA ASIAGI HUSSEIN","F","A","B","A","B","D","C","C","C","D","D","C","","15","I"],
-        [96,"JUDITH JAMES MAGAGA","F","A","D","A","B","F","D","D","C","F","F","","","19","II"],
-        [164,"NASRA OMARY SADICK","F","B","B","A","B","C","","","","F","D","","","19","II"]
-    ];
-
-    const tbody = document.getElementById('tableBody');
-    const searchInput = document.getElementById('studentSearch');
-    const clearBtn = document.getElementById('clearSearch');
-    const resultSpan = document.getElementById('resultCount');
-
-    function renderRows(filter = '') {
-        const term = filter.trim().toLowerCase();
-        let visible = 0;
-        let html = '';
+    // ============================================================
+    // ADMIN PASSWORD
+    // ============================================================
+    const ADMIN_PASSWORD = "admin123";
+    let adminAccessGranted = false;
+    
+    function verifyAdminPassword() {
+        const passwordInput = document.getElementById('adminPassword');
+        const password = passwordInput.value;
         
-        // Show ALL students when no search
-        for (let s of allStudents) {
-            const num = s[0].toString();
-            const name = s[1].toLowerCase();
-            if (term && !num.includes(term) && !name.includes(term)) continue;
-            visible++;
-            
-            html += '<tr>';
-            for (let i = 0; i < s.length; i++) {
-                let cell = s[i] === '' ? '—' : s[i];
-                let cls = '';
-                if (i === 1) cls = 'cand-name-cell';
-                else if (i >= 3 && i <= 13) {
-                    if (cell === 'A') cls = 'grade-a';
-                    else if (cell === 'B') cls = 'grade-b';
-                    else if (cell === 'C') cls = 'grade-c';
-                    else if (cell === 'D') cls = 'grade-d';
-                    else if (cell === 'F') cls = 'grade-f';
-                } else if (i === 14) cls = 'points-cell';
-                else if (i === 15) cls = 'division-cell';
-                html += `<td class="${cls}">${cell}</td>`;
-            }
-            html += '</tr>';
-        }
-        
-        if (visible === 0 && term !== '') {
-            html = '<tr><td colspan="17" style="text-align: center; padding: 40px;"><span style="font-size: 2rem;">🔍</span><br><br><strong>No results found for "' + term + '"</strong><br><br>Please check the spelling or try searching by candidate number.<br><br>💡 Tip: Use full name like "JOHN MICHAEL" or candidate number like "312"</td></tr>';
-        }
-        
-        tbody.innerHTML = html;
-        
-        if (term === '') {
-            resultSpan.innerText = `📋 All ${allStudents.length} students loaded`;
+        if (password === ADMIN_PASSWORD) {
+            adminAccessGranted = true;
+            document.getElementById('adminLocked').style.display = 'none';
+            document.getElementById('adminContent').style.display = 'block';
+            renderAdminTable();
+            passwordInput.value = '';
         } else {
-            resultSpan.innerText = `🔍 Found ${visible} result(s) for "${term}"`;
+            alert('Incorrect password!');
+            passwordInput.value = '';
+            passwordInput.focus();
         }
     }
-
-    renderRows('');
     
-    searchInput.addEventListener('input', (e) => renderRows(e.target.value));
-    clearBtn.addEventListener('click', () => { 
-        searchInput.value = ''; 
-        renderRows(''); 
-        searchInput.focus();
+    // ============================================================
+    // SUBJECTS
+    // ============================================================
+    const allSubjects = [
+        "History of Tanzania & Civics", "History", "Geography", "Kiswahili", "English Language",
+        "Physics", "Chemistry", "Biology", "Mathematics", "Business Studies", "Book Keeping", "Islamic Religious Education"
+    ];
+    
+    const subjectCodes = [
+        "HistoriaTZ", "History", "Geography", "Kiswahili", "English", 
+        "Physics", "Chemistry", "Biology", "Mathematics", "BusinessStudies", "BookKeeping", "ElimuDini"
+    ];
+    
+    // ============================================================
+    // DATA STORAGE
+    // ============================================================
+    function loadData() {
+        const data = localStorage.getItem('tgvts_students');
+        return data ? JSON.parse(data) : [];
+    }
+    
+    function saveData(students) {
+        localStorage.setItem('tgvts_students', JSON.stringify(students));
+        if (adminAccessGranted) renderAdminTable();
+        document.getElementById('studentCount').innerText = students.length;
+    }
+    
+    function renderAdminTable() {
+        const students = loadData();
+        const tbody = document.getElementById('studentsTable');
+        if (students.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No data. Upload CSV to add students.</td></tr>';
+            return;
+        }
+        let html = '';
+        students.forEach(s => {
+            let divisionClass = '';
+            if (s.division === 'I') divisionClass = 'bg-success';
+            else if (s.division === 'II') divisionClass = 'bg-primary';
+            else if (s.division === 'III') divisionClass = 'bg-warning';
+            else if (s.division === 'IV') divisionClass = 'bg-info';
+            else divisionClass = 'bg-secondary';
+            
+            html += '<tr>' +
+                '<td>' + s.id + '</td>' +
+                '<td><strong>' + (s.name || '-') + '</strong></td>' +
+                '<td>' + (s.candidate || '-') + '</td>' +
+                '<td><code>' + s.phone + '</code></td>' +
+                '<td>' + (s.parent || '-') + '</td>' +
+                '<td>' + s.totalPoints + '</td>' +
+                '<td><span class="badge ' + divisionClass + '">' + s.division + '</span></td>' +
+                '<td><button class="btn btn-sm btn-danger" onclick="deleteStudent(' + s.id + ')"><i class="fas fa-trash"></i></button></td>' +
+                '</tr>';
+        });
+        tbody.innerHTML = html;
+    }
+    
+    function deleteStudent(id) {
+        if (confirm('Delete this student record?')) {
+            let students = loadData();
+            students = students.filter(s => s.id !== id);
+            saveData(students);
+            showMessage('Student deleted successfully');
+        }
+    }
+    
+    function clearAllData() {
+        if (confirm('WARNING: This will delete ALL student data! Are you sure?')) {
+            localStorage.removeItem('tgvts_students');
+            renderAdminTable();
+            document.getElementById('studentCount').innerText = '0';
+            showMessage('All data cleared successfully');
+        }
+    }
+    
+    function showMessage(msg, isError = false) {
+        const errorDiv = document.getElementById('loginError');
+        errorDiv.innerHTML = msg;
+        errorDiv.className = isError ? 'alert alert-danger' : 'alert alert-success';
+        errorDiv.style.display = 'block';
+        setTimeout(() => { errorDiv.style.display = 'none'; }, 3000);
+    }
+    
+    // ============================================================
+    // CSV TEMPLATE DOWNLOAD
+    // ============================================================
+    function downloadTemplate() {
+        const headers = ['name', 'candidateNo', 'form', 'sex', 'parentPhone', 'parentName', 'totalPoints', 'division',
+            'HistoriaTZ', 'History', 'Geography', 'Kiswahili', 'English', 'Physics', 'Chemistry', 'Biology', 
+            'Mathematics', 'BusinessStudies', 'BookKeeping', 'ElimuDini',
+            'HistoriaTZPoints', 'HistoryPoints', 'GeographyPoints', 'KiswahiliPoints', 'EnglishPoints', 
+            'PhysicsPoints', 'ChemistryPoints', 'BiologyPoints', 'MathematicsPoints', 'BusinessStudiesPoints', 
+            'BookKeepingPoints', 'ElimuDiniPoints'];
+        
+        const sampleGrades = ['C','C','C','D','D','-','-','-','F','F','-','-'];
+        const samplePoints = ['5','5','5','4','4','0','0','0','2','2','0','0'];
+        const sampleRow = ['ABELINA JOHN JOSEPH', '001', 'Form One', 'F', '717874348', 'John Joseph', '0', 'ABS',
+            ...sampleGrades, ...samplePoints];
+        
+        const csvContent = [headers.join(','), sampleRow.join(',')].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'student_results_template.csv';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showMessage('Template downloaded successfully');
+    }
+    
+    // ============================================================
+    // CSV UPLOAD & PARSE
+    // ============================================================
+    function uploadCSV() {
+        const fileInput = document.getElementById('csvFileInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            showMessage('Please select a CSV file first', true);
+            return;
+        }
+        
+        const progressDiv = document.getElementById('uploadProgress');
+        progressDiv.style.display = 'block';
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            try {
+                const csvText = event.target.result;
+                const newStudents = parseCSV(csvText);
+                
+                if (newStudents.length === 0) {
+                    showMessage('No valid data found in CSV', true);
+                    progressDiv.style.display = 'none';
+                    return;
+                }
+                
+                let existingStudents = loadData();
+                let nextId = existingStudents.length > 0 ? Math.max(...existingStudents.map(s => s.id)) + 1 : 1;
+                
+                newStudents.forEach(s => {
+                    s.id = nextId++;
+                    existingStudents.push(s);
+                });
+                
+                saveData(existingStudents);
+                showMessage('✅ Successfully imported ' + newStudents.length + ' students!');
+                fileInput.value = '';
+                progressDiv.style.display = 'none';
+                renderAdminTable();
+            } catch (error) {
+                showMessage('Error: ' + error.message, true);
+                progressDiv.style.display = 'none';
+            }
+        };
+        reader.onerror = function() {
+            showMessage('Error reading file', true);
+            progressDiv.style.display = 'none';
+        };
+        reader.readAsText(file, 'UTF-8');
+    }
+    
+    function parseCSV(csvText) {
+        const lines = csvText.split('\n').filter(line => line.trim());
+        if (lines.length < 2) throw new Error('CSV file has no data rows');
+        
+        let firstLine = lines[0];
+        if (firstLine.charCodeAt(0) === 0xFEFF) firstLine = firstLine.substring(1);
+        const headers = firstLine.split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+        
+        const students = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue;
+            
+            const values = lines[i].split(',').map(v => v.trim().replace(/^"|"$/g, ''));
+            
+            const getValue = (header) => {
+                const idx = headers.indexOf(header);
+                return idx !== -1 && values[idx] ? values[idx] : '';
+            };
+            
+            const name = getValue('name');
+            const phone = getValue('parentPhone').replace(/[^0-9]/g, '');
+            
+            if (!name || !phone) continue;
+            
+            const totalPoints = parseInt(getValue('totalPoints')) || 0;
+            const division = getValue('division') || '';
+            
+            const grades = [];
+            const points = [];
+            
+            for (let j = 0; j < subjectCodes.length; j++) {
+                const grade = getValue(subjectCodes[j]) || '-';
+                const point = parseInt(getValue(subjectCodes[j] + 'Points')) || 0;
+                grades.push(grade);
+                points.push(point);
+            }
+            
+            students.push({
+                id: 0,
+                name: name,
+                candidate: getValue('candidateNo'),
+                form: getValue('form') || 'Form One',
+                sex: getValue('sex') || 'F',
+                phone: phone,
+                parent: getValue('parentName'),
+                grades: grades,
+                points: points,
+                totalPoints: totalPoints,
+                division: division
+            });
+        }
+        
+        return students;
+    }
+    
+    // ============================================================
+    // PARENT PORTAL
+    // ============================================================
+    function verifyPhone() {
+        const phoneInput = document.getElementById('phoneNumber').value.trim();
+        const errorDiv = document.getElementById('loginError');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const verifyBtn = document.getElementById('verifyBtn');
+        
+        errorDiv.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        
+        if (!phoneInput) {
+            errorDiv.innerHTML = 'Please enter your phone number';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        let cleanedPhone = phoneInput.replace(/[^0-9]/g, '');
+        if (cleanedPhone.length < 9) {
+            errorDiv.innerHTML = 'Please enter a valid phone number (at least 9 digits)';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        verifyBtn.disabled = true;
+        verifyBtn.innerHTML = '<span class="loading-spinner"></span> Searching...';
+        
+        setTimeout(() => {
+            const students = loadData();
+            let foundStudent = null;
+            
+            for (let i = 0; i < students.length; i++) {
+                if (students[i].phone === cleanedPhone) {
+                    foundStudent = students[i];
+                    break;
+                }
+            }
+            
+            if (foundStudent) {
+                displayResults(foundStudent);
+                errorDiv.style.display = 'none';
+            } else {
+                errorDiv.innerHTML = 'Phone number not found in our records. Please contact the school.';
+                errorDiv.style.display = 'block';
+            }
+            
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = '<i class="fas fa-search me-2"></i> View Results';
+        }, 500);
+    }
+    
+    function displayResults(student) {
+        const resultsContainer = document.getElementById('resultsContainer');
+        
+        let subjectsHtml = '';
+        for (let i = 0; i < allSubjects.length; i++) {
+            const grade = student.grades[i] || '-';
+            const points = student.points[i] || 0;
+            let gradeClass = '';
+            if (grade === 'A') gradeClass = 'grade-a';
+            else if (grade === 'B') gradeClass = 'grade-b';
+            else if (grade === 'C') gradeClass = 'grade-c';
+            else if (grade === 'D') gradeClass = 'grade-d';
+            else if (grade === 'F') gradeClass = 'grade-f';
+            
+            subjectsHtml += '<tr>' +
+                '<td>' + allSubjects[i] + '</td>' +
+                '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>' +
+                '<td class="text-center">' + points + '</td>' +
+                '</tr>';
+        }
+        
+        let divisionClass = '';
+        if (student.division === 'I') divisionClass = 'division-i';
+        else if (student.division === 'II') divisionClass = 'division-ii';
+        else if (student.division === 'III') divisionClass = 'division-iii';
+        else if (student.division === 'IV') divisionClass = 'division-iv';
+        
+        let divisionText = '';
+        if (student.division === 'I') divisionText = '🏆 Division I (Excellent)';
+        else if (student.division === 'II') divisionText = '🥈 Division II (Very Good)';
+        else if (student.division === 'III') divisionText = '🥉 Division III (Good)';
+        else if (student.division === 'IV') divisionText = '📘 Division IV (Satisfactory)';
+        else if (student.division === '0') divisionText = '⭕ Division 0 (Needs Improvement)';
+        else if (student.division === 'ABS') divisionText = '🚫 Absent';
+        else divisionText = '⚠️ Incomplete';
+        
+        const html = '<div class="result-card">' +
+            '<div class="student-name"><i class="fas fa-user-graduate me-2"></i> ' + student.name + '</div>' +
+            '<div class="student-detail">' +
+            '<i class="fas fa-id-card me-1"></i> Candidate: ' + (student.candidate || '-') + ' | ' +
+            '<i class="fas fa-graduation-cap me-1"></i> ' + student.form + ' | ' +
+            '<i class="fas fa-venus-mars me-1"></i> ' + (student.sex === 'M' ? 'Male' : 'Female') +
+            '</div>' +
+            '<div class="student-detail"><i class="fas fa-user me-1"></i> Parent/Guardian: ' + student.parent + '</div>' +
+            '<div style="background:#eef2ff;padding:12px;border-radius:16px;margin:12px 0;">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">' +
+            '<div><span style="font-size:0.7rem;color:#475569;">TOTAL POINTS</span><div style="font-size:1.8rem;font-weight:800;color:#075147;">' + student.totalPoints + '</div></div>' +
+            '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
+            '</div></div>' +
+            '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
+            '<div class="table-responsive"><table class="subject-table"><thead><tr><th>Subject</th><th style="width:70px;">Grade</th><th style="width:60px;">Points</th></tr></thead><tbody>' +
+            subjectsHtml +
+            '</tbody></table></div></div>' +
+            '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
+            '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
+            '</div>';
+        
+        resultsContainer.innerHTML = html;
+    }
+    
+    // Enter key support
+    document.getElementById('phoneNumber').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') verifyPhone();
     });
-})();
+    
+    // Initialize
+    renderAdminTable();
 </script>
 </body>
 </html>
