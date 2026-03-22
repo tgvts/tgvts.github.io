@@ -1,32 +1,387 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Student Result | Temboni GVTS</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Parent Portal | Temboni Government Secondary School</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .portal-card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        .portal-header {
+            background: linear-gradient(135deg, #075147, #0a5f53);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .school-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #ffd966;
+            margin-bottom: 15px;
+        }
+        .portal-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; }
+        .portal-header p { font-size: 0.85rem; opacity: 0.9; }
+        .portal-body { padding: 30px; }
+        .phone-input-wrapper {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            border-radius: 60px;
+            border: 2px solid #e2e8f0;
+            padding: 4px 6px 4px 20px;
+            transition: all 0.3s;
+        }
+        .phone-input-wrapper:focus-within {
+            border-color: #075147;
+            box-shadow: 0 0 0 3px rgba(7,81,71,0.1);
+        }
+        .country-code { font-weight: 600; color: #075147; background: #e6f4f0; padding: 8px 12px; border-radius: 40px; font-size: 0.9rem; }
+        .form-control { border: none; background: transparent; padding: 12px 12px; width: 100%; font-size: 1rem; outline: none; }
+        .btn-verify {
+            background: linear-gradient(135deg, #075147, #0a5f53);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .btn-verify:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(7,81,71,0.3); }
+        .btn-secondary-custom { background: #e2e8f0; color: #334155; border: none; padding: 10px; border-radius: 40px; width: 100%; cursor: pointer; }
+        .alert { border-radius: 20px; padding: 12px 20px; margin-bottom: 20px; }
+        .result-card { background: #f8fafc; border-radius: 24px; padding: 20px; border: 1px solid #e2e8f0; margin-top: 20px; }
+        .student-name { font-size: 1.3rem; font-weight: 700; color: #075147; margin-bottom: 5px; }
+        .student-detail { color: #475569; font-size: 0.85rem; margin-bottom: 15px; }
+        .subject-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .subject-table th { background: #e2e8f0; padding: 10px 8px; text-align: left; font-size: 0.7rem; font-weight: 700; }
+        .subject-table td { padding: 8px 6px; border-bottom: 1px solid #e2e8f0; font-size: 0.7rem; }
+        .grade-a { color: #166534; font-weight: 700; background: #e8f5e9; }
+        .grade-b { color: #1e40af; font-weight: 600; background: #e3f2fd; }
+        .grade-c { color: #854d0e; background: #fff8e1; }
+        .grade-d { color: #9a3412; background: #fff3e0; }
+        .grade-f { color: #991b1b; font-weight: 600; background: #ffebee; }
+        .points-badge { background: #075147; color: white; padding: 6px 12px; border-radius: 40px; display: inline-block; font-weight: 600; margin-top: 10px; font-size: 0.75rem; }
+        .division-i { background: #166534; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-ii { background: #1e40af; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-iii { background: #854d0e; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .division-iv { background: #9a3412; color: white; padding: 3px 10px; border-radius: 20px; display: inline-block; font-size: 0.65rem; }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @media print {
+            body { background: white; padding: 0; margin: 0; }
+            .no-print { display: none !important; }
+            .portal-card { box-shadow: none; border: none; }
+            .result-card { padding: 10px; }
+            @page { size: A4; margin: 0.5cm; }
+        }
+        @media (max-width: 768px) { .portal-body { padding: 20px; } }
+    </style>
 </head>
 <body>
-<div class="container mt-4">
-  <h2 class="text-center mb-4">Student Result Portal</h2>
 
-  <div class="mb-3">
-    <label for="parentPhone" class="form-label">Enter Parent Phone Number:</label>
-    <input type="text" id="parentPhone" class="form-control" placeholder="e.g., 0712345678">
-  </div>
-
-  <!-- Button must have correct ID -->
-  <button id="viewResult" class="btn btn-primary mb-4">View Result</button>
-
-  <!-- Container where result will be displayed -->
-  <div id="resultContainer" class="mt-4"></div>
-
-  <div class="mt-4">
-    <a href="index.html" class="btn btn-secondary">Back to Home</a>
-  </div>
+<div class="portal-card">
+    <div class="portal-header">
+        <img src="photos/nembo8.png" alt="School Logo" class="school-logo" onerror="this.src='https://placehold.co/80x80/075147/white?text=TGVTS'">
+        <h2><i class="fas fa-school me-2"></i> Temboni Government Secondary School</h2>
+        <p>Parent Portal - Examination Results 2026</p>
+    </div>
+    
+    <div class="portal-body">
+        <div id="parentView">
+            <div id="loginError" class="alert alert-danger" style="display: none;"></div>
+            
+            <div class="form-group">
+                <label class="form-label fw-bold">📱 Phone Number</label>
+                <div class="phone-input-wrapper">
+                    <span class="country-code">+255</span>
+                    <input type="tel" id="phoneNumber" class="form-control" placeholder="e.g., 752636637" autocomplete="off">
+                </div>
+                <small class="text-muted">Enter the 9-digit phone number you registered with the school</small>
+            </div>
+            
+            <button id="viewResultBtn" class="btn-verify" onclick="verifyPhone()">
+                <i class="fas fa-search me-2"></i> View Results
+            </button>
+            
+            <div id="resultsContainer" style="margin-top: 20px;"></div>
+            
+            <div class="text-center mt-3 no-print">
+                <small class="text-muted"><i class="fas fa-info-circle me-1"></i> Need help? Contact school office: +255 22 123 4567</small>
+            </div>
+        </div>
+    </div>
 </div>
 
-<!-- Make sure script.js is loaded at the end of body -->
-<script src="script.js"></script>
+<script>
+    // ============================================================
+    // YOUR COMPLETE STUDENT DATA - ADD ALL YOUR STUDENTS HERE
+    // ============================================================
+    const studentsData = [
+        // STUDENT 1
+        {
+            id: 1,
+            name: "ABELINA JOHN JOSEPH",
+            candidate: "001",
+            form: "Form One",
+            sex: "F",
+            phone: "717874348",
+            parent: "John Joseph",
+            grades: ["C","C","C","D","D","-","-","-","F","F","-","-"],
+            points: [5,5,5,4,4,0,0,0,2,2,0,0],
+            totalPoints: 0,
+            division: "ABS"
+        },
+        // STUDENT 2
+        {
+            id: 2,
+            name: "DERICK BARAKA KWAY",
+            candidate: "312",
+            form: "Form One",
+            sex: "M",
+            phone: "752636637",
+            parent: "Baraka Kway",
+            grades: ["A","A","A","A","A","B","B","B","B","A","A","A"],
+            points: [10,10,10,10,10,8,8,8,8,10,10,10],
+            totalPoints: 118,
+            division: "I"
+        },
+        // STUDENT 3
+        {
+            id: 3,
+            name: "DAVIS PHILIP MANOTA",
+            candidate: "309",
+            form: "Form One",
+            sex: "M",
+            phone: "712743881",
+            parent: "Philip Manota",
+            grades: ["B","A","A","A","A","C","C","A","C","C","C","C"],
+            points: [8,10,10,10,10,5,5,10,5,5,5,5],
+            totalPoints: 108,
+            division: "I"
+        },
+        // STUDENT 4
+        {
+            id: 4,
+            name: "MICHELLE DAVID TEMBA",
+            candidate: "143",
+            form: "Form One",
+            sex: "F",
+            phone: "655509122",
+            parent: "David Temba",
+            grades: ["A","C","A","A","B","D","C","C","F","C","-","-"],
+            points: [10,5,10,10,8,4,5,5,2,5,0,0],
+            totalPoints: 86,
+            division: "I"
+        },
+        // STUDENT 5
+        {
+            id: 5,
+            name: "CHRISTABELLA DAVID MUSHI",
+            candidate: "037",
+            form: "Form One",
+            sex: "F",
+            phone: "750855927",
+            parent: "David Mushi",
+            grades: ["A","B","A","C","B","C","D","C","D","B","-","-"],
+            points: [10,8,10,5,8,5,4,5,4,8,0,0],
+            totalPoints: 88,
+            division: "I"
+        },
+        // STUDENT 6
+        {
+            id: 6,
+            name: "YUSRA KUBO MTOA",
+            candidate: "253",
+            form: "Form One",
+            sex: "F",
+            phone: "755731133",
+            parent: "Kubo Mtoa",
+            grades: ["B","A","A","B","C","B","D","A","B","D","C","C"],
+            points: [8,10,10,8,5,8,4,10,8,4,5,5],
+            totalPoints: 98,
+            division: "I"
+        }
+    ];
+    
+    const allSubjects = [
+        "History of Tanzania & Civics", "History", "Geography", "Kiswahili", "English Language",
+        "Physics", "Chemistry", "Biology", "Mathematics", "Business Studies", "Book Keeping", "Islamic Religious Education"
+    ];
+    
+    function getGradeClass(grade) {
+        if (grade === 'A') return 'grade-a';
+        if (grade === 'B') return 'grade-b';
+        if (grade === 'C') return 'grade-c';
+        if (grade === 'D') return 'grade-d';
+        if (grade === 'F') return 'grade-f';
+        return '';
+    }
+    
+    function getDivisionClass(division) {
+        if (division === 'I') return 'division-i';
+        if (division === 'II') return 'division-ii';
+        if (division === 'III') return 'division-iii';
+        if (division === 'IV') return 'division-iv';
+        return '';
+    }
+    
+    function verifyPhone() {
+        // Get the phone number from input
+        const phoneInput = document.getElementById('phoneNumber');
+        const errorDiv = document.getElementById('loginError');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const verifyBtn = document.getElementById('viewResultBtn');
+        
+        // Clear previous results
+        errorDiv.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        
+        // Get the phone number value
+        let phone = phoneInput.value.trim();
+        
+        // Check if phone is empty
+        if (phone === '') {
+            errorDiv.innerHTML = 'Please enter your phone number';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        // Clean phone number (remove non-digits)
+        let cleanedPhone = phone.replace(/[^0-9]/g, '');
+        
+        // Check if phone has at least 9 digits
+        if (cleanedPhone.length < 9) {
+            errorDiv.innerHTML = 'Please enter a valid phone number (at least 9 digits)';
+            errorDiv.style.display = 'block';
+            return;
+        }
+        
+        // Show loading
+        verifyBtn.disabled = true;
+        verifyBtn.innerHTML = '<span class="loading-spinner"></span> Searching...';
+        
+        // Search for student (simulate delay for better UX)
+        setTimeout(() => {
+            let foundStudent = null;
+            
+            // Search through all students
+            for (let i = 0; i < studentsData.length; i++) {
+                if (studentsData[i].phone === cleanedPhone) {
+                    foundStudent = studentsData[i];
+                    break;
+                }
+            }
+            
+            if (foundStudent) {
+                // Display results
+                displayResults(foundStudent);
+                errorDiv.style.display = 'none';
+            } else {
+                // Show error with available numbers
+                let availableNumbers = '';
+                for (let i = 0; i < studentsData.length; i++) {
+                    availableNumbers += studentsData[i].phone + ' - ' + studentsData[i].name + '<br>';
+                }
+                errorDiv.innerHTML = 'Phone number "' + phone + '" not found.<br><br><strong>Available numbers in system:</strong><br>' + availableNumbers;
+                errorDiv.style.display = 'block';
+            }
+            
+            // Reset button
+            verifyBtn.disabled = false;
+            verifyBtn.innerHTML = '<i class="fas fa-search me-2"></i> View Results';
+        }, 500);
+    }
+    
+    function displayResults(student) {
+        const resultsContainer = document.getElementById('resultsContainer');
+        
+        // Build subjects table
+        let subjectsHtml = '';
+        for (let i = 0; i < allSubjects.length; i++) {
+            const grade = student.grades[i] || '-';
+            const points = student.points[i] || 0;
+            let gradeClass = getGradeClass(grade);
+            
+            subjectsHtml += '<tr>' +
+                '<td>' + allSubjects[i] + '</td>' +
+                '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>' +
+                '<td class="text-center">' + points + '</td>' +
+                '</tr>';
+        }
+        
+        // Division display text
+        let divisionClass = getDivisionClass(student.division);
+        let divisionText = '';
+        if (student.division === 'I') divisionText = '🏆 Division I (Excellent)';
+        else if (student.division === 'II') divisionText = '🥈 Division II (Very Good)';
+        else if (student.division === 'III') divisionText = '🥉 Division III (Good)';
+        else if (student.division === 'IV') divisionText = '📘 Division IV (Satisfactory)';
+        else if (student.division === '0') divisionText = '⭕ Division 0 (Needs Improvement)';
+        else if (student.division === 'ABS') divisionText = '🚫 Absent';
+        else divisionText = '⚠️ Incomplete';
+        
+        const html = '<div class="result-card">' +
+            '<div class="student-name"><i class="fas fa-user-graduate me-2"></i> ' + student.name + '</div>' +
+            '<div class="student-detail">' +
+            '<i class="fas fa-id-card me-1"></i> Candidate: ' + (student.candidate || '-') + ' | ' +
+            '<i class="fas fa-graduation-cap me-1"></i> ' + student.form + ' | ' +
+            '<i class="fas fa-venus-mars me-1"></i> ' + (student.sex === 'M' ? 'Male' : 'Female') +
+            '</div>' +
+            '<div class="student-detail"><i class="fas fa-user me-1"></i> Parent/Guardian: ' + student.parent + '</div>' +
+            '<div style="background:#eef2ff;padding:12px;border-radius:16px;margin:12px 0;">' +
+            '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;">' +
+            '<div><span style="font-size:0.7rem;color:#475569;">TOTAL POINTS</span><div style="font-size:1.8rem;font-weight:800;color:#075147;">' + student.totalPoints + '</div></div>' +
+            '<div><span style="font-size:0.7rem;color:#475569;">DIVISION</span><div><span class="' + divisionClass + '">' + student.division + '</span></div><div style="font-size:0.65rem;">' + divisionText + '</div></div>' +
+            '</div></div>' +
+            '<div><h6 style="font-weight:700;margin-bottom:10px;"><i class="fas fa-book-open me-2"></i> Subject Performance</h6>' +
+            '<div class="table-responsive"><table class="subject-table"><thead><tr><th>Subject</th><th style="width:70px;">Grade</th><th style="width:60px;">Points</th></tr></thead><tbody>' +
+            subjectsHtml +
+            '</tbody></table></div></div>' +
+            '<div class="points-badge"><i class="fas fa-chart-simple me-1"></i> Total Points: ' + student.totalPoints + ' | Division: ' + student.division + '</div>' +
+            '<div class="text-center mt-3 no-print"><button class="btn-secondary-custom" onclick="window.print()"><i class="fas fa-print me-2"></i> Print Results</button></div>' +
+            '</div>';
+        
+        resultsContainer.innerHTML = html;
+    }
+    
+    // Add Enter key support
+    document.getElementById('phoneNumber').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            verifyPhone();
+        }
+    });
+    
+    // Make verifyPhone available globally
+    window.verifyPhone = verifyPhone;
+</script>
 </body>
 </html>
