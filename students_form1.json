@@ -24,18 +24,5 @@
     "points": [10,10,10,10,10,8,8,8,8,10,10,10],
     "totalPoints": 118,
     "division": "I"
-  },
-  {
-    "id": 3,
-    "name": "DAVIS PHILIP MANOTA",
-    "candidate": "309",
-    "form": "Form One",
-    "sex": "M",
-    "phone": "712743881",
-    "parent": "Philip Manota",
-    "grades": ["B","A","A","A","A","C","C","A","C","C","C","C"],
-    "points": [8,10,10,10,10,5,5,10,5,5,5,5],
-    "totalPoints": 108,
-    "division": "I"
   }
 ]

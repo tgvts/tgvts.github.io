@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; padding: 20px; font-family: Arial, sans-serif; }
-        .card { max-width: 800px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; }
+        .card { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; }
         .header { background: #075147; color: white; padding: 25px; text-align: center; }
         .logo { width: 70px; height: 70px; border-radius: 50%; border: 3px solid #ffd966; margin-bottom: 10px; }
         .body { padding: 25px; }
@@ -18,8 +18,8 @@
         .result { background: #f8fafc; border-radius: 15px; padding: 20px; margin-top: 20px; border: 1px solid #ddd; }
         .student-name { font-size: 20px; font-weight: bold; color: #075147; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: #e2e8f0; padding: 8px; text-align: left; }
-        td { padding: 6px; border-bottom: 1px solid #ddd; }
+        th { background: #e2e8f0; padding: 10px; text-align: left; position: sticky; top: 0; }
+        td { padding: 8px; border-bottom: 1px solid #ddd; }
         .grade-A { background: #dcfce7; color: #166534; font-weight: bold; }
         .grade-B { background: #dbeafe; color: #1e40af; font-weight: bold; }
         .grade-C { background: #fef9c3; color: #854d0e; }
@@ -28,8 +28,11 @@
         .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; color: white; font-size: 12px; }
         .badge-I { background: #166534; }
         .badge-II { background: #1e40af; }
+        .badge-III { background: #854d0e; }
+        .badge-IV { background: #9a3412; }
         .alert { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 12px; margin-bottom: 15px; }
-        @media (max-width: 600px) { .body { padding: 15px; } table { font-size: 11px; } }
+        .table-wrapper { overflow-x: auto; max-height: 500px; overflow-y: auto; }
+        @media (max-width: 600px) { .body { padding: 15px; } table { font-size: 11px; } th, td { padding: 4px; } }
     </style>
 </head>
 <body>
@@ -38,7 +41,7 @@
     <div class="header">
         <img src="photos/nembo8.png" class="logo" onerror="this.src='https://placehold.co/70x70/075147/white?text=TGVTS'">
         <h2>Parent Portal</h2>
-        <p>Enter your phone number to see student results</p>
+        <p>Enter your phone number to see results</p>
     </div>
     <div class="body">
         <div id="errorMsg" class="alert" style="display: none;"></div>
@@ -53,14 +56,36 @@
         <div id="resultArea"></div>
         
         <div style="text-align:center; margin-top:15px;">
-            <a href="admin.html" style="color:#0c0c0d;">ADMIN PORTAL</a>
+            <a href="admin.html" style="color:#6c757d;">Admin Portal</a>
         </div>
     </div>
 </div>
 
 <script>
     let allStudents = [];
-    const subjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
+    
+    // SUBJECTS FOR DIFFERENT FORMS
+    const subjectsForm1and2 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "BUS", "EDK", "HTM"];
+    const subjectsForm3and4 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "LIT", "EDK", "CIV", "COM"];
+    
+    // Full subject names for display
+    const subjectNames = {
+        "CHEM": "Chemistry",
+        "KISW": "Kiswahili",
+        "BK": "Book Keeping",
+        "PHY": "Physics",
+        "HIST": "History",
+        "BIO": "Biology",
+        "MATH": "Mathematics",
+        "ENG": "English Language",
+        "GEO": "Geography",
+        "BUS": "Business Studies",
+        "EDK": "Elimu ya Dini ya Kiislam",
+        "HTM": "History of Tanzania & Civics",
+        "LIT": "Literature in English",
+        "CIV": "Civics",
+        "COM": "Commerce"
+    };
     
     function loadAllData() {
         let files = ['students_form1.json', 'students_form2.json', 'students_form3.json', 'students_form4.json'];
@@ -100,6 +125,14 @@
         return '';
     }
     
+    function getSubjectsForForm(form) {
+        if (form === 'Form One' || form === 'Form Two') {
+            return subjectsForm1and2;
+        } else {
+            return subjectsForm3and4;
+        }
+    }
+    
     function searchStudent() {
         let phone = document.getElementById('phoneNumber').value;
         let errorDiv = document.getElementById('errorMsg');
@@ -116,7 +149,7 @@
         
         let cleanPhoneNum = cleanPhone(phone);
         if (cleanPhoneNum.length < 9) {
-            errorDiv.innerHTML = 'Please enter a valid phone number';
+            errorDiv.innerHTML = 'Please enter a valid phone number (9 digits)';
             errorDiv.style.display = 'block';
             return;
         }
@@ -132,39 +165,56 @@
         if (!student) {
             let list = '';
             for (let i = 0; i < allStudents.length; i++) {
-                list += allStudents[i].phone + ' - ' + allStudents[i].name + '<br>';
+                list += allStudents[i].phone + ' - ' + allStudents[i].name + ' (' + allStudents[i].form + ')<br>';
             }
             errorDiv.innerHTML = 'Phone number not found.<br><br><strong>Available numbers:</strong><br>' + list;
             errorDiv.style.display = 'block';
             return;
         }
         
-        // Show results
+        // Get subjects based on form
+        let subjects = getSubjectsForForm(student.form);
+        
+        // Build grades table
         let gradesHtml = '';
         for (let i = 0; i < subjects.length; i++) {
             let grade = student.grades[i] || '-';
             let points = student.points[i] || 0;
             let gradeClass = getGradeClass(grade);
-            gradesHtml += '<tr><td><strong>' + subjects[i] + '</strong></td><td class="' + gradeClass + '"><strong>' + grade + '</strong></td><td>' + points + '</td></tr>';
+            let fullName = subjectNames[subjects[i]] || subjects[i];
+            gradesHtml += '汽水<td><strong>' + fullName + '</strong>汽水<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水<td class="text-center">' + points + '汽水' + '\\';
         }
         
+        // Division badge
         let divisionBadge = '';
         if (student.division === 'I') divisionBadge = '<span class="badge badge-I">Division I</span>';
         else if (student.division === 'II') divisionBadge = '<span class="badge badge-II">Division II</span>';
+        else if (student.division === 'III') divisionBadge = '<span class="badge badge-III">Division III</span>';
+        else if (student.division === 'IV') divisionBadge = '<span class="badge badge-IV">Division IV</span>';
         else divisionBadge = '<span class="badge" style="background:#6c757d;">' + student.division + '</span>';
+        
+        let divisionText = '';
+        if (student.division === 'I') divisionText = '🏆 Excellent';
+        else if (student.division === 'II') divisionText = '🥈 Very Good';
+        else if (student.division === 'III') divisionText = '🥉 Good';
+        else if (student.division === 'IV') divisionText = '📘 Satisfactory';
+        else if (student.division === '0') divisionText = '⭕ Needs Improvement';
+        else if (student.division === 'ABS') divisionText = '🚫 Absent';
+        else divisionText = '⚠️ Incomplete';
         
         let html = '<div class="result">' +
             '<div class="student-name">' + student.name + '</div>' +
             '<div style="margin-top:5px; color:#666;">Candidate: ' + student.candidate + ' | ' + student.form + ' | ' + (student.sex === 'M' ? 'Male' : 'Female') + '</div>' +
             '<div style="margin-bottom:10px;">Parent: ' + student.parent + '</div>' +
             '<div style="background:#eef2ff; padding:12px; border-radius:12px; margin:10px 0;">' +
-            '<div style="display:flex; justify-content:space-between;">' +
+            '<div style="display:flex; justify-content:space-between; flex-wrap:wrap;">' +
             '<div><small>Total Points</small><div style="font-size:24px; font-weight:bold; color:#075147;">' + student.totalPoints + '</div></div>' +
-            '<div><small>Division</small><div>' + divisionBadge + '</div></div>' +
+            '<div><small>Division</small><div>' + divisionBadge + '</div><small>' + divisionText + '</small></div>' +
             '</div></div>' +
             '<h6>Subject Performance</h6>' +
-            '<table><thead><tr><th>Subject</th><th>Grade</th><th>Points</th></tr></thead><tbody>' + gradesHtml + '</tbody></table>' +
-            '<button onclick="window.print()" style="margin-top:15px; background:#e2e8f0; border:none; padding:8px; border-radius:40px; width:100%; cursor:pointer;">Print Results</button>' +
+            '<div class="table-wrapper"><table><thead><tr><th>Subject</th><th>Grade</th><th>Points</th> ' +
+            '</thead><tbody>' + gradesHtml + '</tbody> </table</div>' +
+            '<button onclick="window.print()" style="margin-top:15px; background:#e2e8f0; border:none; padding:8px; border-radius:40px; width:100%; cursor:pointer;">📄 Print Results</button>' +
             '</div>';
         
         resultDiv.innerHTML = html;

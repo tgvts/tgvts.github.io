@@ -17,9 +17,9 @@
         .btn { background: #075147; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; font-weight: bold; }
         .btn:hover { background: #0a5f53; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
-        th { background: #1e3a5f; color: white; padding: 10px; position: sticky; top: 0; }
+        th { background: #1e3a5f; color: white; padding: 10px; position: sticky; top: 0; z-index: 10; }
         td { border: 1px solid #ddd; padding: 6px; }
-        .table-wrapper { overflow-x: auto; max-height: 500px; overflow-y: auto; }
+        .table-wrapper { overflow-x: auto; max-height: 550px; overflow-y: auto; }
         .grade-A { background: #dcfce7; color: #166534; font-weight: bold; }
         .grade-B { background: #dbeafe; color: #1e40af; font-weight: bold; }
         .grade-C { background: #fef9c3; color: #854d0e; }
@@ -27,12 +27,15 @@
         .grade-F { background: #fee2e2; color: #991b1b; font-weight: bold; }
         .badge-I { background: #166534; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
         .badge-II { background: #1e40af; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
-        .filter { margin-bottom: 15px; }
-        .filter select { padding: 8px 15px; border-radius: 40px; border: 1px solid #ddd; }
+        .badge-III { background: #854d0e; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+        .badge-IV { background: #9a3412; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+        .filter { margin-bottom: 20px; }
+        .filter select { padding: 8px 15px; border-radius: 40px; border: 1px solid #ddd; margin-left: 10px; }
         .stats { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .stat-box { background: #f8fafc; padding: 12px; border-radius: 12px; text-align: center; flex: 1; min-width: 100px; }
         .stat-number { font-size: 24px; font-weight: bold; color: #075147; }
         .alert { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 12px; margin-bottom: 15px; }
+        @media (max-width: 768px) { .body { padding: 15px; } table { font-size: 10px; } th, td { padding: 4px; } }
     </style>
 </head>
 <body>
@@ -53,7 +56,7 @@
                 </div>
                 <button class="btn" onclick="checkPassword()">Access Admin Portal</button>
                 <div style="text-align:center; margin-top:15px;">
-                    <a href="parent.html" style="color:#0c0c0d;">← BACK TO PARENT PORTAL</a>
+                    <a href="parent.html" style="color:#6c757d;">← Back to Parent Portal</a>
                 </div>
             </div>
         </div>
@@ -76,13 +79,7 @@
             
             <div class="table-wrapper">
                 <table id="studentsTable">
-                    <thead>
-                        <tr>
-                            <th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>
-                            <th>HTM</th><th>HIST</th><th>GEO</th><th>KISW</th><th>ENG</th>
-                            <th>PHY</th><th>CHEM</th><th>BIO</th><th>MATH</th><th>BUS</th><th>BK</th><th>EDK</th>
-                            <th>Points</th><th>Division</th>
-                        </thead>
+                    <thead id="tableHeader"></thead>
                     <tbody id="tableBody"></tbody>
                  </table
             </div>
@@ -93,8 +90,27 @@
 <script>
     let allStudents = [];
     let currentData = [];
-    const subjects = ["HTM", "HIST", "GEO", "KISW", "ENG", "PHY", "CHEM", "BIO", "MATH", "BUS", "BK", "EDK"];
     const ADMIN_PASSWORD = "admin123";
+    
+    // SUBJECTS FOR DIFFERENT FORMS
+    const subjectsForm1and2 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "BUS", "EDK", "HTM"];
+    const subjectsForm3and4 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "LIT", "EDK", "CIV", "COM"];
+    
+    const subjectNames = {
+        "CHEM": "Chemistry", "KISW": "Kiswahili", "BK": "Book Keeping", "PHY": "Physics",
+        "HIST": "History", "BIO": "Biology", "MATH": "Mathematics", "ENG": "English Language",
+        "GEO": "Geography", "BUS": "Business Studies", "EDK": "Elimu ya Dini ya Kiislam",
+        "HTM": "History of Tanzania & Civics", "LIT": "Literature in English",
+        "CIV": "Civics", "COM": "Commerce"
+    };
+    
+    function getSubjectsForForm(form) {
+        if (form === 'Form One' || form === 'Form Two') {
+            return subjectsForm1and2;
+        } else {
+            return subjectsForm3and4;
+        }
+    }
     
     function loadData() {
         let files = ['students_form1.json', 'students_form2.json', 'students_form3.json', 'students_form4.json'];
@@ -152,42 +168,65 @@
     }
     
     function displayTable() {
+        let thead = document.getElementById('tableHeader');
         let tbody = document.getElementById('tableBody');
         let statsDiv = document.getElementById('statsArea');
         
-        let html = '';
+        // Determine which subjects to show (based on first student's form or default)
+        let subjectsToShow = subjectsForm1and2;
+        if (currentData.length > 0) {
+            let firstForm = currentData[0].form;
+            subjectsToShow = getSubjectsForForm(firstForm);
+        }
+        
+        // Build header
+        let headerHtml = '<tr><th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>';
+        for (let i = 0; i < subjectsToShow.length; i++) {
+            let fullName = subjectNames[subjectsToShow[i]] || subjectsToShow[i];
+            headerHtml += '<th>' + fullName + '</th>';
+        }
+        headerHtml += '<th>Points</th><th>Division</th></tr>';
+        thead.innerHTML = headerHtml;
+        
+        // Build body
+        let bodyHtml = '';
         for (let i = 0; i < currentData.length; i++) {
             let s = currentData[i];
-            html += '<tr>';
-            html += '<td>' + (i+1) + '</td>';
-            html += '<td><strong>' + s.name + '</strong></td>';
-            html += '<td>' + s.candidate + '</td>';
-            html += '<td>' + s.form + '</td>';
-            html += '<td>' + (s.sex === 'M' ? 'M' : 'F') + '</td>';
-            html += '<td>' + s.phone + '</td>';
-            html += '<td>' + s.parent + '</td>';
+            let studentSubjects = getSubjectsForForm(s.form);
             
-            for (let j = 0; j < subjects.length; j++) {
+            bodyHtml += '<tr>';
+            bodyHtml += '<td>' + (i+1) + '</td>';
+            bodyHtml += '<td><strong>' + s.name + '</strong></td>';
+            bodyHtml += '<td>' + s.candidate + '</td>';
+            bodyHtml += '<td>' + s.form + '</td>';
+            bodyHtml += '<td>' + (s.sex === 'M' ? 'M' : 'F') + '</td>';
+            bodyHtml += '<td>' + s.phone + '</td>';
+            bodyHtml += '<td>' + s.parent + '</td>';
+            
+            for (let j = 0; j < studentSubjects.length; j++) {
                 let grade = s.grades[j] || '-';
                 let gradeClass = getGradeClass(grade);
-                html += '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>';
+                bodyHtml += '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>';
             }
             
-            html += '<td><strong>' + s.totalPoints + '</strong></td>';
-            html += '<td><span class="badge-' + s.division + '">' + s.division + '</span></td>';
-            html += '</tr>';
+            bodyHtml += '<td><strong>' + s.totalPoints + '</strong></td>';
+            bodyHtml += '<td><span class="badge-' + s.division + '">' + s.division + '</span></td>';
+            bodyHtml += '</tr>';
         }
-        tbody.innerHTML = html;
+        tbody.innerHTML = bodyHtml;
         
+        // Statistics
         let total = currentData.length;
         let div1 = currentData.filter(s => s.division === 'I').length;
         let div2 = currentData.filter(s => s.division === 'II').length;
+        let div3 = currentData.filter(s => s.division === 'III').length;
         let avg = total > 0 ? (currentData.reduce((sum, s) => sum + s.totalPoints, 0) / total).toFixed(1) : 0;
         
         statsDiv.innerHTML = `
             <div class="stat-box"><div class="stat-number">${total}</div><small>Total Students</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#166534;">${div1}</div><small>Division I</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#1e40af;">${div2}</div><small>Division II</small></div>
+            <div class="stat-box"><div class="stat-number" style="color:#854d0e;">${div3}</div><small>Division III</small></div>
             <div class="stat-box"><div class="stat-number">${avg}</div><small>Average Points</small></div>
         `;
     }

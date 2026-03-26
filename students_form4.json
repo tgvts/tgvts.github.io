@@ -7,9 +7,9 @@
     "sex": "M",
     "phone": "778901234",
     "parent": "Kimaro Patrick",
-    "grades": ["A","A","A","A","A","A","A","A","A","A","A","A"],
-    "points": [10,10,10,10,10,10,10,10,10,10,10,10],
-    "totalPoints": 120,
+    "grades": ["A","A","A","A","A","A","A","A","A","A","A","A","A"],
+    "points": [10,10,10,10,10,10,10,10,10,10,10,10,10],
+    "totalPoints": 130,
     "division": "I"
   },
   {
@@ -20,9 +20,9 @@
     "sex": "F",
     "phone": "789012345",
     "parent": "Joseph Grace",
-    "grades": ["B","A","A","B","A","B","B","A","B","A","A","B"],
-    "points": [8,10,10,8,10,8,8,10,8,10,10,8],
-    "totalPoints": 108,
+    "grades": ["B","A","A","B","A","B","B","A","B","A","A","B","A"],
+    "points": [8,10,10,8,10,8,8,10,8,10,10,8,10],
+    "totalPoints": 118,
     "division": "I"
   }
 ]
