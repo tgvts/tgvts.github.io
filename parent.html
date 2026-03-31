@@ -19,7 +19,7 @@
         .result { background: #f8fafc; border-radius: 15px; padding: 20px; margin-top: 20px; border: 1px solid #ddd; }
         .student-name { font-size: 20px; font-weight: bold; color: #075147; }
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { background: #e2e8f0; padding: 10px; text-align: left; position: sticky; top: 0; }
+        th { background: #e2e8f0; padding: 10px; text-align: left; }
         td { padding: 8px; border-bottom: 1px solid #ddd; }
         .grade-A { background: #dcfce7; color: #166534; font-weight: bold; }
         .grade-B { background: #dbeafe; color: #1e40af; font-weight: bold; }
@@ -66,34 +66,15 @@
     let allStudents = [];
     
     const subjectsForm1and2 = [
-        { code: "CHEM", name: "Chemistry" },
-        { code: "KISW", name: "Kiswahili" },
-        { code: "BK", name: "Book Keeping" },
-        { code: "PHY", name: "Physics" },
-        { code: "HIST", name: "History" },
-        { code: "BIO", name: "Biology" },
-        { code: "MATH", name: "Mathematics" },
-        { code: "ENG", name: "English Language" },
-        { code: "GEO", name: "Geography" },
-        { code: "BUS", name: "Business Studies" },
-        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
-        { code: "HTM", name: "History of Tanzania & Civics" }
+        "Chemistry", "Kiswahili", "Book Keeping", "Physics", "History", "Biology",
+        "Mathematics", "English Language", "Geography", "Business Studies",
+        "Elimu ya Dini ya Kiislam", "History of Tanzania & Civics"
     ];
     
     const subjectsForm3and4 = [
-        { code: "CHEM", name: "Chemistry" },
-        { code: "KISW", name: "Kiswahili" },
-        { code: "BK", name: "Book Keeping" },
-        { code: "PHY", name: "Physics" },
-        { code: "HIST", name: "History" },
-        { code: "BIO", name: "Biology" },
-        { code: "MATH", name: "Mathematics" },
-        { code: "ENG", name: "English Language" },
-        { code: "GEO", name: "Geography" },
-        { code: "LIT", name: "Literature in English" },
-        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
-        { code: "CIV", name: "Civics" },
-        { code: "COM", name: "Commerce" }
+        "Chemistry", "Kiswahili", "Book Keeping", "Physics", "History", "Biology",
+        "Mathematics", "English Language", "Geography", "Literature in English",
+        "Elimu ya Dini ya Kiislam", "Civics", "Commerce"
     ];
     
     function getSubjectsForForm(form) {
@@ -115,11 +96,12 @@
                     allStudents.push(...data);
                     loaded++;
                     if (loaded === files.length) {
-                        document.getElementById('errorMsg').innerHTML = '✅ Ready! ' + allStudents.length + ' students loaded.';
-                        document.getElementById('errorMsg').style.background = '#d4edda';
-                        document.getElementById('errorMsg').style.color = '#155724';
-                        document.getElementById('errorMsg').style.display = 'block';
-                        setTimeout(() => { document.getElementById('errorMsg').style.display = 'none'; }, 3000);
+                        let msgDiv = document.getElementById('errorMsg');
+                        msgDiv.innerHTML = '✅ Ready! ' + allStudents.length + ' students loaded.';
+                        msgDiv.style.background = '#d4edda';
+                        msgDiv.style.color = '#155724';
+                        msgDiv.style.display = 'block';
+                        setTimeout(() => { msgDiv.style.display = 'none'; }, 3000);
                     }
                 })
                 .catch(err => console.log('Could not load', file));
@@ -189,11 +171,11 @@
             let points = student.points[i] || 0;
             let gradeClass = getGradeClass(grade);
             
-            gradesHtml += '汽水' +
-                '汽水<strong>' + subjects[i].name + '</strong>汽水' +
-                '<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水' +
-                '<td class="text-center">' + points + '汽水' +
-                '汽水';
+            gradesHtml += '<tr>' +
+                '<td><strong>' + subjects[i] + '</strong></td>' +
+                '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>' +
+                '<td class="text-center">' + points + '</td>' +
+                '</tr>';
         }
         
         let divisionBadge = '';
@@ -222,9 +204,9 @@
             '<div><small>Division</small><div>' + divisionBadge + '</div><small>' + divisionText + '</small></div>' +
             '</div></div>' +
             '<h6>Subject Performance</h6>' +
-            '<div class="table-wrapper"><table class="table table-bordered"><thead>汽水<th>Subject</th><th>Grade</th><th>Points</th> </thead><tbody>' +
+            '<div class="table-wrapper"><table class="table table-bordered"><thead><tr><th>Subject</th><th>Grade</th><th>Points</th></tr></thead><tbody>' +
             gradesHtml +
-            '</tbody> </table</div>' +
+            '</tbody></table></div>' +
             '<button onclick="window.print()" style="margin-top:15px; background:#e2e8f0; border:none; padding:8px; border-radius:40px; width:100%; cursor:pointer;">📄 Print Results</button>' +
             '</div>';
         

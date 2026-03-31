@@ -17,8 +17,6 @@
         .password-input input { border: none; background: none; padding: 12px; width: 100%; outline: none; }
         .btn { background: #075147; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; font-weight: bold; }
         .btn:hover { background: #0a5f53; }
-        .btn-secondary { background: #6c757d; }
-        .btn-secondary:hover { background: #5a6268; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         th { background: #1e3a5f; color: white; padding: 10px; position: sticky; top: 0; z-index: 10; }
         td { border: 1px solid #ddd; padding: 6px; }
@@ -43,7 +41,6 @@
         .empty-subject { color: #999; font-style: italic; text-align: center; }
         .clear-search { background: #e2e8f0; color: #334155; border: none; padding: 8px 20px; border-radius: 40px; cursor: pointer; }
         .clear-search:hover { background: #cbd5e1; }
-        .search-highlight { background-color: #fef9c3; transition: background-color 0.3s; }
         @media (max-width: 768px) { .body { padding: 15px; } table { font-size: 10px; } th, td { padding: 4px; } .filter { flex-direction: column; } .search-box { width: 100%; } }
     </style>
 </head>
@@ -75,7 +72,7 @@
             
             <div class="filter">
                 <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="🔍 Search by name, candidate number, or phone..." onkeyup="searchStudents()">
+                    <input type="text" id="searchInput" placeholder="Search by name, candidate number, or phone..." onkeyup="searchStudents()">
                     <button class="clear-search" onclick="clearSearch()">Clear</button>
                 </div>
                 <select id="formFilter" onchange="filterData()">
@@ -93,7 +90,7 @@
                 <table id="studentsTable">
                     <thead id="tableHeader"></thead>
                     <tbody id="tableBody"></tbody>
-                 </table
+                </table>
             </div>
             
             <div id="noResultsMsg" style="display: none; text-align: center; padding: 40px; color: #666;">
@@ -106,41 +103,21 @@
 
 <script>
     let allStudents = [];
-    let currentData = [];
     let filteredData = [];
     let searchTerm = "";
     const ADMIN_PASSWORD = "admin123";
     
-    // SUBJECTS FOR DIFFERENT FORMS
+    // FULL SUBJECT NAMES
     const subjectsForm1and2 = [
-        { code: "CHEM", name: "Chemistry" },
-        { code: "KISW", name: "Kiswahili" },
-        { code: "BK", name: "Book Keeping" },
-        { code: "PHY", name: "Physics" },
-        { code: "HIST", name: "History" },
-        { code: "BIO", name: "Biology" },
-        { code: "MATH", name: "Mathematics" },
-        { code: "ENG", name: "English Language" },
-        { code: "GEO", name: "Geography" },
-        { code: "BUS", name: "Business Studies" },
-        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
-        { code: "HTM", name: "History of Tanzania & Civics" }
+        "Chemistry", "Kiswahili", "Book Keeping", "Physics", "History", "Biology",
+        "Mathematics", "English Language", "Geography", "Business Studies",
+        "Elimu ya Dini ya Kiislam", "History of Tanzania & Civics"
     ];
     
     const subjectsForm3and4 = [
-        { code: "CHEM", name: "Chemistry" },
-        { code: "KISW", name: "Kiswahili" },
-        { code: "BK", name: "Book Keeping" },
-        { code: "PHY", name: "Physics" },
-        { code: "HIST", name: "History" },
-        { code: "BIO", name: "Biology" },
-        { code: "MATH", name: "Mathematics" },
-        { code: "ENG", name: "English Language" },
-        { code: "GEO", name: "Geography" },
-        { code: "LIT", name: "Literature in English" },
-        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
-        { code: "CIV", name: "Civics" },
-        { code: "COM", name: "Commerce" }
+        "Chemistry", "Kiswahili", "Book Keeping", "Physics", "History", "Biology",
+        "Mathematics", "English Language", "Geography", "Literature in English",
+        "Elimu ya Dini ya Kiislam", "Civics", "Commerce"
     ];
     
     function getSubjectsForForm(form) {
@@ -162,7 +139,6 @@
                     allStudents.push(...data);
                     loaded++;
                     if (loaded === files.length) {
-                        currentData = [...allStudents];
                         filteredData = [...allStudents];
                         if (document.getElementById('dataArea').style.display === 'block') {
                             displayTable();
@@ -206,15 +182,8 @@
     function applyFilters() {
         let form = document.getElementById('formFilter').value;
         
-        // First filter by form
-        let formFiltered = [];
-        if (form === 'all') {
-            formFiltered = [...allStudents];
-        } else {
-            formFiltered = allStudents.filter(s => s.form === form);
-        }
+        let formFiltered = (form === 'all') ? [...allStudents] : allStudents.filter(s => s.form === form);
         
-        // Then filter by search term
         if (searchTerm === "") {
             filteredData = [...formFiltered];
         } else {
@@ -225,7 +194,6 @@
                 s.parent.toLowerCase().includes(searchTerm)
             );
         }
-        
         displayTable();
     }
     
@@ -250,7 +218,6 @@
         let statsDiv = document.getElementById('statsArea');
         let noResultsDiv = document.getElementById('noResultsMsg');
         
-        // Show/hide no results message
         if (filteredData.length === 0) {
             noResultsDiv.style.display = 'block';
             document.querySelector('.table-wrapper').style.display = 'none';
@@ -271,19 +238,19 @@
         } else if (hasForm1or2 && !hasForm3or4) {
             subjectsToShow = subjectsForm1and2;
         } else if (hasForm1or2 && hasForm3or4) {
-            let allSubjectsMap = new Map();
-            subjectsForm1and2.forEach(s => allSubjectsMap.set(s.code, s));
-            subjectsForm3and4.forEach(s => allSubjectsMap.set(s.code, s));
-            subjectsToShow = Array.from(allSubjectsMap.values());
+            let combined = [...subjectsForm1and2];
+            for (let sub of subjectsForm3and4) {
+                if (!combined.includes(sub)) combined.push(sub);
+            }
+            subjectsToShow = combined;
         }
         
         // Build header
-        let headerHtml = '汽水<th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>';
+        let headerHtml = '<tr><th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>';
         for (let i = 0; i < subjectsToShow.length; i++) {
-            headerHtml += '<th>' + subjectsToShow[i].name + '</th>';
+            headerHtml += '<th>' + subjectsToShow[i] + '</th>';
         }
-        headerHtml += '<th>Points</th><th>Division</th> ';
-
+        headerHtml += '<th>Points</th><th>Division</th></tr>';
         thead.innerHTML = headerHtml;
         
         // Build body
@@ -292,51 +259,45 @@
             let s = filteredData[i];
             let studentSubjects = getSubjectsForForm(s.form);
             
-            // Create a map of student's grades by subject code
             let gradeMap = {};
             for (let j = 0; j < studentSubjects.length; j++) {
-                gradeMap[studentSubjects[j].code] = {
-                    grade: s.grades[j] || '-',
-                    points: s.points[j] || 0
-                };
+                gradeMap[studentSubjects[j]] = { grade: s.grades[j] || '-', points: s.points[j] || 0 };
             }
             
-            // Highlight search matches
             let displayName = highlightText(s.name);
             let displayCandidate = highlightText(s.candidate);
             let displayPhone = highlightText(s.phone);
             let displayParent = highlightText(s.parent);
             
-            bodyHtml += '汽水';
-            bodyHtml += '汽水' + (i+1) + '汽水';
-            bodyHtml += '汽水<strong>' + displayName + '</strong>汽水';
-            bodyHtml += '汽水' + displayCandidate + '汽水';
-            bodyHtml += '汽水' + s.form + '汽水';
-            bodyHtml += '汽水' + (s.sex === 'M' ? 'M' : 'F') + '汽水';
-            bodyHtml += '汽水' + displayPhone + '汽水';
-            bodyHtml += '汽水' + displayParent + '汽水';
+            bodyHtml += '<tr>';
+            bodyHtml += '<td>' + (i+1) + '</td>';
+            bodyHtml += '<td><strong>' + displayName + '</strong></td>';
+            bodyHtml += '<td>' + displayCandidate + '</td>';
+            bodyHtml += '<td>' + s.form + '</td>';
+            bodyHtml += '<td>' + (s.sex === 'M' ? 'M' : 'F') + '</td>';
+            bodyHtml += '<td>' + displayPhone + '</td>';
+            bodyHtml += '<td>' + displayParent + '</td>';
             
-            // Add grades for each subject in the display order
             for (let j = 0; j < subjectsToShow.length; j++) {
-                let subjectCode = subjectsToShow[j].code;
-                let gradeData = gradeMap[subjectCode];
+                let subjectName = subjectsToShow[j];
+                let gradeData = gradeMap[subjectName];
                 
                 if (gradeData) {
                     let grade = gradeData.grade;
                     let gradeClass = getGradeClass(grade);
-                    bodyHtml += '<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水';
+                    bodyHtml += '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>';
                 } else {
-                    bodyHtml += '<td class="empty-subject">—汽水';
+                    bodyHtml += '<td class="empty-subject">—</td>';
                 }
             }
             
-            bodyHtml += '汽水<strong>' + s.totalPoints + '</strong>汽水';
-            bodyHtml += '汽水<span class="badge-' + s.division + '">' + s.division + '</span>汽水';
-            bodyHtml += '\\';
+            bodyHtml += '<td><strong>' + s.totalPoints + '</strong></td>';
+            bodyHtml += '<td><span class="badge-' + s.division + '">' + s.division + '</span></td>';
+            bodyHtml += '</tr>';
         }
         tbody.innerHTML = bodyHtml;
         
-        // Statistics for filtered data
+        // Statistics
         let total = filteredData.length;
         let div1 = filteredData.filter(s => s.division === 'I').length;
         let div2 = filteredData.filter(s => s.division === 'II').length;
@@ -353,9 +314,8 @@
             <div class="stat-box"><div class="stat-number">${avg}</div><small>Average Points</small></div>
         `;
         
-        // Add search term info if searching
+        let searchInfo = document.getElementById('searchInfo');
         if (searchTerm !== "") {
-            let searchInfo = document.getElementById('searchInfo');
             if (!searchInfo) {
                 searchInfo = document.createElement('div');
                 searchInfo.id = 'searchInfo';
@@ -366,7 +326,6 @@
             }
             searchInfo.innerHTML = `<i class="fas fa-search"></i> Showing ${total} result(s) for "<strong>${searchTerm}</strong>"`;
         } else {
-            let searchInfo = document.getElementById('searchInfo');
             if (searchInfo) searchInfo.remove();
         }
     }
