@@ -90,7 +90,7 @@
                 <table id="studentsTable">
                     <thead id="tableHeader"></thead>
                     <tbody id="tableBody"></tbody>
-                </table>
+                 </table
             </div>
             
             <div id="noResultsMsg" style="display: none; text-align: center; padding: 40px; color: #666;">
@@ -297,13 +297,12 @@
         }
         tbody.innerHTML = bodyHtml;
         
-        // Statistics
+        // Statistics (Average Points REMOVED)
         let total = filteredData.length;
         let div1 = filteredData.filter(s => s.division === 'I').length;
         let div2 = filteredData.filter(s => s.division === 'II').length;
         let div3 = filteredData.filter(s => s.division === 'III').length;
         let div4 = filteredData.filter(s => s.division === 'IV').length;
-        let avg = total > 0 ? (filteredData.reduce((sum, s) => sum + s.totalPoints, 0) / total).toFixed(1) : 0;
         
         statsDiv.innerHTML = `
             <div class="stat-box"><div class="stat-number">${total}</div><small>Students Found</small></div>
@@ -311,7 +310,6 @@
             <div class="stat-box"><div class="stat-number" style="color:#1e40af;">${div2}</div><small>Division II</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#854d0e;">${div3}</div><small>Division III</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#9a3412;">${div4}</div><small>Division IV</small></div>
-            <div class="stat-box"><div class="stat-number">${avg}</div><small>Average Points</small></div>
         `;
         
         let searchInfo = document.getElementById('searchInfo');
