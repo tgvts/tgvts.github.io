@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parent Portal | Temboni Secondary School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; padding: 20px; font-family: Arial, sans-serif; }
         .card { max-width: 1000px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; }
@@ -64,28 +65,44 @@
 <script>
     let allStudents = [];
     
-    // SUBJECTS FOR DIFFERENT FORMS
-    const subjectsForm1and2 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "BUS", "EDK", "HTM"];
-    const subjectsForm3and4 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "LIT", "EDK", "CIV", "COM"];
+    const subjectsForm1and2 = [
+        { code: "CHEM", name: "Chemistry" },
+        { code: "KISW", name: "Kiswahili" },
+        { code: "BK", name: "Book Keeping" },
+        { code: "PHY", name: "Physics" },
+        { code: "HIST", name: "History" },
+        { code: "BIO", name: "Biology" },
+        { code: "MATH", name: "Mathematics" },
+        { code: "ENG", name: "English Language" },
+        { code: "GEO", name: "Geography" },
+        { code: "BUS", name: "Business Studies" },
+        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
+        { code: "HTM", name: "History of Tanzania & Civics" }
+    ];
     
-    // Full subject names for display
-    const subjectNames = {
-        "CHEM": "Chemistry",
-        "KISW": "Kiswahili",
-        "BK": "Book Keeping",
-        "PHY": "Physics",
-        "HIST": "History",
-        "BIO": "Biology",
-        "MATH": "Mathematics",
-        "ENG": "English Language",
-        "GEO": "Geography",
-        "BUS": "Business Studies",
-        "EDK": "Elimu ya Dini ya Kiislam",
-        "HTM": "History of Tanzania & Civics",
-        "LIT": "Literature in English",
-        "CIV": "Civics",
-        "COM": "Commerce"
-    };
+    const subjectsForm3and4 = [
+        { code: "CHEM", name: "Chemistry" },
+        { code: "KISW", name: "Kiswahili" },
+        { code: "BK", name: "Book Keeping" },
+        { code: "PHY", name: "Physics" },
+        { code: "HIST", name: "History" },
+        { code: "BIO", name: "Biology" },
+        { code: "MATH", name: "Mathematics" },
+        { code: "ENG", name: "English Language" },
+        { code: "GEO", name: "Geography" },
+        { code: "LIT", name: "Literature in English" },
+        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
+        { code: "CIV", name: "Civics" },
+        { code: "COM", name: "Commerce" }
+    ];
+    
+    function getSubjectsForForm(form) {
+        if (form === 'Form One' || form === 'Form Two') {
+            return subjectsForm1and2;
+        } else {
+            return subjectsForm3and4;
+        }
+    }
     
     function loadAllData() {
         let files = ['students_form1.json', 'students_form2.json', 'students_form3.json', 'students_form4.json'];
@@ -123,14 +140,6 @@
         if (grade === 'D') return 'grade-D';
         if (grade === 'F') return 'grade-F';
         return '';
-    }
-    
-    function getSubjectsForForm(form) {
-        if (form === 'Form One' || form === 'Form Two') {
-            return subjectsForm1and2;
-        } else {
-            return subjectsForm3and4;
-        }
     }
     
     function searchStudent() {
@@ -172,20 +181,21 @@
             return;
         }
         
-        // Get subjects based on form
         let subjects = getSubjectsForForm(student.form);
         
-        // Build grades table
         let gradesHtml = '';
         for (let i = 0; i < subjects.length; i++) {
             let grade = student.grades[i] || '-';
             let points = student.points[i] || 0;
             let gradeClass = getGradeClass(grade);
-            let fullName = subjectNames[subjects[i]] || subjects[i];
-            gradesHtml += '汽水<td><strong>' + fullName + '</strong>汽水<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水<td class="text-center">' + points + '汽水' + '\\';
+            
+            gradesHtml += '汽水' +
+                '汽水<strong>' + subjects[i].name + '</strong>汽水' +
+                '<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水' +
+                '<td class="text-center">' + points + '汽水' +
+                '汽水';
         }
         
-        // Division badge
         let divisionBadge = '';
         if (student.division === 'I') divisionBadge = '<span class="badge badge-I">Division I</span>';
         else if (student.division === 'II') divisionBadge = '<span class="badge badge-II">Division II</span>';
@@ -212,8 +222,9 @@
             '<div><small>Division</small><div>' + divisionBadge + '</div><small>' + divisionText + '</small></div>' +
             '</div></div>' +
             '<h6>Subject Performance</h6>' +
-            '<div class="table-wrapper"><table><thead><tr><th>Subject</th><th>Grade</th><th>Points</th> ' +
-            '</thead><tbody>' + gradesHtml + '</tbody> </table</div>' +
+            '<div class="table-wrapper"><table class="table table-bordered"><thead>汽水<th>Subject</th><th>Grade</th><th>Points</th> </thead><tbody>' +
+            gradesHtml +
+            '</tbody> </table</div>' +
             '<button onclick="window.print()" style="margin-top:15px; background:#e2e8f0; border:none; padding:8px; border-radius:40px; width:100%; cursor:pointer;">📄 Print Results</button>' +
             '</div>';
         

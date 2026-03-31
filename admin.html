@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Portal | Temboni Secondary School</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body { background: linear-gradient(135deg, #0f172a, #1e293b); min-height: 100vh; padding: 20px; font-family: Arial, sans-serif; }
         .card { max-width: 1400px; margin: 0 auto; background: white; border-radius: 20px; overflow: hidden; }
@@ -16,6 +17,8 @@
         .password-input input { border: none; background: none; padding: 12px; width: 100%; outline: none; }
         .btn { background: #075147; color: white; border: none; padding: 12px; border-radius: 50px; cursor: pointer; font-weight: bold; }
         .btn:hover { background: #0a5f53; }
+        .btn-secondary { background: #6c757d; }
+        .btn-secondary:hover { background: #5a6268; }
         table { width: 100%; border-collapse: collapse; font-size: 12px; }
         th { background: #1e3a5f; color: white; padding: 10px; position: sticky; top: 0; z-index: 10; }
         td { border: 1px solid #ddd; padding: 6px; }
@@ -29,13 +32,19 @@
         .badge-II { background: #1e40af; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
         .badge-III { background: #854d0e; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
         .badge-IV { background: #9a3412; color: white; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
-        .filter { margin-bottom: 20px; }
-        .filter select { padding: 8px 15px; border-radius: 40px; border: 1px solid #ddd; margin-left: 10px; }
+        .filter { margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
+        .filter select, .filter input { padding: 8px 15px; border-radius: 40px; border: 1px solid #ddd; }
+        .search-box { flex: 1; min-width: 250px; display: flex; gap: 10px; }
+        .search-box input { flex: 1; }
         .stats { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
         .stat-box { background: #f8fafc; padding: 12px; border-radius: 12px; text-align: center; flex: 1; min-width: 100px; }
         .stat-number { font-size: 24px; font-weight: bold; color: #075147; }
         .alert { background: #fee2e2; color: #991b1b; padding: 12px; border-radius: 12px; margin-bottom: 15px; }
-        @media (max-width: 768px) { .body { padding: 15px; } table { font-size: 10px; } th, td { padding: 4px; } }
+        .empty-subject { color: #999; font-style: italic; text-align: center; }
+        .clear-search { background: #e2e8f0; color: #334155; border: none; padding: 8px 20px; border-radius: 40px; cursor: pointer; }
+        .clear-search:hover { background: #cbd5e1; }
+        .search-highlight { background-color: #fef9c3; transition: background-color 0.3s; }
+        @media (max-width: 768px) { .body { padding: 15px; } table { font-size: 10px; } th, td { padding: 4px; } .filter { flex-direction: column; } .search-box { width: 100%; } }
     </style>
 </head>
 <body>
@@ -65,7 +74,10 @@
             <a href="parent.html" style="background:#6c757d; color:white; padding:8px 20px; border-radius:40px; text-decoration:none; display:inline-block; margin-bottom:15px;">← Back to Parent Portal</a>
             
             <div class="filter">
-                <label>Filter by Form: </label>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="🔍 Search by name, candidate number, or phone..." onkeyup="searchStudents()">
+                    <button class="clear-search" onclick="clearSearch()">Clear</button>
+                </div>
                 <select id="formFilter" onchange="filterData()">
                     <option value="all">All Forms</option>
                     <option value="Form One">Form One</option>
@@ -83,6 +95,11 @@
                     <tbody id="tableBody"></tbody>
                  </table
             </div>
+            
+            <div id="noResultsMsg" style="display: none; text-align: center; padding: 40px; color: #666;">
+                <i class="fas fa-search fa-3x mb-3"></i><br>
+                No students found matching your search.
+            </div>
         </div>
     </div>
 </div>
@@ -90,19 +107,41 @@
 <script>
     let allStudents = [];
     let currentData = [];
+    let filteredData = [];
+    let searchTerm = "";
     const ADMIN_PASSWORD = "admin123";
     
     // SUBJECTS FOR DIFFERENT FORMS
-    const subjectsForm1and2 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "BUS", "EDK", "HTM"];
-    const subjectsForm3and4 = ["CHEM", "KISW", "BK", "PHY", "HIST", "BIO", "MATH", "ENG", "GEO", "LIT", "EDK", "CIV", "COM"];
+    const subjectsForm1and2 = [
+        { code: "CHEM", name: "Chemistry" },
+        { code: "KISW", name: "Kiswahili" },
+        { code: "BK", name: "Book Keeping" },
+        { code: "PHY", name: "Physics" },
+        { code: "HIST", name: "History" },
+        { code: "BIO", name: "Biology" },
+        { code: "MATH", name: "Mathematics" },
+        { code: "ENG", name: "English Language" },
+        { code: "GEO", name: "Geography" },
+        { code: "BUS", name: "Business Studies" },
+        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
+        { code: "HTM", name: "History of Tanzania & Civics" }
+    ];
     
-    const subjectNames = {
-        "CHEM": "Chemistry", "KISW": "Kiswahili", "BK": "Book Keeping", "PHY": "Physics",
-        "HIST": "History", "BIO": "Biology", "MATH": "Mathematics", "ENG": "English Language",
-        "GEO": "Geography", "BUS": "Business Studies", "EDK": "Elimu ya Dini ya Kiislam",
-        "HTM": "History of Tanzania & Civics", "LIT": "Literature in English",
-        "CIV": "Civics", "COM": "Commerce"
-    };
+    const subjectsForm3and4 = [
+        { code: "CHEM", name: "Chemistry" },
+        { code: "KISW", name: "Kiswahili" },
+        { code: "BK", name: "Book Keeping" },
+        { code: "PHY", name: "Physics" },
+        { code: "HIST", name: "History" },
+        { code: "BIO", name: "Biology" },
+        { code: "MATH", name: "Mathematics" },
+        { code: "ENG", name: "English Language" },
+        { code: "GEO", name: "Geography" },
+        { code: "LIT", name: "Literature in English" },
+        { code: "EDK", name: "Elimu ya Dini ya Kiislam" },
+        { code: "CIV", name: "Civics" },
+        { code: "COM", name: "Commerce" }
+    ];
     
     function getSubjectsForForm(form) {
         if (form === 'Form One' || form === 'Form Two') {
@@ -124,6 +163,7 @@
                     loaded++;
                     if (loaded === files.length) {
                         currentData = [...allStudents];
+                        filteredData = [...allStudents];
                         if (document.getElementById('dataArea').style.display === 'block') {
                             displayTable();
                         }
@@ -148,13 +188,44 @@
         }
     }
     
+    function searchStudents() {
+        searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+        applyFilters();
+    }
+    
+    function clearSearch() {
+        document.getElementById('searchInput').value = '';
+        searchTerm = '';
+        applyFilters();
+    }
+    
     function filterData() {
+        applyFilters();
+    }
+    
+    function applyFilters() {
         let form = document.getElementById('formFilter').value;
+        
+        // First filter by form
+        let formFiltered = [];
         if (form === 'all') {
-            currentData = [...allStudents];
+            formFiltered = [...allStudents];
         } else {
-            currentData = allStudents.filter(s => s.form === form);
+            formFiltered = allStudents.filter(s => s.form === form);
         }
+        
+        // Then filter by search term
+        if (searchTerm === "") {
+            filteredData = [...formFiltered];
+        } else {
+            filteredData = formFiltered.filter(s => 
+                s.name.toLowerCase().includes(searchTerm) ||
+                s.candidate.toLowerCase().includes(searchTerm) ||
+                s.phone.includes(searchTerm) ||
+                s.parent.toLowerCase().includes(searchTerm)
+            );
+        }
+        
         displayTable();
     }
     
@@ -167,73 +238,144 @@
         return '';
     }
     
+    function highlightText(text) {
+        if (!searchTerm || searchTerm === "") return text;
+        const regex = new RegExp(`(${searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<mark style="background:#fef9c3; padding:0; border-radius:2px;">$1</mark>');
+    }
+    
     function displayTable() {
         let thead = document.getElementById('tableHeader');
         let tbody = document.getElementById('tableBody');
         let statsDiv = document.getElementById('statsArea');
+        let noResultsDiv = document.getElementById('noResultsMsg');
         
-        // Determine which subjects to show (based on first student's form or default)
+        // Show/hide no results message
+        if (filteredData.length === 0) {
+            noResultsDiv.style.display = 'block';
+            document.querySelector('.table-wrapper').style.display = 'none';
+            statsDiv.innerHTML = '';
+            return;
+        } else {
+            noResultsDiv.style.display = 'none';
+            document.querySelector('.table-wrapper').style.display = 'block';
+        }
+        
+        // Determine which subjects to show
         let subjectsToShow = subjectsForm1and2;
-        if (currentData.length > 0) {
-            let firstForm = currentData[0].form;
-            subjectsToShow = getSubjectsForForm(firstForm);
+        let hasForm3or4 = filteredData.some(s => s.form === 'Form Three' || s.form === 'Form Four');
+        let hasForm1or2 = filteredData.some(s => s.form === 'Form One' || s.form === 'Form Two');
+        
+        if (hasForm3or4 && !hasForm1or2) {
+            subjectsToShow = subjectsForm3and4;
+        } else if (hasForm1or2 && !hasForm3or4) {
+            subjectsToShow = subjectsForm1and2;
+        } else if (hasForm1or2 && hasForm3or4) {
+            let allSubjectsMap = new Map();
+            subjectsForm1and2.forEach(s => allSubjectsMap.set(s.code, s));
+            subjectsForm3and4.forEach(s => allSubjectsMap.set(s.code, s));
+            subjectsToShow = Array.from(allSubjectsMap.values());
         }
         
         // Build header
-        let headerHtml = '<tr><th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>';
+        let headerHtml = '汽水<th>#</th><th>Name</th><th>Candidate</th><th>Form</th><th>Sex</th><th>Phone</th><th>Parent</th>';
         for (let i = 0; i < subjectsToShow.length; i++) {
-            let fullName = subjectNames[subjectsToShow[i]] || subjectsToShow[i];
-            headerHtml += '<th>' + fullName + '</th>';
+            headerHtml += '<th>' + subjectsToShow[i].name + '</th>';
         }
-        headerHtml += '<th>Points</th><th>Division</th></tr>';
+        headerHtml += '<th>Points</th><th>Division</th> ';
+
         thead.innerHTML = headerHtml;
         
         // Build body
         let bodyHtml = '';
-        for (let i = 0; i < currentData.length; i++) {
-            let s = currentData[i];
+        for (let i = 0; i < filteredData.length; i++) {
+            let s = filteredData[i];
             let studentSubjects = getSubjectsForForm(s.form);
             
-            bodyHtml += '<tr>';
-            bodyHtml += '<td>' + (i+1) + '</td>';
-            bodyHtml += '<td><strong>' + s.name + '</strong></td>';
-            bodyHtml += '<td>' + s.candidate + '</td>';
-            bodyHtml += '<td>' + s.form + '</td>';
-            bodyHtml += '<td>' + (s.sex === 'M' ? 'M' : 'F') + '</td>';
-            bodyHtml += '<td>' + s.phone + '</td>';
-            bodyHtml += '<td>' + s.parent + '</td>';
-            
+            // Create a map of student's grades by subject code
+            let gradeMap = {};
             for (let j = 0; j < studentSubjects.length; j++) {
-                let grade = s.grades[j] || '-';
-                let gradeClass = getGradeClass(grade);
-                bodyHtml += '<td class="' + gradeClass + '"><strong>' + grade + '</strong></td>';
+                gradeMap[studentSubjects[j].code] = {
+                    grade: s.grades[j] || '-',
+                    points: s.points[j] || 0
+                };
             }
             
-            bodyHtml += '<td><strong>' + s.totalPoints + '</strong></td>';
-            bodyHtml += '<td><span class="badge-' + s.division + '">' + s.division + '</span></td>';
-            bodyHtml += '</tr>';
+            // Highlight search matches
+            let displayName = highlightText(s.name);
+            let displayCandidate = highlightText(s.candidate);
+            let displayPhone = highlightText(s.phone);
+            let displayParent = highlightText(s.parent);
+            
+            bodyHtml += '汽水';
+            bodyHtml += '汽水' + (i+1) + '汽水';
+            bodyHtml += '汽水<strong>' + displayName + '</strong>汽水';
+            bodyHtml += '汽水' + displayCandidate + '汽水';
+            bodyHtml += '汽水' + s.form + '汽水';
+            bodyHtml += '汽水' + (s.sex === 'M' ? 'M' : 'F') + '汽水';
+            bodyHtml += '汽水' + displayPhone + '汽水';
+            bodyHtml += '汽水' + displayParent + '汽水';
+            
+            // Add grades for each subject in the display order
+            for (let j = 0; j < subjectsToShow.length; j++) {
+                let subjectCode = subjectsToShow[j].code;
+                let gradeData = gradeMap[subjectCode];
+                
+                if (gradeData) {
+                    let grade = gradeData.grade;
+                    let gradeClass = getGradeClass(grade);
+                    bodyHtml += '<td class="' + gradeClass + '"><strong>' + grade + '</strong>汽水';
+                } else {
+                    bodyHtml += '<td class="empty-subject">—汽水';
+                }
+            }
+            
+            bodyHtml += '汽水<strong>' + s.totalPoints + '</strong>汽水';
+            bodyHtml += '汽水<span class="badge-' + s.division + '">' + s.division + '</span>汽水';
+            bodyHtml += '\\';
         }
         tbody.innerHTML = bodyHtml;
         
-        // Statistics
-        let total = currentData.length;
-        let div1 = currentData.filter(s => s.division === 'I').length;
-        let div2 = currentData.filter(s => s.division === 'II').length;
-        let div3 = currentData.filter(s => s.division === 'III').length;
-        let avg = total > 0 ? (currentData.reduce((sum, s) => sum + s.totalPoints, 0) / total).toFixed(1) : 0;
+        // Statistics for filtered data
+        let total = filteredData.length;
+        let div1 = filteredData.filter(s => s.division === 'I').length;
+        let div2 = filteredData.filter(s => s.division === 'II').length;
+        let div3 = filteredData.filter(s => s.division === 'III').length;
+        let div4 = filteredData.filter(s => s.division === 'IV').length;
+        let avg = total > 0 ? (filteredData.reduce((sum, s) => sum + s.totalPoints, 0) / total).toFixed(1) : 0;
         
         statsDiv.innerHTML = `
-            <div class="stat-box"><div class="stat-number">${total}</div><small>Total Students</small></div>
+            <div class="stat-box"><div class="stat-number">${total}</div><small>Students Found</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#166534;">${div1}</div><small>Division I</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#1e40af;">${div2}</div><small>Division II</small></div>
             <div class="stat-box"><div class="stat-number" style="color:#854d0e;">${div3}</div><small>Division III</small></div>
+            <div class="stat-box"><div class="stat-number" style="color:#9a3412;">${div4}</div><small>Division IV</small></div>
             <div class="stat-box"><div class="stat-number">${avg}</div><small>Average Points</small></div>
         `;
+        
+        // Add search term info if searching
+        if (searchTerm !== "") {
+            let searchInfo = document.getElementById('searchInfo');
+            if (!searchInfo) {
+                searchInfo = document.createElement('div');
+                searchInfo.id = 'searchInfo';
+                searchInfo.style.marginBottom = '10px';
+                searchInfo.style.fontSize = '12px';
+                searchInfo.style.color = '#666';
+                document.querySelector('.filter').after(searchInfo);
+            }
+            searchInfo.innerHTML = `<i class="fas fa-search"></i> Showing ${total} result(s) for "<strong>${searchTerm}</strong>"`;
+        } else {
+            let searchInfo = document.getElementById('searchInfo');
+            if (searchInfo) searchInfo.remove();
+        }
     }
     
     loadData();
     window.filterData = filterData;
     window.checkPassword = checkPassword;
+    window.searchStudents = searchStudents;
+    window.clearSearch = clearSearch;
 </script>
 </body>
 </html>
